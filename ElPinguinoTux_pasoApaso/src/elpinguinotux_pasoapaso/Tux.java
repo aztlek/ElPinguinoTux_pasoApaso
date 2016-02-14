@@ -17,9 +17,9 @@
 package elpinguinotux_pasoapaso;
 
 /**
- * 
+ * Tux es el protagonista del juego
  * @author aztlek
  */
 public class Tux {
     
-}
+} // class Tux
