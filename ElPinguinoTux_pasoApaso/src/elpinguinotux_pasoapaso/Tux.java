@@ -16,6 +16,8 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.Graphics2D;
+
 /**
  * Tux es el protagonista del juego
  * @author Luis Alejandro Bernal Romero (Aztlek)
@@ -26,8 +28,8 @@ public class Tux {
     private final double totalHeight = 237.0d;
     
     // Posición, ancho y alto en el Escenario
-    private  double x, y;
-    private  double width, height;
+    private double x, y;
+    private double width, height;
 
     public Tux(double x, double y, double width, double height) {
         this.x = x;
@@ -35,5 +37,9 @@ public class Tux {
         this.width = width;
         this.height = height;
     }    
+    
+    public void paint(Graphics2D graphics2D) {
+        
+    }
     
 } // class Tux
