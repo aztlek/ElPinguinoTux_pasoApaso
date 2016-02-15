@@ -17,6 +17,7 @@
 package elpinguinotux_pasoapaso;
 
 import java.awt.Canvas;
+import java.awt.Graphics;
 import javax.swing.JFrame;
 
 /**
@@ -29,16 +30,23 @@ public class Escenario extends Canvas {
     private double totalWidth;
     private double totalHeight;
     private JFrame marco;
-    private double escalaX; // Escala en el eje x.
-    private double escalaY; // Escala en el eje y.
+    private double escalaX;
+    private double escalaY;
 
     public Escenario(int x, int y, int width, int height, double totalWidth, double totalHeight, JFrame marco) {
+        setBounds(x, y, width, height);
         this.x = x;
         this.y = y;
         this.totalWidth = totalWidth;
         this.totalHeight = totalHeight;
         this.marco = marco;
-        this.escalaX = (double) width / (double) totalWidth;
+        this.escalaX = (double) width / totalWidth;
+        this.escalaY = (double) height / totalHeight;
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
