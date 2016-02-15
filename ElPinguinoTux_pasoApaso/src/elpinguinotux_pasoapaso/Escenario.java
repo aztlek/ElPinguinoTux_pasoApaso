@@ -28,9 +28,14 @@ public class Escenario extends Canvas {
     private int y;
     private double totalWidth;
     private double totalHeight;
-    private double escalaX;
-    private double escalaY;
     private JFrame marco;
-    
 
+    public Escenario(int x, int y, double totalWidth, double totalHeight, JFrame marco) {
+        this.x = x;
+        this.y = y;
+        this.totalWidth = totalWidth;
+        this.totalHeight = totalHeight;
+        this.marco = marco;
+    }
+    
 }
