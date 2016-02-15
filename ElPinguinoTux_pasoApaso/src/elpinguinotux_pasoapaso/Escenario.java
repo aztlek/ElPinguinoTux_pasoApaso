@@ -29,13 +29,16 @@ public class Escenario extends Canvas {
     private double totalWidth;
     private double totalHeight;
     private JFrame marco;
+    private double escalaX; // Escala en el eje x.
+    private double escalaY; // Escala en el eje y.
 
-    public Escenario(int x, int y, double totalWidth, double totalHeight, JFrame marco) {
+    public Escenario(int x, int y, int width, int height, double totalWidth, double totalHeight, JFrame marco) {
         this.x = x;
         this.y = y;
         this.totalWidth = totalWidth;
         this.totalHeight = totalHeight;
         this.marco = marco;
+        this.escalaX = (double) width / (double) totalWidth;
     }
     
 }
