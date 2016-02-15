@@ -17,6 +17,7 @@
 package elpinguinotux_pasoapaso;
 
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 
 /**
  * Tux es el protagonista del juego
@@ -65,6 +66,14 @@ public class Tux {
 
     public double getEscalaY() {
         return escalaY;
+    }
+    
+    public void paint(Graphics2D graphics2D) {
+        // Transladar y escalar
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(getX(), getY());
+        graphics2D.scale(getEscalaX(), getEscalaY());
+
     }
     
 } // class Tux
