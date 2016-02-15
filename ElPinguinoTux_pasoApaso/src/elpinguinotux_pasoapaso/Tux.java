@@ -30,12 +30,17 @@ public class Tux {
     // Posición, ancho y alto en el Escenario
     private double x, y;
     private double width, height;
+    
+    // Escalas
+    private double escalaX, escalaY;
 
     public Tux(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.escalaX = width / totalWidth;
+        this.escalaY = height / totalHeight;
     }    
     
     public void paint(Graphics2D graphics2D) {
