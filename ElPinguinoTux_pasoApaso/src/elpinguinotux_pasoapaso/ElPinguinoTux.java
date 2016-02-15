@@ -16,14 +16,21 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 /**
- *
+ * Esta es la clase principal del juego.
  * @author aztlek
  */
 public class ElPinguinoTux {
     
     public static void main(String[] args) {
-        
+        // Instanciar el marco (la ventana) y averiguar la resolución
+        JFrame marco = new JFrame("El Pingüino Tux");
+        int screenWidth = Toolkit.getDefaultToolkit().getScreenSize().width;
+        int screenHeight = Toolkit.getDefaultToolkit().getScreenSize().height;
+
     }
     
 }
