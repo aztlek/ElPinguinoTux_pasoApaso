@@ -16,10 +16,12 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.Canvas;
+
 /**
  *
  * @author aztlek
  */
-public class Escenario {
+public class Escenario extends Canvas  {
     
 }
