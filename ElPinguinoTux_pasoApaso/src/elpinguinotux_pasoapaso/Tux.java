@@ -16,8 +16,10 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Ellipse2D;
 
 /**
  * Tux es el protagonista del juego
@@ -73,6 +75,14 @@ public class Tux {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
+        
+                // Cuerpo
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(7d, 0d, 176d, 230d));
+
+        // Pecho
+        graphics2D.setPaint(Color.WHITE);
+        graphics2D.fill(new Ellipse2D.Double(26d, 83d, 138d, 145d));
 
     }
     
