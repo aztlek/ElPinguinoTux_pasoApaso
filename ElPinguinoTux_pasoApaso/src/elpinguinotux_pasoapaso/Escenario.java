@@ -17,11 +17,20 @@
 package elpinguinotux_pasoapaso;
 
 import java.awt.Canvas;
+import javax.swing.JFrame;
 
 /**
  *
  * @author aztlek
  */
-public class Escenario extends Canvas  {
+public class Escenario extends Canvas {
+    private int x; 
+    private int y;
+    private double totalWidth;
+    private double totalHeight;
+    private double escalaX;
+    private double escalaY;
+    private JFrame marco;
     
+
 }
