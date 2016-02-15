@@ -18,6 +18,8 @@ package elpinguinotux_pasoapaso;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import javax.swing.JFrame;
 
 /**
@@ -25,7 +27,8 @@ import javax.swing.JFrame;
  * @author aztlek
  */
 public class Escenario extends Canvas {
-    private int x; 
+
+    private int x;
     private int y;
     private double totalWidth;
     private double totalHeight;
@@ -46,7 +49,17 @@ public class Escenario extends Canvas {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g); //To change body of generated methods, choose Tools | Templates.
+        super.paint(g);
+        Graphics2D graphics2D = (Graphics2D) g;
+
+        // Transformaciones
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(x, y);
+        graphics2D.scale(escalaX, escalaY);
+
+        // Dibujar el protagonista
+        Tux tux = new Tux(x, y, totalHeight, totalHeight);
+        tux.paint(graphics2D);
     }
-    
+
 }
