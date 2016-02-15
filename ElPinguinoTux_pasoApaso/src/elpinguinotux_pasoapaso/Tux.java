@@ -18,8 +18,11 @@ package elpinguinotux_pasoapaso;
 
 /**
  * Tux es el protagonista del juego
- * @author aztlek
+ * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Tux {
+    // Ancho y alto total de la figura
+    private final double totalWidth = 109.0d;
+    private final double totalHeight = 237.0d;
     
 } // class Tux
