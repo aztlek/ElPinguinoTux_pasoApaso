@@ -25,4 +25,15 @@ public class Tux {
     private final double totalWidth = 109.0d;
     private final double totalHeight = 237.0d;
     
+    // Posición, ancho y alto en el Escenario
+    private  double x, y;
+    private  double width, height;
+
+    public Tux(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+    }    
+    
 } // class Tux
