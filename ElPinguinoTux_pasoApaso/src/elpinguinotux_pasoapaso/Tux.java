@@ -43,10 +43,6 @@ public class Tux {
         this.escalaY = height / totalHeight;
     }    
     
-    public void paint(Graphics2D graphics2D) {
-        
-    }
-
     public double getX() {
         return x;
     }
@@ -61,6 +57,14 @@ public class Tux {
 
     public double getHeight() {
         return height;
+    }
+
+    public double getEscalaX() {
+        return escalaX;
+    }
+
+    public double getEscalaY() {
+        return escalaY;
     }
     
 } // class Tux
