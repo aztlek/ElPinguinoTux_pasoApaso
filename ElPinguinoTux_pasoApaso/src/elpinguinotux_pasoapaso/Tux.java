@@ -46,5 +46,21 @@ public class Tux {
     public void paint(Graphics2D graphics2D) {
         
     }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
     
 } // class Tux
