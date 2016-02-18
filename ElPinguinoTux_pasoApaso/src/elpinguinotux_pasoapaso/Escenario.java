@@ -28,20 +28,18 @@ import javax.swing.JFrame;
  */
 public class Escenario extends Canvas {
 
-    private int x;
-    private int y;
-    private double totalWidth;
-    private double totalHeight;
-    private JFrame marco;
-    private double escalaX;
-    private double escalaY;
+    private final int x;
+    private final int y;
+    private final double totalWidth = 280.0d;
+    private final double totalHeight = 160.0d;
+    private final JFrame marco;
+    private final double escalaX;
+    private final double escalaY;
 
-    public Escenario(int x, int y, int width, int height, double totalWidth, double totalHeight, JFrame marco) {
+    public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
         this.y = y;
-        this.totalWidth = totalWidth;
-        this.totalHeight = totalHeight;
         this.marco = marco;
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
@@ -58,8 +56,11 @@ public class Escenario extends Canvas {
         graphics2D.scale(escalaX, escalaY);
 
         // Dibujar el protagonista
-        Tux tux = new Tux(x, y, totalHeight, totalHeight);
+        Tux tux = new Tux(0.0d, 0.0d, totalWidth / 2.0d, totalHeight);
         tux.paint(graphics2D);
+        
+        // Reestrablece las transformaciones
+        graphics2D.setTransform(affineTransform);
     }
 
 }
