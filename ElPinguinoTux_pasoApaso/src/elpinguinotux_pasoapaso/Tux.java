@@ -24,19 +24,22 @@ import java.awt.geom.Ellipse2D;
 
 /**
  * Tux es el protagonista del juego
+ *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Tux {
+
     // Ancho y alto total de la figura
-    private final double totalWidth = 109.0d;
+
+    private final double totalWidth = 190.0d;
     private final double totalHeight = 237.0d;
-    
+
     // Posición, ancho y alto en el Escenario
-    private double x, y;
-    private double width, height;
-    
+    private final double x, y;
+    private final double width, height;
+
     // Escalas
-    private double escalaX, escalaY;
+    private final double escalaX, escalaY;
 
     public Tux(double x, double y, double width, double height) {
         this.x = x;
@@ -45,8 +48,8 @@ public class Tux {
         this.height = height;
         this.escalaX = width / totalWidth;
         this.escalaY = height / totalHeight;
-    }    
-    
+    }
+
     public double getX() {
         return x;
     }
@@ -70,13 +73,21 @@ public class Tux {
     public double getEscalaY() {
         return escalaY;
     }
-    
+
+    public double getTotalWidth() {
+        return totalWidth;
+    }
+
+    public double getTotalHeight() {
+        return totalHeight;
+    }
+
     public void paint(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
-        
+
         // Cuerpo
         graphics2D.setPaint(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(7d, 0d, 176d, 230d));
@@ -123,9 +134,12 @@ public class Tux {
         graphics2D.setPaint(new Color(255, 149, 0));
         graphics2D.fill(new Ellipse2D.Double(113d, 209d, 50d, 28d));
 
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
-    }
-    
+    } // paint()
+
 } // class Tux
