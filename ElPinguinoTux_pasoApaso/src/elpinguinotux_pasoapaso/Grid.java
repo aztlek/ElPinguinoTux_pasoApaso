@@ -34,8 +34,7 @@ import java.awt.geom.AffineTransform;
  *
  * 1. Crear una nueva clase llamada Grid en tu proyecto. 
  * 
- * 2. Copiar y pegar
- * entero este código, incluida la licencia. 
+ * 2. Copiar y pegar entero este código, incluida la licencia. 
  * 
  * 3. Cambias el package al principio del código.
  * 
@@ -44,43 +43,19 @@ import java.awt.geom.AffineTransform;
  * 4. Si quieres ponerlo en alguno de tus objetos gráficos tienes que hacer lo 
  * siguiente:
  * 
- * 4.1. Abre el archivo de la clase en donde quieres usar la grilla.
- * 4.2. Al final del métodos paint pones el siguiente código:
+ * 4.1. Abre el archivo de la clase  del objeto gráfico en donde quieres usar 
+ *      la grilla.
+ * 4.2. Al final del método paint pones el siguiente código:
  * 
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
- *  antes del códifo:
+ *
+ *  pero antes del código:
  * 
  *         // Volver a la translación y escalación anterior
  *         graphics2D.setTransform(affineTransform);
- *
- * 3. Si quieres ponerlo en el lienzo
- * debes hacer lo siguiente:
- *
- * 3.1. Crear un atributo de clase Grid en la clase Escenario:
- *
- * public class Escenario ... { ... // Atributos ... // rejilla de referencia
- * private Grid grid; ... } // Escenario
- *
- * 3.2. Instanciar el objeto en la contructora de lienzo, así:
- *
- * public Escenario(int getWidth(), int getHeight()) { ... // Rejilla de
- * referencia grid = new Grid(0, 0, getWidth(), getHeight(), getTotalWidth(),
- * getTotalHeight()); }
- *
- * 3.3. Dibujar la rejilla en el paint de lienzo:
- *
- * public void paint(Graphics graphics) { ... grid.paint(graphics); }
- *
- * Importante que sea el último paint.
- *
- * 3.4. Cuando tengas posicionado, puedes comentariar el paint de lienzo:
- *
- * public void paint(Graphics graphics) { ... // Dibuja la rejilla
- * grid.paint(graphics); }
- *
- * 4. Si es en otra clase gráfica haces lo mismo, pero debes comentariar las
+ * 
+ * 5. Si es en otra clase gráfica haces lo mismo, pero debes comentariar las
  * demás rejillas (las del lienzo y las otras clases gráficas) para no
  * confundirte.
  *
