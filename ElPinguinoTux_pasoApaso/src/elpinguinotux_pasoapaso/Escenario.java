@@ -65,6 +65,6 @@ public class Escenario extends Canvas {
         
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
-    }
+    } // paint()
 
 }
