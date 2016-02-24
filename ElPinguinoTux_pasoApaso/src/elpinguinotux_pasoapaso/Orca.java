@@ -27,5 +27,14 @@ public class Orca {
     private final double width, height;
     private final double escalaX, escalaY;
 
+    public Orca(double x, double y, double width, double height) {
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
+        this.escalaX = width / totalWidth;
+        this.escalaY = height / totalHeight;
+    } // Orcar()
+
 
 }
