@@ -21,5 +21,11 @@ package elpinguinotux_pasoapaso;
  * @author aztlek
  */
 public class Orca {
-    
+    private final double totalWidth = 190.0d;
+    private final double totalHeight = 237.0d;
+    private final double x, y;
+    private final double width, height;
+    private final double escalaX, escalaY;
+
+
 }
