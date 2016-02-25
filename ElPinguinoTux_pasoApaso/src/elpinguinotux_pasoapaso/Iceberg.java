@@ -19,10 +19,12 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Stroke;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.RoundRectangle2D;
 
 /**
  * El Iceberg donde Tux se puede esconder de las orcas.
@@ -35,6 +37,8 @@ public class Iceberg  {
     private final double x, y;
     private final double width, height;
     private final double escalaX, escalaY;
+    private final float radio = (float)totalWidth / 3.0f;
+    private final float anchoLinea = 5.0f;
 
     /**
      * Crea un nuevo Iceberg.
@@ -62,57 +66,18 @@ public class Iceberg  {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
+        
         // Fondo
-        graphics2D.setColor(new Color(41, 60, 255, 234));
-        graphics2D.fill(
-                new Rectangle2D.Double(
-                        (0),
-                        (0),
-                        (190),
-                        (190)
-                )
-        );
-
-        // Marco superior
+        graphics2D.setColor(new Color(41, 60, 255, 234));        
+        graphics2D.fill(new RoundRectangle2D.Double(0, 0, 190, 190, radio, radio));
+        
+        // El borde
         graphics2D.setColor(new Color(128, 255, 163));
-        graphics2D.fill(
-                new Rectangle2D.Double(
-                        (0),
-                        (0),
-                        (190),
-                        (5)
-                )
-        );
-
-        // Marco Inferior
-        graphics2D.fill(
-                new Rectangle2D.Double(
-                        (0),
-                        (185),
-                        (190),
-                        (5.5)
-                )
-        );
-
-        // Marco derecho
-        graphics2D.fill(
-                new Rectangle2D.Double(
-                        (0),
-                        (0),
-                        (5),
-                        (190)
-                )
-        );
-
-        // Marco izquierdo
-        graphics2D.fill(
-                new Rectangle2D.Double(
-                        (185),
-                        (0),
-                        (5.5),
-                        (190)
-                )
-        );
+        Stroke oldStroke =  graphics2D.getStroke();
+        BasicStroke newStroke = new BasicStroke(anchoLinea);
+        graphics2D.setStroke(newStroke);
+        graphics2D.draw(new RoundRectangle2D.Double(0 + (anchoLinea / 2), 0  + (anchoLinea / 2), 190 - (anchoLinea), 190 - (anchoLinea), radio -anchoLinea, radio - anchoLinea));
+        graphics2D.setStroke(oldStroke);
 
         // Línea 0
         // Puntos línea 0             [0]                              [1]                              [2]                              [3]
@@ -132,8 +97,8 @@ public class Iceberg  {
         int[] linea2y = {(76), 80, (162), (158)};
         graphics2D.fillPolygon(linea2x, linea2y, linea2x.length);
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         graphics2D.setTransform(affineTransform);
 
