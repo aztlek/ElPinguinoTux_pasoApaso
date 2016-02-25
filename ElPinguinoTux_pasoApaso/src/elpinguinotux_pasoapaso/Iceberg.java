@@ -37,7 +37,7 @@ public class Iceberg  {
     private final double x, y;
     private final double width, height;
     private final double escalaX, escalaY;
-    private final float radio = (float)totalWidth / 3.0f;
+    private final float radio = (float)totalWidth / 2.0f;
     private final float anchoLinea = 5.0f;
 
     /**
