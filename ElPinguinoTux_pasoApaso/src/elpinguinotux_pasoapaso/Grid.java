@@ -68,8 +68,6 @@ public class Grid {
     private final double totalHeight; // Alto total del dibujo en la hoja milimetrada, en milímetros
     private final double x; // Posición x, en pixels.
     private final double y; // Posición y, en pixels.
-//    private final double width; // Ancho el objeto grafico, en pixels.
-//    private final double height; // Alto del objeto grafico, en pixels.
 
     // Medida de la transparencia de la líneas, o canal alpha
     private static final int alphaCmLines = 255; // Transparencia de las líneas de centímetros, completamente sólida
