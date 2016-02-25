@@ -86,8 +86,8 @@ public class Orca {
         graphics2D.fill(new Ellipse2D.Double(74, 104, 58, 27));
         graphics2D.fill(new Ellipse2D.Double(172, 102, 88, 29));
         
-//        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
