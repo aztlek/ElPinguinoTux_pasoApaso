@@ -20,6 +20,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -63,8 +64,43 @@ public class Escenario extends Canvas {
         Orca orca = new Orca(0.0d, 0.0d, totalWidth, totalHeight);
         orca.paint(graphics2D);
         
+//        // Dibujar los villanos
+//        
+//        Orca[] orcas = new Orca[4];
+//        Random random = new Random();
+//        double  orcasInicioX = 27.0d, 
+//                orcasInicioY = 12.0d,
+//                orcaSeparaciónAlto = 37.0d;
+//        
+//        // Instanciar las orcas
+//        for (int i = 0; i < orcas.length; i++) {
+//            orcas[i] = new Orca(
+//                    orcasInicioX + random.nextDouble() * (111.0d - 27.0d), 
+//                    orcasInicioY + i * orcaSeparaciónAlto, 
+//                    43.0d, 
+//                    23.0d
+//            );
+//        }
+//        
+//        // Dibujar las orcas
+//        for (Orca orca : orcas) {
+//            orca.paint(graphics2D);
+//        }
+//        
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
 
-}
+    public double getTotalWidth() {
+        return totalWidth;
+    }
+
+    public double getTotalHeight() {
+        return totalHeight;
+    }
+
+    
+} // class Escenario
