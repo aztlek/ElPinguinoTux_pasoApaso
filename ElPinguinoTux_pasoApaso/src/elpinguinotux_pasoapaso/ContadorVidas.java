@@ -21,42 +21,45 @@ package elpinguinotux_pasoapaso;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 /**
- * Cuenta el número de peces pescados por Tux.
+ * LLeva el número de vidas del protagonista.
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class ContadorPeces {
-
-    private final double totalWidth = 290.0d;
-    private final double totalHeight = 160.0d;
+public class ContadorVidas {
+    private final double totalWidth = 280.0d;
+    private final double totalHeight = 184.0d;
     private final double x, y;
     private final double width, height;
     private final double escalaX, escalaY;
 
-    private int numeroDePeces = 8;
-
-    private final String titulo = "Peces";
-    private final double anchoPez = 65;
-    private final double altoPez = 25;
-    private final double separacionXEntrePeces = 7;
-    private final double separacionYEntrePeces = 14;
-    private final double inicioYPeces = 96;
+    private final String titulo = "Vidas";
+    private final int vidasInicial = 3;
+    private int vidas = vidasInicial;
+    private final double anchoPinguino = 75;
+    private final double altoPinguino = 110;
+    private final double separacionEntrePinguinos = 9;
+    private double totalAnchoPinguinos;
+    private double inicioXPinquino;
+    private final double inicioYPinguino = 74;
     private final Color colorConteo = new Color(0, 128, 128);
-    private static final double altoTituloContadores = 50.0d;
+    public static final double escalaTextos = 1.3;
+    
+    public static final double altoTituloContadores = 50.0d;
 
     /**
-     * Crea un gráfico para contar los peces atrapados.
+     * Constructora de vidas.
      *
-     * @param x posición x en pixels.
-     * @param y posición y en pixels.
-     * @param width ancho en pixels.
-     * @param height alto en pixels.
+     * @param x Posición x
+     * @param y Posición y
+     * @param width Ancho
+     * @param height alto
      */
-    public ContadorPeces(double x, double y, double width, double height) {
+    public ContadorVidas(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -65,69 +68,70 @@ public class ContadorPeces {
         this.escalaY = height / totalHeight;
     }
 
+    
     /**
-     * @return el número de pescados.
+     * Decrementa las vidas del protagonista
      */
-    public int getNumeroDePeces() {
-        return numeroDePeces;
+    public void dec() {
+        vidas--;
+    }
+
+    /**
+     * @return el número de vidas.
+     */
+    public int getVidas() {
+        return vidas;
     }
 
     public void paint(Graphics2D graphics2D) {
-        AffineTransform affineTransform = graphics2D.getTransform();
+        AffineTransform transformacionesAnteriores = graphics2D.getTransform();
+
+        // Trnasformaciones: transladar y escalar
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
-        double factorEscala = 1.35;
 
         // Averiguar el tipo de letra actual
         Font oldFont = graphics2D.getFont();
 
-        // Poner el color, el nuevo tipo de letra obtener las métricas
+        // Poner el color, el nuevo tipo de letra y obtene las métricas
         graphics2D.setColor(colorConteo);
-        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round((altoTituloContadores) * factorEscala)));
+        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round((altoTituloContadores) * escalaTextos)));
+        FontMetrics fontMetrics = graphics2D.getFontMetrics();
 
         // Título
-        int widthFont = graphics2D.getFontMetrics().stringWidth(titulo);
+        int widthFont = fontMetrics.stringWidth(titulo);
         graphics2D.drawString(
                 titulo,
-                (int) Math.round((getTotalWidth() - widthFont) / 2.0d),
+                (int) Math.round(((getTotalWidth() - widthFont) / 2.0d)),
                 (int) Math.round(altoTituloContadores)
         );
 
-        // Pintar los pescados
-        double anchoPeces = (3 * (anchoPez + separacionXEntrePeces)) + anchoPez;
-        double inicioX = (getTotalWidth() - anchoPeces) / 2.0d;
-        double inicioY = inicioYPeces;
-        for (int i = 0; i < numeroDePeces;) {
-
-            new Pez(
-                    (inicioX + (i % 4) * (anchoPez + separacionXEntrePeces)),
-                    inicioY,
-                    anchoPez,
-                    altoPez
+        // Pintar las vidas
+        for (int i = 0; i < vidas; i++) {
+            totalAnchoPinguinos = (anchoPinguino * vidas + separacionEntrePinguinos * (vidas - 1));
+            inicioXPinquino = (getTotalWidth() - totalAnchoPinguinos) / 2.0d;
+            new Tux(
+                    inicioXPinquino + i * (anchoPinguino + separacionEntrePinguinos),
+                    inicioYPinguino,
+                    anchoPinguino,
+                    altoPinguino
             ).paint(graphics2D);
-
-            i++;
-            if (i % 4 == 0) {
-                inicioY += (altoPez + separacionYEntrePeces);
-            } // if
         }
 
         // Restablecer el anterior tipo de letra
         graphics2D.setFont(oldFont);
 
-        // Volver a las transformaciones anteriores.
-        graphics2D.setTransform(affineTransform);
-        
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
-    } // paint()
+        graphics2D.setTransform(transformacionesAnteriores);
+    }
 
     /**
-     * Incrementa el numeroDePeces
+     * Reinicia el contador de vidas.
      */
-    public void inc() {
-        numeroDePeces++;
+    public void reiniciar() {
+        vidas = vidasInicial;
     }
 
     public double getTotalWidth() {
@@ -161,4 +165,6 @@ public class ContadorPeces {
     public double getEscalaY() {
         return escalaY;
     }
-} // class Peces
+
+}
+// class Vidas

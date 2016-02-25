@@ -89,8 +89,8 @@ public class Pez {
         graphics2D.setColor(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(227, 41, 17, 17));
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);

@@ -67,9 +67,15 @@ public class Escenario extends Canvas {
 //        CuboDeHielo cuboDeHielo = new CuboDeHielo(0, 0, totalHeight, totalHeight);
 //        cuboDeHielo.paint(graphics2D);
         
-        // Dibujar el pez
-        Pez pez = new Pez(0, 0, totalHeight, totalHeight);
-        pez.paint(graphics2D);
+//        // Dibujar el pez
+//        Pez pez = new Pez(0, 0, totalWidth, totalHeight);
+//        pez.paint(graphics2D);
+        
+//        ContadorPeces contadorPeces = new ContadorPeces(0, 0, totalWidth, totalHeight);
+//        contadorPeces.paint(graphics2D);
+//        
+        ContadorVidas contadorVidas = new ContadorVidas(0, 0, totalWidth, totalHeight);
+        contadorVidas.paint(graphics2D);
         
         
         

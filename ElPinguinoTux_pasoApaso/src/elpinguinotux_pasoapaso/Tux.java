@@ -134,8 +134,8 @@ public class Tux {
         graphics2D.setPaint(new Color(255, 149, 0));
         graphics2D.fill(new Ellipse2D.Double(113d, 209d, 50d, 28d));
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
