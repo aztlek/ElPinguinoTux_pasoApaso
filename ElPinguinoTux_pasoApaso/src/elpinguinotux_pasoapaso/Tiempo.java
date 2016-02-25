@@ -181,4 +181,12 @@ public class Tiempo  {
         return paso;
     }
 
+    /**
+     * Convierte el tiempo a cadena. Se usa en la ventana de puntajes.
+     * @return el tiempo en forme de cadena
+     */
+    @Override
+    public String toString() {
+        return ((horas <= 9 && horas >= 0) ? "0" : "") + horas + ":" + ((minutos <= 9) ? "0" : "") + minutos + "";
+    } // reiniciar()
 } // class Tiempo
