@@ -63,6 +63,11 @@ public class Escenario extends Canvas {
 //        Orca orca = new Orca(0, 0, totalWidth, totalHeight);
 //        orca.paint(graphics2D);
         
+        // Dibujar el ladrillo
+        CuboDeHielo cuboDeHielo = new CuboDeHielo(0, 0, totalHeight, totalHeight);
+        cuboDeHielo.paint(graphics2D);
+        
+        
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
