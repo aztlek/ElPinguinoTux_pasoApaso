@@ -20,6 +20,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
