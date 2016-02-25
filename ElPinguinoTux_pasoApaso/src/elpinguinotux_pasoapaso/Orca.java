@@ -20,6 +20,3 @@ package elpinguinotux_pasoapaso;
  *
  * @author aztlek
  */
-public class Orca {
-    
-}
