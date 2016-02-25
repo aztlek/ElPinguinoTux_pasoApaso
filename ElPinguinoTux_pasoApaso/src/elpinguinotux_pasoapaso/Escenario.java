@@ -55,9 +55,9 @@ public class Escenario extends Canvas {
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
-//        // Dibujar el protagonista
-//        Tux tux = new Tux(0.0d, 0.0d, totalWidth / 2.0d, totalHeight);
-//        tux.paint(graphics2D);
+        // Dibujar el protagonista
+        Tux tux = new Tux(0.0d, 0.0d, totalWidth / 2.0d, totalHeight);
+        tux.paint(graphics2D);
         
         // Dibujar el villano
         Orca orca = new Orca(0.0d, 0.0d, totalWidth, totalHeight);
