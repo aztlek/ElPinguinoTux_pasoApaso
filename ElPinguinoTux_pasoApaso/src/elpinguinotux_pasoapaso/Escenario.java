@@ -80,8 +80,11 @@ public class Escenario extends Canvas {
 //        Iceberg iceberg = new Iceberg(0, 0, totalHeight, totalHeight);
 //        iceberg.paint(graphics2D);
         
-        FamiliaTux familiaTux = new FamiliaTux(0, 0, totalHeight, totalHeight);
-        familiaTux.paint(graphics2D);
+//        FamiliaTux familiaTux = new FamiliaTux(0, 0, totalHeight, totalHeight);
+//        familiaTux.paint(graphics2D);
+        
+        Tiempo tiempo = new Tiempo(0, 0, totalWidth, totalHeight);
+        tiempo.paint(graphics2D);
         
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
