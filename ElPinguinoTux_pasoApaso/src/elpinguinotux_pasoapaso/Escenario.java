@@ -59,36 +59,6 @@ public class Escenario extends Canvas {
         Tux tux = new Tux(0.0d, 0.0d, totalWidth / 2.0d, totalHeight);
         tux.paint(graphics2D);
         
-        // Dibujar el villano
-        Orca orca = new Orca(0.0d, 0.0d, totalWidth, totalHeight);
-        orca.paint(graphics2D);
-        
-//        // Dibujar los villanos
-//        
-//        Orca[] orcas = new Orca[4];
-//        Random random = new Random();
-//        double  orcasInicioX = 27.0d, 
-//                orcasInicioY = 12.0d,
-//                orcaSeparaciónAlto = 37.0d;
-//        
-//        // Instanciar las orcas
-//        for (int i = 0; i < orcas.length; i++) {
-//            orcas[i] = new Orca(
-//                    orcasInicioX + random.nextDouble() * (111.0d - 27.0d), 
-//                    orcasInicioY + i * orcaSeparaciónAlto, 
-//                    43.0d, 
-//                    23.0d
-//            );
-//        }
-//        
-//        // Dibujar las orcas
-//        for (Orca orca : orcas) {
-//            orca.paint(graphics2D);
-//        }
-//        
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
