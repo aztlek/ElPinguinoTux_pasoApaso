@@ -74,10 +74,11 @@ public class Escenario extends Canvas {
 //        ContadorPeces contadorPeces = new ContadorPeces(0, 0, totalWidth, totalHeight);
 //        contadorPeces.paint(graphics2D);
 //        
-        ContadorVidas contadorVidas = new ContadorVidas(0, 0, totalWidth, totalHeight);
-        contadorVidas.paint(graphics2D);
+//        ContadorVidas contadorVidas = new ContadorVidas(0, 0, totalWidth, totalHeight);
+//        contadorVidas.paint(graphics2D);
         
-        
+        Iceberg iceberg = new Iceberg(0, 0, totalWidth, totalWidth);
+        iceberg.paint(graphics2D);
         
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
