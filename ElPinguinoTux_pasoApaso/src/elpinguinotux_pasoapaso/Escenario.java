@@ -83,8 +83,11 @@ public class Escenario extends Canvas {
 //        FamiliaTux familiaTux = new FamiliaTux(0, 0, totalHeight, totalHeight);
 //        familiaTux.paint(graphics2D);
         
-        Tiempo tiempo = new Tiempo(0, 0, totalWidth, totalHeight);
-        tiempo.paint(graphics2D);
+//        Tiempo tiempo = new Tiempo(0, 0, totalWidth, totalHeight);
+//        tiempo.paint(graphics2D);
+        
+        Titulo titulo = new Titulo(0, 0, 16, totalHeight);
+        titulo.paint(graphics2D);
         
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
