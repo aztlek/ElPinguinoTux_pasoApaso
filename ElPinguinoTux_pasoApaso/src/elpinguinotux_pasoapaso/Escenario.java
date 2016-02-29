@@ -102,6 +102,9 @@ public class Escenario extends Canvas {
 //        tiempo.paint(graphics2D);
 //        titulo.paint(graphics2D);
 
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
