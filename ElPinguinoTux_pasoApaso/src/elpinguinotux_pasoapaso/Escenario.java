@@ -55,38 +55,15 @@ public class Escenario extends Canvas {
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
-//        // Dibujar el protagonista
-//        Tux tux = new Tux(0.0d, 0.0d, totalWidth / 2.0d, totalHeight);
-//        tux.paint(graphics2D);
-        
-//        // Dibujar el villano
-//        Orca orca = new Orca(0, 0, totalWidth, totalHeight);
-//        orca.paint(graphics2D);
-        
-//        // Dibujar el ladrillo
-//        CuboDeHielo cuboDeHielo = new CuboDeHielo(0, 0, totalHeight, totalHeight);
-//        cuboDeHielo.paint(graphics2D);
-        
-//        // Dibujar el pez
-//        Pez pez = new Pez(0, 0, totalWidth, totalHeight);
-//        pez.paint(graphics2D);
-        
-//        ContadorPeces contadorPeces = new ContadorPeces(0, 0, totalWidth, totalHeight);
-//        contadorPeces.paint(graphics2D);
-//        
-//        ContadorVidas contadorVidas = new ContadorVidas(0, 0, totalWidth, totalHeight);
-//        contadorVidas.paint(graphics2D);
-        
-//        Iceberg iceberg = new Iceberg(0, 0, totalHeight, totalHeight);
-//        iceberg.paint(graphics2D);
-        
-//        FamiliaTux familiaTux = new FamiliaTux(0, 0, totalHeight, totalHeight);
-//        familiaTux.paint(graphics2D);
-        
-//        Tiempo tiempo = new Tiempo(0, 0, totalWidth, totalHeight);
-//        tiempo.paint(graphics2D);
-        
-        Titulo titulo = new Titulo(0, 0, 16, totalHeight);
+        tux.paint(graphics2D);
+        orca.paint(graphics2D);
+        cuboDeHielo.paint(graphics2D);
+        pez.paint(graphics2D);
+        contadorPeces.paint(graphics2D);
+        contadorVidas.paint(graphics2D);
+        iceberg.paint(graphics2D);
+        familiaTux.paint(graphics2D);
+        tiempo.paint(graphics2D);
         titulo.paint(graphics2D);
         
         // Reestrablece las transformaciones
