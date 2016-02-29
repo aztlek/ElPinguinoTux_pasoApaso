@@ -35,6 +35,17 @@ public class Escenario extends Canvas {
     private final JFrame marco;
     private final double escalaX;
     private final double escalaY;
+    
+    private final Tux tux;
+    private final Orca orca;
+    private final CuboDeHielo cuboDeHielo;
+    private final Pez pez;
+    private final ContadorPeces contadorPeces;
+    private final ContadorVidas contadorVidas;
+    private final Iceberg iceberg;
+    private final FamiliaTux familiaTux;
+    private final Tiempo tiempo;
+    private final Titulo titulo;
 
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
