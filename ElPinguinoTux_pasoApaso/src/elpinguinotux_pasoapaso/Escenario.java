@@ -54,6 +54,8 @@ public class Escenario extends Canvas {
         this.marco = marco;
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
+        
+        tux = new Tux(214, 129, 11, 14);
     }
 
     @Override
