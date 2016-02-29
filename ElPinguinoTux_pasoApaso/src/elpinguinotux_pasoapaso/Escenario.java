@@ -47,7 +47,9 @@ public class Escenario extends Canvas {
     private final int numBloquesY = 17; // Buneor de bloques en y
     private final double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double)numBloquesX; // Ancho de la tesela
     private final double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double)numBloquesY; // Alto de la tesela
-    private final CuboDeHielo[] hilera0, hilera10;
+    private final CuboDeHielo[] hilera0;
+    private final CuboDeHielo[] hilera10, hilera11;
+    private final CuboDeHielo[] hilera20;
     
 //    private final Pez pez;
 //    private final ContadorPeces contadorPeces;
@@ -107,7 +109,28 @@ public class Escenario extends Canvas {
                             heightCuboDeHielo
                     );
         }
-
+        
+        // hilera11
+        hilera11 = new CuboDeHielo[15];
+        for (int i = 0; i < hilera11.length; i++) {
+            hilera11[i] = new CuboDeHielo(
+                            inicioxBloques + 13 * widthCuboDeHielo + i * widthCuboDeHielo,
+                            4 * heightCuboDeHielo + 0 * heightCuboDeHielo,
+                            widthCuboDeHielo,
+                            heightCuboDeHielo
+                    );
+        }
+        
+        // hilera20
+        hilera20 = new CuboDeHielo[3];
+        for (int i = 0; i < hilera20.length; i++) {
+            hilera20[i] = new CuboDeHielo(
+                            inicioxBloques + 1 * widthCuboDeHielo + i * widthCuboDeHielo,
+                            8 * heightCuboDeHielo + 0 * heightCuboDeHielo,
+                            widthCuboDeHielo,
+                            heightCuboDeHielo
+                    );
+        }
     }
 
     @Override
@@ -128,6 +151,12 @@ public class Escenario extends Canvas {
             hilera.paint(graphics2D);
         }
         for (CuboDeHielo hilera : hilera10) {
+            hilera.paint(graphics2D);
+        }
+        for (CuboDeHielo hilera : hilera11) {
+            hilera.paint(graphics2D);
+        }
+        for (CuboDeHielo hilera : hilera20) {
             hilera.paint(graphics2D);
         }
 //        cuboDeHielo.paint(graphics2D);
