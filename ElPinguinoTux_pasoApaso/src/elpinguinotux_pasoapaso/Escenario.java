@@ -90,7 +90,9 @@ public class Escenario extends Canvas {
         graphics2D.scale(escalaX, escalaY);
 
         tux.paint(graphics2D);
-        orca.paint(graphics2D);
+        for (Orca orca : orcas) {
+            orca.paint(graphics2D);
+        }
 //        cuboDeHielo.paint(graphics2D);
 //        pez.paint(graphics2D);
 //        contadorPeces.paint(graphics2D);
