@@ -52,6 +52,7 @@ public class Escenario extends Canvas {
     private final CuboDeHielo[] hilera20, hilera21, hilera22;
     private final CuboDeHielo[] hilera30, hilera31;
     private final CuboDeHielo[] hilera4;
+    private final CuboDeHielo[] columna0;
     
 //    private final Pez pez;
 //    private final ContadorPeces contadorPeces;
@@ -188,6 +189,17 @@ public class Escenario extends Canvas {
                             heightCuboDeHielo
                     );
         }
+        
+        // columna0
+        columna0 = new CuboDeHielo[numBloquesY - 2];
+        for (int j = 0; j < columna0.length; j++) {
+            columna0[j] = new CuboDeHielo(
+                            inicioxBloques + 0 * widthCuboDeHielo,
+                            inicioyBloques + 1 * heightCuboDeHielo + j * heightCuboDeHielo,
+                            widthCuboDeHielo,
+                            heightCuboDeHielo
+                    );
+        }
     }
 
     @Override
@@ -230,6 +242,9 @@ public class Escenario extends Canvas {
         }
         for (CuboDeHielo hilera : hilera4) {
             hilera.paint(graphics2D);
+        }
+        for (CuboDeHielo columna : columna0) {
+            columna.paint(graphics2D);
         }
         
 //        cuboDeHielo.paint(graphics2D);
