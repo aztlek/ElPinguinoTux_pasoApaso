@@ -20,6 +20,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
+import java.util.Random;
 import javax.swing.JFrame;
 
 /**
@@ -35,17 +36,17 @@ public class Escenario extends Canvas {
     private final JFrame marco;
     private final double escalaX;
     private final double escalaY;
-    
+
     private final Tux tux;
-    private final Orca orca;
-    private final CuboDeHielo cuboDeHielo;
-    private final Pez pez;
-    private final ContadorPeces contadorPeces;
-    private final ContadorVidas contadorVidas;
-    private final Iceberg iceberg;
-    private final FamiliaTux familiaTux;
-    private final Tiempo tiempo;
-    private final Titulo titulo;
+    private final Orca[] orcas;
+//    private final CuboDeHielo cuboDeHielo;
+//    private final Pez pez;
+//    private final ContadorPeces contadorPeces;
+//    private final ContadorVidas contadorVidas;
+//    private final Iceberg iceberg;
+//    private final FamiliaTux familiaTux;
+//    private final Tiempo tiempo;
+//    private final Titulo titulo;
 
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
@@ -54,8 +55,28 @@ public class Escenario extends Canvas {
         this.marco = marco;
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
-        
+
+        // El protagonista
         tux = new Tux(214, 129, 11, 14);
+
+        // Los villanos
+        orcas = new Orca[4];
+        Random random = new Random();
+        double orcasInicioX = 27.0d;
+        double orcasInicioY = 12.0d;
+        double orcaSeparaciónAlto = 37.0d;
+        double orcaRecorridoX = 182;
+
+        // Instanciar las orcas
+        for (int i = 0; i < orcas.length; i++) {
+            orcas[i] = new Orca(
+                    orcasInicioX + random.nextDouble() * orcaRecorridoX,
+                    orcasInicioY + i * orcaSeparaciónAlto,
+                    43.0d,
+                    23.0d
+            );
+        }
+
     }
 
     @Override
@@ -70,15 +91,15 @@ public class Escenario extends Canvas {
 
         tux.paint(graphics2D);
         orca.paint(graphics2D);
-        cuboDeHielo.paint(graphics2D);
-        pez.paint(graphics2D);
-        contadorPeces.paint(graphics2D);
-        contadorVidas.paint(graphics2D);
-        iceberg.paint(graphics2D);
-        familiaTux.paint(graphics2D);
-        tiempo.paint(graphics2D);
-        titulo.paint(graphics2D);
-        
+//        cuboDeHielo.paint(graphics2D);
+//        pez.paint(graphics2D);
+//        contadorPeces.paint(graphics2D);
+//        contadorVidas.paint(graphics2D);
+//        iceberg.paint(graphics2D);
+//        familiaTux.paint(graphics2D);
+//        tiempo.paint(graphics2D);
+//        titulo.paint(graphics2D);
+
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
@@ -91,5 +112,4 @@ public class Escenario extends Canvas {
         return totalHeight;
     }
 
-    
 } // class Escenario
