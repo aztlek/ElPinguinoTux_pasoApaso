@@ -39,7 +39,19 @@ public class Escenario extends Canvas {
 
     private final Tux tux;
     private final Orca[] orcas;
-//    private final CuboDeHielo cuboDeHielo;
+    
+    // Hileras
+    
+    // Constantes de las teselas
+    private final double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
+    private final double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
+    private final double numBloquesX = 28.0d; // Número de bloques en x
+    private final double numBloquesY = 17.0d; // Buneor de bloques en y
+    private final double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / numBloquesX; // Ancho de la tesela
+    private final double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / numBloquesY; // Alto de la tesela
+
+
+    private final CuboDeHielo[] hilera0;
 //    private final Pez pez;
 //    private final ContadorPeces contadorPeces;
 //    private final ContadorVidas contadorVidas;
@@ -76,6 +88,11 @@ public class Escenario extends Canvas {
                     23.0d
             );
         }
+        
+        // Hileras
+        
+        // hilera0
+        
 
     }
 
