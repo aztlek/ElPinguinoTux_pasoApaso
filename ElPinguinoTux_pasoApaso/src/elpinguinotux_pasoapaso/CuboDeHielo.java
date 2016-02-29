@@ -107,8 +107,8 @@ public class CuboDeHielo {
         int[] linea2y = {(76), 80, (162), (158)};
         graphics2D.fillPolygon(linea2x, linea2y, linea2x.length);
         
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         
         graphics2D.setTransform(affineTransform);
     } // paint()
