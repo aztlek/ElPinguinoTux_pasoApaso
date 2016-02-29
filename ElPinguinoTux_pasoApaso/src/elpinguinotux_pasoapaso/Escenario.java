@@ -40,8 +40,6 @@ public class Escenario extends Canvas {
     private final Tux tux;
     private final Orca[] orcas;
     
-    // Hileras
-    
     // Constantes de las teselas
     private final double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
     private final double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
@@ -114,6 +112,9 @@ public class Escenario extends Canvas {
         tux.paint(graphics2D);
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
+        }
+        for (CuboDeHielo hilera : hilera0) {
+            hilera.paint(graphics2D);
         }
 //        cuboDeHielo.paint(graphics2D);
 //        pez.paint(graphics2D);
