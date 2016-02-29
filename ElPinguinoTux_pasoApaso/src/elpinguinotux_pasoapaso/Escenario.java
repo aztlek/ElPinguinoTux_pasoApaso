@@ -47,7 +47,7 @@ public class Escenario extends Canvas {
     private final int numBloquesY = 17; // Buneor de bloques en y
     private final double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double)numBloquesX; // Ancho de la tesela
     private final double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double)numBloquesY; // Alto de la tesela
-    private final CuboDeHielo[] hilera0;
+    private final CuboDeHielo[] hilera0, hilera10;
     
 //    private final Pez pez;
 //    private final ContadorPeces contadorPeces;
@@ -96,6 +96,17 @@ public class Escenario extends Canvas {
                             heightCuboDeHielo
                     );
         }
+        
+        // hilera10
+        hilera10 = new CuboDeHielo[10];
+        for (int i = 0; i < hilera10.length; i++) {
+             hilera10[i] = new CuboDeHielo(
+                            inicioxBloques + 1 * widthCuboDeHielo + i * widthCuboDeHielo,
+                            inicioyBloques + 4 * heightCuboDeHielo,
+                            widthCuboDeHielo,
+                            heightCuboDeHielo
+                    );
+        }
 
     }
 
@@ -114,6 +125,9 @@ public class Escenario extends Canvas {
             orca.paint(graphics2D);
         }
         for (CuboDeHielo hilera : hilera0) {
+            hilera.paint(graphics2D);
+        }
+        for (CuboDeHielo hilera : hilera10) {
             hilera.paint(graphics2D);
         }
 //        cuboDeHielo.paint(graphics2D);
