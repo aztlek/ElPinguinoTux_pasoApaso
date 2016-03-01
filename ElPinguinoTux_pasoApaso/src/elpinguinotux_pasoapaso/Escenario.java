@@ -40,13 +40,6 @@ public class Escenario extends Canvas {
 //    private final Tux tux;
     private final Orca[] orcas;
     
-//    // Constantes de las teselas
-//    private final double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
-//    private final double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
-//    private final int numBloquesX = 28; // Número de bloques en x
-//    private final int numBloquesY = 17; // Buneor de bloques en y
-//    private final double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double)numBloquesX; // Ancho de la tesela
-//    private final double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double)numBloquesY; // Alto de la tesela
 //    private final CuboDeHielo[] hilera0;
 //    private final CuboDeHielo[] hilera10, hilera11;
 //    private final CuboDeHielo[] hilera20, hilera21, hilera22;
@@ -91,6 +84,14 @@ public class Escenario extends Canvas {
             );
         }
         
+    // Constantes de las teselas
+    double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
+    double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
+    int numBloquesX = 28; // Número de bloques en x
+    int numBloquesY = 17; // Buneor de bloques en y
+    double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double)numBloquesX; // Ancho de la tesela
+    double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double)numBloquesY; // Alto de la tesela
+    
 //        // hilera0
 //        hilera0 = new CuboDeHielo[numBloquesX];
 //        for (int i = 0; i < hilera0.length; i++) {
