@@ -75,16 +75,16 @@ public class Escenario extends Canvas {
 
         // Los villanos
         orcas = new Orca[4];
-//        Random random = new Random();
+        Random random = new Random();
         double orcasInicioX = 27.0d;
         double orcasInicioY = 12.0d;
         double orcaSeparaciónAlto = 37.0d;
-//        double orcaRecorridoX = 182;
+        double orcaAnchoPosicion = 163;
 
         // Instanciar las orcas
         for (int j = 0; j < orcas.length; j++) {
             orcas[j] = new Orca(
-                    orcasInicioX,
+                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
                     23.0d
