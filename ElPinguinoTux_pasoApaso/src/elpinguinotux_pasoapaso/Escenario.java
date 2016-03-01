@@ -39,14 +39,13 @@ public class Escenario extends Canvas {
 
 //    private final Tux tux;
     private final Orca[] orcas;
-    
+
 //    private final CuboDeHielo[] hilera0;
 //    private final CuboDeHielo[] hilera10, hilera11;
 //    private final CuboDeHielo[] hilera20, hilera21, hilera22;
 //    private final CuboDeHielo[] hilera30, hilera31;
 //    private final CuboDeHielo[] hilera4;
 //    private final CuboDeHielo[] columna0;
-    
 //    private final Pez pez;
 //    private final ContadorPeces contadorPeces;
 //    private final ContadorVidas contadorVidas;
@@ -54,7 +53,6 @@ public class Escenario extends Canvas {
 //    private final FamiliaTux familiaTux;
 //    private final Tiempo tiempo;
 //    private final Titulo titulo;
-
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
@@ -65,7 +63,6 @@ public class Escenario extends Canvas {
 
 //        // El protagonista
 //        tux = new Tux(214, 129, 11, 14);
-
         // Los villanos
         orcas = new Orca[4];
         Random random = new Random();
@@ -83,15 +80,17 @@ public class Escenario extends Canvas {
                     23.0d
             );
         }
+
+        // Las teselas
         
-    // Constantes de las teselas
-    double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
-    double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
-    int numBloquesX = 28; // Número de bloques en x
-    int numBloquesY = 17; // Buneor de bloques en y
-    double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double)numBloquesX; // Ancho de la tesela
-    double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double)numBloquesY; // Alto de la tesela
-    
+        // Constantes de las teselas
+        double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
+        double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
+        int numBloquesX = 28; // Número de bloques en x
+        int numBloquesY = 17; // Buneor de bloques en y
+        double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double) numBloquesX; // Ancho de la tesela
+        double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double) numBloquesY; // Alto de la tesela
+
 //        // hilera0
 //        hilera0 = new CuboDeHielo[numBloquesX];
 //        for (int i = 0; i < hilera0.length; i++) {
@@ -247,7 +246,7 @@ public class Escenario extends Canvas {
 //        for (CuboDeHielo columna : columna0) {
 //            columna.paint(graphics2D);
 //        }
-        
+
 //        cuboDeHielo.paint(graphics2D);
 //        pez.paint(graphics2D);
 //        contadorPeces.paint(graphics2D);
@@ -256,10 +255,9 @@ public class Escenario extends Canvas {
 //        familiaTux.paint(graphics2D);
 //        tiempo.paint(graphics2D);
 //        titulo.paint(graphics2D);
-
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
+
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
     } // paint()
