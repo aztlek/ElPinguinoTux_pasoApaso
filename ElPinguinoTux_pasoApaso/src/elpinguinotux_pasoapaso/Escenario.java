@@ -37,8 +37,14 @@ public class Escenario extends Canvas {
     private final double escalaX;
     private final double escalaY;
 
-//    private final Tux tux;
+    private final Tux tux;
     private final Orca[] orcas;
+    private final Pez pez;
+    private final ContadorPeces contadorPeces;
+    private final ContadorVidas contadorVidas;
+    private final FamiliaTux familiaTux;
+    private final Tiempo tiempo;
+    private final Titulo titulo;
 
 //    private final CuboDeHielo[] hilera0;
 //    private final CuboDeHielo[] hilera10, hilera11;
@@ -46,13 +52,8 @@ public class Escenario extends Canvas {
 //    private final CuboDeHielo[] hilera30, hilera31;
 //    private final CuboDeHielo[] hilera4;
 //    private final CuboDeHielo[] columna0;
-//    private final Pez pez;
-//    private final ContadorPeces contadorPeces;
-//    private final ContadorVidas contadorVidas;
 //    private final Iceberg iceberg;
-//    private final FamiliaTux familiaTux;
-//    private final Tiempo tiempo;
-//    private final Titulo titulo;
+    
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
@@ -80,16 +81,16 @@ public class Escenario extends Canvas {
                     23.0d
             );
         }
-
-        // Las teselas
         
         // Constantes de las teselas
-        double inicioxBloques = 17.0d; // Posición inicial de las hileras en x
-        double inicioyBloques = 0.0d; // Posición inicial de las hileras en y
-        int numBloquesX = 28; // Número de bloques en x
-        int numBloquesY = 17; // Buneor de bloques en y
-        double widthCuboDeHielo = (getTotalWidth() - inicioxBloques) / (double) numBloquesX; // Ancho de la tesela
-        double heightCuboDeHielo = (getTotalHeight() - inicioyBloques) / (double) numBloquesY; // Alto de la tesela
+        double inicioxBloques = 17.0d;
+        double inicioyBloques = 0.0d;
+        int numBloquesX = 28;
+        int numBloquesY = 17;
+        double widthCuboDeHielo = (totalWidth - inicioxBloques)
+                                    / (double) numBloquesX;
+        double heightCuboDeHielo = (totalHeight - inicioyBloques)
+                                    / (double) numBloquesY;
 
 //        // hilera0
 //        hilera0 = new CuboDeHielo[numBloquesX];
