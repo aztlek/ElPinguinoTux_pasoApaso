@@ -38,13 +38,14 @@ public class Escenario extends Canvas {
     private final double escalaY;
 
     private final Tux tux;
-    private final Orca[] orcas;
-    private final Pez pez;
     private final ContadorPeces contadorPeces;
     private final ContadorVidas contadorVidas;
     private final FamiliaTux familiaTux;
     private final Tiempo tiempo;
     private final Titulo titulo;
+    
+    private final Orca[] orcas;
+    private final Iceberg[][] icebergs;
 
 //    private final CuboDeHielo[] hilera0;
 //    private final CuboDeHielo[] hilera10, hilera11;
@@ -53,7 +54,6 @@ public class Escenario extends Canvas {
 //    private final CuboDeHielo[] hilera4;
 //    private final CuboDeHielo[] columna0;
 //    private final Iceberg iceberg;
-    
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
@@ -62,8 +62,14 @@ public class Escenario extends Canvas {
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
 
-//        // El protagonista
-//        tux = new Tux(214, 129, 11, 14);
+        // Instanciar los objetos que son únicos
+        tux = new Tux(214, 129, 11, 14);
+        contadorPeces = new ContadorPeces(244, 88, 35, 20);
+        contadorVidas = new ContadorVidas(244, 127, 35, 20);
+        familiaTux = new FamiliaTux(249, 17, 16, 14);
+        tiempo = new Tiempo(244, 52, 35, 20);
+        titulo = new Titulo(0, 0, 16, totalHeight);
+
         // Los villanos
         orcas = new Orca[4];
         Random random = new Random();
@@ -75,22 +81,22 @@ public class Escenario extends Canvas {
         // Instanciar las orcas
         for (int j = 0; j < orcas.length; j++) {
             orcas[j] = new Orca(
-                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
+                    orcasInicioX /* + random.nextDouble() * orcaAnchoPosicion*/,
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
                     23.0d
             );
         }
-        
+
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
         double inicioyBloques = 0.0d;
         int numBloquesX = 28;
         int numBloquesY = 17;
         double widthCuboDeHielo = (totalWidth - inicioxBloques)
-                                    / (double) numBloquesX;
+                / (double) numBloquesX;
         double heightCuboDeHielo = (totalHeight - inicioyBloques)
-                                    / (double) numBloquesY;
+                / (double) numBloquesY;
 
 //        // hilera0
 //        hilera0 = new CuboDeHielo[numBloquesX];
@@ -213,7 +219,13 @@ public class Escenario extends Canvas {
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
-//        tux.paint(graphics2D);
+        tux.paint(graphics2D);
+        contadorPeces.paint(graphics2D);
+        contadorVidas.paint(graphics2D);
+        familiaTux.paint(graphics2D);
+        tiempo.paint(graphics2D);
+        titulo.paint(graphics2D);
+        
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
         }
