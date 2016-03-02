@@ -87,6 +87,16 @@ public class Escenario extends Canvas {
                     23.0d
             );
         }
+        
+        // Los icebergs
+        double incioXIceberg = 86;
+        double inicioYIceberg = 16;
+        double anchoIceberg = 14;
+        double altoIceberg = 14;
+        double separacionAnchoIceberg = 70;
+        double separacionAltoIceberg = 37;
+        double numFilIcebergs = 4;
+        double numColIcebergs = 2;
 
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
