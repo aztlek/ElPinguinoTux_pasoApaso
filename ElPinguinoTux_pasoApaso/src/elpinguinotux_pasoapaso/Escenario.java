@@ -89,14 +89,26 @@ public class Escenario extends Canvas {
         }
         
         // Los icebergs
-        double incioXIceberg = 86;
-        double inicioYIceberg = 16;
-        double anchoIceberg = 14;
-        double altoIceberg = 14;
-        double separacionAnchoIceberg = 70;
-        double separacionAltoIceberg = 37;
-        double numFilIcebergs = 4;
-        double numColIcebergs = 2;
+        final double inicioXIceberg = 86;
+        final double inicioYIceberg = 16;
+        final double anchoIceberg = 14;
+        final double altoIceberg = 14;
+        final double separacionAnchoIceberg = 70;
+        final double separacionAltoIceberg = 37;
+        final int numFilIcebergs = 4;
+        final int numColIcebergs = 2;
+        icebergs = new Iceberg[numFilIcebergs][numColIcebergs];
+        
+        for (int i = 0; i < icebergs.length; i++) {
+            for (int j = 0; j < icebergs[i].length; j++) {
+                icebergs[i][j] = new Iceberg(
+                                        inicioXIceberg + j * separacionAnchoIceberg, 
+                                        inicioYIceberg + i * separacionAltoIceberg, 
+                                        anchoIceberg, 
+                                        altoIceberg
+                                    );
+            }
+        }
 
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
