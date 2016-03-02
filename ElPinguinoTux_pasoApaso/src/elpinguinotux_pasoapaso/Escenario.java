@@ -77,13 +77,6 @@ public class Escenario extends Canvas {
             );
         }
         
-        // Los peces
-        final double inicioXpeces = 12;
-        final double inicioYpeces = 21;
-        final double anchoPosXpeces = 194;
-        final double separacionYpeces = 27;
-        
-        
         // Los icebergs
         final double inicioXIceberg = 86;
         final double inicioYIceberg = 16;
@@ -106,6 +99,12 @@ public class Escenario extends Canvas {
             }
         }
 
+        // Los peces
+        final double inicioXpeces = 12;
+        final double inicioYpeces = 21;
+        final double anchoPosXpeces = 194;
+        final double separacionYpeces = 27;
+                
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
         double inicioyBloques = 0.0d;
