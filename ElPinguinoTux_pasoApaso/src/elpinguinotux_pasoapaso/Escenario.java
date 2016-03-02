@@ -42,18 +42,10 @@ public class Escenario extends Canvas {
     private final ContadorVidas contadorVidas;
     private final FamiliaTux familiaTux;
     private final Tiempo tiempo;
-    private final Titulo titulo;
-    
+    private final Titulo titulo;    
     private final Orca[] orcas;
     private final Iceberg[][] icebergs;
-
-//    private final CuboDeHielo[] hilera0;
-//    private final CuboDeHielo[] hilera10, hilera11;
-//    private final CuboDeHielo[] hilera20, hilera21, hilera22;
-//    private final CuboDeHielo[] hilera30, hilera31;
-//    private final CuboDeHielo[] hilera4;
-//    private final CuboDeHielo[] columna0;
-//    private final Iceberg iceberg;
+    
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
@@ -81,7 +73,7 @@ public class Escenario extends Canvas {
         // Instanciar las orcas
         for (int j = 0; j < orcas.length; j++) {
             orcas[j] = new Orca(
-                    orcasInicioX /* + random.nextDouble() * orcaAnchoPosicion*/,
+                    orcasInicioX  + random.nextDouble() * orcaAnchoPosicion,
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
                     23.0d
@@ -120,115 +112,6 @@ public class Escenario extends Canvas {
         double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
 
-//        // hilera0
-//        hilera0 = new CuboDeHielo[numBloquesX];
-//        for (int i = 0; i < hilera0.length; i++) {
-//            hilera0[i] = new CuboDeHielo(
-//                            inicioxBloques + 0 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            inicioyBloques + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera10
-//        hilera10 = new CuboDeHielo[10];
-//        for (int i = 0; i < hilera10.length; i++) {
-//             hilera10[i] = new CuboDeHielo(
-//                            inicioxBloques + 1 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            inicioyBloques + 4 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera11
-//        hilera11 = new CuboDeHielo[15];
-//        for (int i = 0; i < hilera11.length; i++) {
-//            hilera11[i] = new CuboDeHielo(
-//                            inicioxBloques + 13 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            4 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera20
-//        hilera20 = new CuboDeHielo[3];
-//        for (int i = 0; i < hilera20.length; i++) {
-//            hilera20[i] = new CuboDeHielo(
-//                            inicioxBloques + 1 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            8 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera21
-//        hilera21 = new CuboDeHielo[12];
-//        for (int i = 0; i < hilera21.length; i++) {
-//            hilera21[i] = new CuboDeHielo(
-//                            inicioxBloques + 6 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            8 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera22
-//        hilera22 = new CuboDeHielo[2];
-//        for (int i = 0; i < hilera22.length; i++) {
-//            hilera22[i] = new CuboDeHielo(
-//                            inicioxBloques + 20 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            8 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera30
-//        hilera30 = new CuboDeHielo[10];
-//        for (int i = 0; i < hilera30.length; i++) {
-//            hilera30[i] = new CuboDeHielo(
-//                            inicioxBloques + 1 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            12 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera31
-//        hilera31 = new CuboDeHielo[10];
-//        for (int i = 0; i < hilera31.length; i++) {
-//            hilera31[i] = new CuboDeHielo(
-//                            inicioxBloques + 13 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            12 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // hilera4
-//        hilera4 = new CuboDeHielo[24];
-//        for (int i = 0; i < hilera4.length; i++) {
-//            hilera4[i] = new CuboDeHielo(
-//                            inicioxBloques + 0 * widthCuboDeHielo + i * widthCuboDeHielo,
-//                            16 * heightCuboDeHielo + 0 * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
-//        
-//        // columna0
-//        columna0 = new CuboDeHielo[numBloquesY - 2];
-//        for (int j = 0; j < columna0.length; j++) {
-//            columna0[j] = new CuboDeHielo(
-//                            inicioxBloques + 0 * widthCuboDeHielo,
-//                            inicioyBloques + 1 * heightCuboDeHielo + j * heightCuboDeHielo,
-//                            widthCuboDeHielo,
-//                            heightCuboDeHielo
-//                    );
-//        }
     }
 
     @Override
@@ -246,50 +129,15 @@ public class Escenario extends Canvas {
         contadorVidas.paint(graphics2D);
         familiaTux.paint(graphics2D);
         tiempo.paint(graphics2D);
-        titulo.paint(graphics2D);
-        
+        titulo.paint(graphics2D);        
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
         }
-//        for (CuboDeHielo hilera : hilera0) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera10) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera11) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera20) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera21) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera22) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera30) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera31) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo hilera : hilera4) {
-//            hilera.paint(graphics2D);
-//        }
-//        for (CuboDeHielo columna : columna0) {
-//            columna.paint(graphics2D);
-//        }
-
-//        cuboDeHielo.paint(graphics2D);
-//        pez.paint(graphics2D);
-//        contadorPeces.paint(graphics2D);
-//        contadorVidas.paint(graphics2D);
-//        iceberg.paint(graphics2D);
-//        familiaTux.paint(graphics2D);
-//        tiempo.paint(graphics2D);
-//        titulo.paint(graphics2D);
+        for (Iceberg[] filaIcebergs : icebergs) {
+            for (Iceberg iceberg : filaIcebergs) {
+                iceberg.paint(graphics2D);
+            }
+        }
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
