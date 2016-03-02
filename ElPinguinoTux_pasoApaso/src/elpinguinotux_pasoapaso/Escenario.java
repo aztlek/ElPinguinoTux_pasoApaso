@@ -45,6 +45,7 @@ public class Escenario extends Canvas {
     private final Titulo titulo;    
     private final Orca[] orcas;
     private final Iceberg[][] icebergs;
+    private final Pez[][] peces;
     
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
@@ -138,6 +139,7 @@ public class Escenario extends Canvas {
                 iceberg.paint(graphics2D);
             }
         }
+        
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
