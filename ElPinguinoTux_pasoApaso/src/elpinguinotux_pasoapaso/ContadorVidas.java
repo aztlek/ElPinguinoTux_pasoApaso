@@ -121,8 +121,8 @@ public class ContadorVidas {
         // Restablecer el anterior tipo de letra
         graphics2D.setFont(oldFont);
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         graphics2D.setTransform(transformacionesAnteriores);
     }
