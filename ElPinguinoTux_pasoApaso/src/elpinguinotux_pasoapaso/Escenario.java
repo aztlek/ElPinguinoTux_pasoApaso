@@ -23,10 +23,6 @@ import java.awt.geom.AffineTransform;
 import java.util.Random;
 import javax.swing.JFrame;
 
-/**
- *
- * @author aztlek
- */
 public class Escenario extends Canvas {
 
     private final int x;
@@ -80,6 +76,13 @@ public class Escenario extends Canvas {
                     23.0d
             );
         }
+        
+        // Los peces
+        final double inicioXpeces = 12;
+        final double inicioYpeces = 21;
+        final double anchoPosXpeces = 194;
+        final double separacionYpeces = 27;
+        
         
         // Los icebergs
         final double inicioXIceberg = 86;
