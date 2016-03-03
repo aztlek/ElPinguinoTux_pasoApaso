@@ -105,6 +105,7 @@ public class Escenario extends Canvas {
         final double anchoPosXpeces = 194;
         final double separacionYpeces = 27;
         final int[] lonFilPeces = {2, 3, 2, 1};
+        peces = new Pez[4][];
                 
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
