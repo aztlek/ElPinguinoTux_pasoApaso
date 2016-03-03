@@ -103,7 +103,7 @@ public class Escenario extends Canvas {
         final double inicioXpeces = 12;
         final double inicioYpeces = 21;
         final double anchoPosXpeces = 194;
-        final double separacionYpeces = 27;
+        final double separacionYpeces = 37;
         final int[] lonFilPeces = {2, 3, 2, 1};
         peces = new Pez[4][];
         
