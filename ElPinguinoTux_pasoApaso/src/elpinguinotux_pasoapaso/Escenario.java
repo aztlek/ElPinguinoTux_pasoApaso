@@ -110,6 +110,17 @@ public class Escenario extends Canvas {
         for (int i = 0; i < peces.length; i++) {
             peces[i] = new Pez[ lonFilPeces[i] ];
         }
+        
+        for (int i = 0; i < peces.length; i++) {;
+            for (int j = 0; j < peces[i].length; j++) {
+                peces[i][j] = new   Pez(
+                                        inicioXpeces + random.nextDouble() * anchoPosXpeces,
+                                        inicioYpeces + i * separacionYpeces,
+                                        12,
+                                        5
+                                    );
+            }
+        }
                 
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
