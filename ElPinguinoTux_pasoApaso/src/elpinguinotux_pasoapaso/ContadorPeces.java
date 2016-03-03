@@ -113,14 +113,14 @@ public class ContadorPeces {
         }
 
         // Restablecer el anterior tipo de letra
-        graphics2D.setFont(oldFont);
+        graphics2D.setFont(oldFont);  
+        
+        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         // Volver a las transformaciones anteriores.
         graphics2D.setTransform(affineTransform);
-        
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
+      
     } // paint()
 
     /**
