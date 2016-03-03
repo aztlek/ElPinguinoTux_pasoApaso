@@ -111,7 +111,7 @@ public class Escenario extends Canvas {
             peces[i] = new Pez[ lonFilPeces[i] ];
         }
         
-        for (int i = 0; i < peces.length; i++) {;
+        for (int i = 0; i < peces.length; i++) {
             for (int j = 0; j < peces[i].length; j++) {
                 peces[i][j] = new   Pez(
                                         inicioXpeces + random.nextDouble() * anchoPosXpeces,
@@ -156,6 +156,11 @@ public class Escenario extends Canvas {
         for (Iceberg[] filaIcebergs : icebergs) {
             for (Iceberg iceberg : filaIcebergs) {
                 iceberg.paint(graphics2D);
+            }
+        }
+        for (Pez[] filaPeces : peces) {
+            for (Pez pez : filaPeces) {
+                pez.paint(graphics2D);
             }
         }
         
