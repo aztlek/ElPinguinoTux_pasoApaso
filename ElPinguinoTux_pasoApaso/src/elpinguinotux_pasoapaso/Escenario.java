@@ -140,7 +140,7 @@ public class Escenario extends Canvas {
                         };
         final double[]  iniXcolumnas = {
                             inicioxBloques,
-                            inicioxBloques + 23 * width,
+                            inicioxBloques + 23 * widthCuboDeHielo,
                             inicioyBloques + 27 * heightCuboDeHielo
                         };
         columnas = new CuboDeHielo[lonColumnas.length][];
@@ -187,6 +187,11 @@ public class Escenario extends Canvas {
         for (Pez[] filaPeces : peces) {
             for (Pez pez : filaPeces) {
                 pez.paint(graphics2D);
+            }
+        }
+        for (CuboDeHielo[] cs : columnas) {
+            for (CuboDeHielo c : cs) {
+                c.paint(graphics2D);
             }
         }
         
