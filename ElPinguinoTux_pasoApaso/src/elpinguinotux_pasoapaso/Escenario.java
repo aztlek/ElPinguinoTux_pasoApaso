@@ -147,6 +147,16 @@ public class Escenario extends Canvas {
         for (int j = 0; j < columnas.length; j++) {
             columnas[j] = new CuboDeHielo[ lonColumnas[j] ];
         }
+        for (int j = 0; j < columnas.length; j++) {
+            for (int i = 0; i < columnas[j].length; i++) {
+                columnas[j][i] = new CuboDeHielo(
+                                        iniXcolumnas[j],
+                                        iniYColumnas[j], 
+                                        widthCuboDeHielo,
+                                        heightCuboDeHielo
+                                    );
+            }
+        }
 
     }
 
