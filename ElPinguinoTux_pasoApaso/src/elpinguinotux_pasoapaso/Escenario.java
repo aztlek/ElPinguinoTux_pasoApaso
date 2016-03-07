@@ -132,6 +132,17 @@ public class Escenario extends Canvas {
                 / (double) numBloquesX;
         double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
+        final int[] lonColumnas = {15, 11, 3};
+        final double[] iniYColumnas = {
+                        heightCuboDeHielo,
+                        4 * heightCuboDeHielo,
+                        heightCuboDeHielo
+        };
+        final double[] iniXcolumnas = {
+                        inicioxBloques,
+                        inicioxBloques + 23 * width,
+                        inicioyBloques + 27 * heightCuboDeHielo
+        };
 
     }
 
