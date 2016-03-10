@@ -109,7 +109,7 @@ public class Escenario extends Canvas {
         }
 
         // Los icebergs
-        final double inicioXIceberg = 86;
+        final double inicioXIceberg = inicioxBloques + widthCuboDeHielo;
         final double inicioYIceberg = 16;
         final double anchoIceberg = 14;
         final double altoIceberg = 14;
@@ -122,7 +122,7 @@ public class Escenario extends Canvas {
         for (int i = 0; i < icebergs.length; i++) {
             for (int j = 0; j < icebergs[i].length; j++) {
                 icebergs[i][j] = new Iceberg(
-                        inicioXIceberg + j * separacionAnchoIceberg,
+                        inicioXIceberg + j * separacionAnchoIceberg + separacionAnchoIceberg * random.nextDouble(),
                         inicioYIceberg + i * separacionAltoIceberg,
                         anchoIceberg,
                         altoIceberg
@@ -253,8 +253,8 @@ public class Escenario extends Canvas {
         tiempo.paint(graphics2D);
         titulo.paint(graphics2D);
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
