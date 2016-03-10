@@ -125,18 +125,18 @@ public class Escenario extends Canvas {
         }
 
         // Constantes de las teselas
-        double inicioxBloques = 17.0d;
-        double inicioyBloques = 0.0d;
-        int numBloquesX = 28;
-        int numBloquesY = 17;
-        double widthCuboDeHielo = (totalWidth - inicioxBloques)
+        final double inicioxBloques = 17.0d;
+        final double inicioyBloques = 0.0d;
+        final int numBloquesX = 28;
+        final int numBloquesY = 17;
+        final double widthCuboDeHielo = (totalWidth - inicioxBloques)
                 / (double) numBloquesX;
-        double heightCuboDeHielo = (totalHeight - inicioyBloques)
+        final double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
         final int[] lonColumnas = {15, 11, 3};
         final double[] iniYColumnas = {
             heightCuboDeHielo,
-            4 * heightCuboDeHielo,
+            5 * heightCuboDeHielo,
             heightCuboDeHielo
         };
         final double[] iniXcolumnas = {
@@ -158,29 +158,35 @@ public class Escenario extends Canvas {
                 );
             }
         }
-        int[][] lonHileras = {
+        final int[][] lonHileras = {
             {28},
             {10, 15},
             {3, 12, 3},
             {10, 10},
             {24}
         };
-        double[][] iniXhileras = {
+        final double[][] iniXhileras = {
             {inicioxBloques},
             {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
-            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 6, inicioxBloques + widthCuboDeHielo *20},
-            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo *  6, inicioxBloques + widthCuboDeHielo * 20},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
             {inicioxBloques}
         };
-        double[][] iniYhileras = {
-            {inicioyBloques},
-            {inicioyBloques + heightCuboDeHielo * 4, inicioyBloques + heightCuboDeHielo * 4},
-            {inicioyBloques + heightCuboDeHielo * 8, inicioyBloques + heightCuboDeHielo * 8},
-            {inicioyBloques + heightCuboDeHielo * 12, inicioyBloques + heightCuboDeHielo * 12},
-            {inicioyBloques + heightCuboDeHielo * 16}
-        };
         hileras = new CuboDeHielo[lonHileras.length][][];
-        
+        for (int i = 0; i < hileras.length; i++) {
+            hileras[i] = new CuboDeHielo[lonHileras[i].length][];
+            for (int j = 0; j < hileras[i].length; j++) {
+                hileras[i][j] = new CuboDeHielo[lonHileras[i][j]];
+                for (int k = 0; k < hileras[i][j].length; k++) {
+                    hileras[i][j][k] = new CuboDeHielo(
+                            iniXhileras[i][j] + widthCuboDeHielo * k, 
+                            inicioyBloques + heightCuboDeHielo * i * 4, 
+                            widthCuboDeHielo, 
+                            heightCuboDeHielo
+                    );
+                }
+            }
+        }
     }
 
     @Override
@@ -215,6 +221,13 @@ public class Escenario extends Canvas {
         for (CuboDeHielo[] cs : columnas) {
             for (CuboDeHielo c : cs) {
                 c.paint(graphics2D);
+            }
+        }
+        for (CuboDeHielo[][] hss : hileras) {
+            for (CuboDeHielo[] hs : hss) {
+                for (CuboDeHielo hilera : hs) {
+                    hilera.paint(graphics2D);
+                }
             }
         }
 
