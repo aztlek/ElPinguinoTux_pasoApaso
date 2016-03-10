@@ -38,13 +38,13 @@ public class Escenario extends Canvas {
     private final ContadorVidas contadorVidas;
     private final FamiliaTux familiaTux;
     private final Tiempo tiempo;
-    private final Titulo titulo;    
+    private final Titulo titulo;
     private final Orca[] orcas;
     private final Iceberg[][] icebergs;
     private final Pez[][] peces;
     private final CuboDeHielo[][] columnas;
     private final CuboDeHielo[][][] hileras;
-    
+
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
         this.x = x;
@@ -72,13 +72,13 @@ public class Escenario extends Canvas {
         // Instanciar las orcas
         for (int j = 0; j < orcas.length; j++) {
             orcas[j] = new Orca(
-                    orcasInicioX  + random.nextDouble() * orcaAnchoPosicion,
+                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
                     23.0d
             );
         }
-        
+
         // Los icebergs
         final double inicioXIceberg = 86;
         final double inicioYIceberg = 16;
@@ -89,15 +89,15 @@ public class Escenario extends Canvas {
         final int numFilIcebergs = 4;
         final int numColIcebergs = 2;
         icebergs = new Iceberg[numFilIcebergs][numColIcebergs];
-        
+
         for (int i = 0; i < icebergs.length; i++) {
             for (int j = 0; j < icebergs[i].length; j++) {
                 icebergs[i][j] = new Iceberg(
-                                        inicioXIceberg + j * separacionAnchoIceberg, 
-                                        inicioYIceberg + i * separacionAltoIceberg, 
-                                        anchoIceberg, 
-                                        altoIceberg
-                                    );
+                        inicioXIceberg + j * separacionAnchoIceberg,
+                        inicioYIceberg + i * separacionAltoIceberg,
+                        anchoIceberg,
+                        altoIceberg
+                );
             }
         }
 
@@ -108,22 +108,22 @@ public class Escenario extends Canvas {
         final double separacionYpeces = 37;
         final int[] lonFilPeces = {2, 3, 2, 1};
         peces = new Pez[4][];
-        
+
         for (int i = 0; i < peces.length; i++) {
-            peces[i] = new Pez[ lonFilPeces[i] ];
+            peces[i] = new Pez[lonFilPeces[i]];
         }
-        
+
         for (int i = 0; i < peces.length; i++) {
             for (int j = 0; j < peces[i].length; j++) {
-                peces[i][j] = new   Pez(
-                                        inicioXpeces + random.nextDouble() * anchoPosXpeces,
-                                        inicioYpeces + i * separacionYpeces,
-                                        12,
-                                        5
-                                    );
+                peces[i][j] = new Pez(
+                        inicioXpeces + random.nextDouble() * anchoPosXpeces,
+                        inicioYpeces + i * separacionYpeces,
+                        12,
+                        5
+                );
             }
         }
-                
+
         // Constantes de las teselas
         double inicioxBloques = 17.0d;
         double inicioyBloques = 0.0d;
@@ -134,37 +134,51 @@ public class Escenario extends Canvas {
         double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
         final int[] lonColumnas = {15, 11, 3};
-        final double[]  iniYColumnas = {
-                            heightCuboDeHielo,
-                            4 * heightCuboDeHielo,
-                            heightCuboDeHielo
-                        };
-        final double[]  iniXcolumnas = {
-                            inicioxBloques,
-                            inicioxBloques + 23 * widthCuboDeHielo,
-                            inicioxBloques + 27 * widthCuboDeHielo
-                        };
+        final double[] iniYColumnas = {
+            heightCuboDeHielo,
+            4 * heightCuboDeHielo,
+            heightCuboDeHielo
+        };
+        final double[] iniXcolumnas = {
+            inicioxBloques,
+            inicioxBloques + 23 * widthCuboDeHielo,
+            inicioxBloques + 27 * widthCuboDeHielo
+        };
         columnas = new CuboDeHielo[lonColumnas.length][];
         for (int j = 0; j < columnas.length; j++) {
-            columnas[j] = new CuboDeHielo[ lonColumnas[j] ];
+            columnas[j] = new CuboDeHielo[lonColumnas[j]];
         }
         for (int j = 0; j < columnas.length; j++) {
             for (int i = 0; i < columnas[j].length; i++) {
                 columnas[j][i] = new CuboDeHielo(
-                                        iniXcolumnas[j],
-                                        iniYColumnas[j] + i * heightCuboDeHielo, 
-                                        widthCuboDeHielo,
-                                        heightCuboDeHielo
-                                    );
+                        iniXcolumnas[j],
+                        iniYColumnas[j] + i * heightCuboDeHielo,
+                        widthCuboDeHielo,
+                        heightCuboDeHielo
+                );
             }
         }
         int[][] lonHileras = {
-                                {28},
-                                {10, 15},
-                                {3, 12, 3},
-                                {10, 10},
-                                {24}
-                            };
+            {28},
+            {10, 15},
+            {3, 12, 3},
+            {10, 10},
+            {24}
+        };
+        double[][] iniXhileras = {
+            {inicioxBloques},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 6, inicioxBloques + widthCuboDeHielo *20},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
+            {inicioxBloques}
+        };
+        double[][] iniYhileras = {
+            {inicioyBloques},
+            {inicioyBloques + heightCuboDeHielo * 4, inicioyBloques + heightCuboDeHielo * 4},
+            {inicioyBloques + heightCuboDeHielo * 8, inicioyBloques + heightCuboDeHielo * 8},
+            {inicioyBloques + heightCuboDeHielo * 12, inicioyBloques + heightCuboDeHielo * 12},
+            {inicioyBloques + heightCuboDeHielo * 16}
+        };
     }
 
     @Override
@@ -182,7 +196,7 @@ public class Escenario extends Canvas {
         contadorVidas.paint(graphics2D);
         familiaTux.paint(graphics2D);
         tiempo.paint(graphics2D);
-        titulo.paint(graphics2D);        
+        titulo.paint(graphics2D);
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
         }
@@ -201,7 +215,7 @@ public class Escenario extends Canvas {
                 c.paint(graphics2D);
             }
         }
-        
+
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
