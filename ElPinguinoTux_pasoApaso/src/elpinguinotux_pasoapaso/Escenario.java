@@ -39,6 +39,7 @@ public class Escenario extends Canvas {
     private final FamiliaTux familiaTux;
     private final Tiempo tiempo;
     private final Titulo titulo;
+    private final Iceberg icebergInicial, icebergFinal;
     private final Orca[] orcas;
     private final Iceberg[][] icebergs;
     private final Pez[][] peces;
@@ -133,6 +134,20 @@ public class Escenario extends Canvas {
                 / (double) numBloquesX;
         final double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
+        
+        icebergInicial = new Iceberg(
+                        inicioxBloques + 20 * widthCuboDeHielo,
+                        13 * heightCuboDeHielo,
+                        3 * widthCuboDeHielo,
+                        3 * heightCuboDeHielo
+                );
+        icebergFinal = new Iceberg(
+                inicioxBloques + 24 * widthCuboDeHielo,
+                1 * heightCuboDeHielo,
+                3 * widthCuboDeHielo,
+                3 * heightCuboDeHielo
+        );
+        
         final int[] lonColumnas = {15, 11, 3};
         final double[] iniYColumnas = {
             heightCuboDeHielo,
@@ -208,6 +223,8 @@ public class Escenario extends Canvas {
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
         }
+        icebergInicial.paint(graphics2D);
+        icebergFinal.paint(graphics2D);
         for (Iceberg[] filaIcebergs : icebergs) {
             for (Iceberg iceberg : filaIcebergs) {
                 iceberg.paint(graphics2D);
