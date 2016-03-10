@@ -43,6 +43,7 @@ public class Escenario extends Canvas {
     private final Iceberg[][] icebergs;
     private final Pez[][] peces;
     private final CuboDeHielo[][] columnas;
+    private final CuboDeHielo[][][] hileras;
     
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
