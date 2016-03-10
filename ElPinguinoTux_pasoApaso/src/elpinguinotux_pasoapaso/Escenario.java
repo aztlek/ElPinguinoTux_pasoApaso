@@ -54,13 +54,6 @@ public class Escenario extends Canvas {
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
 
-        // Instanciar los objetos que son únicos
-        tux = new Tux(214, 129, 11, 14);
-        contadorPeces = new ContadorPeces(244, 88, 35, 20);
-        contadorVidas = new ContadorVidas(244, 127, 35, 20);
-        familiaTux = new FamiliaTux(249, 17, 16, 14);
-        tiempo = new Tiempo(244, 52, 35, 20);
-        titulo = new Titulo(0, 0, 16, totalHeight);
 
         // Los villanos
         orcas = new Orca[4];
@@ -69,6 +62,29 @@ public class Escenario extends Canvas {
         double orcasInicioY = 12.0d;
         double orcaSeparaciónAlto = 37.0d;
         double orcaAnchoPosicion = 163;
+
+        // Los peces
+        final double inicioXpeces = 12;
+        final double inicioYpeces = 21;
+        final double anchoPosXpeces = 194;
+        final double separacionYpeces = 37;
+        final int[] lonFilPeces = {2, 3, 2, 1};
+        peces = new Pez[4][];
+
+        for (int i = 0; i < peces.length; i++) {
+            peces[i] = new Pez[lonFilPeces[i]];
+        }
+
+        for (int i = 0; i < peces.length; i++) {
+            for (int j = 0; j < peces[i].length; j++) {
+                peces[i][j] = new Pez(
+                        inicioXpeces + random.nextDouble() * anchoPosXpeces,
+                        inicioYpeces + i * separacionYpeces,
+                        12,
+                        5
+                );
+            }
+        }
 
         // Instanciar las orcas
         for (int j = 0; j < orcas.length; j++) {
@@ -98,29 +114,6 @@ public class Escenario extends Canvas {
                         inicioYIceberg + i * separacionAltoIceberg,
                         anchoIceberg,
                         altoIceberg
-                );
-            }
-        }
-
-        // Los peces
-        final double inicioXpeces = 12;
-        final double inicioYpeces = 21;
-        final double anchoPosXpeces = 194;
-        final double separacionYpeces = 37;
-        final int[] lonFilPeces = {2, 3, 2, 1};
-        peces = new Pez[4][];
-
-        for (int i = 0; i < peces.length; i++) {
-            peces[i] = new Pez[lonFilPeces[i]];
-        }
-
-        for (int i = 0; i < peces.length; i++) {
-            for (int j = 0; j < peces[i].length; j++) {
-                peces[i][j] = new Pez(
-                        inicioXpeces + random.nextDouble() * anchoPosXpeces,
-                        inicioYpeces + i * separacionYpeces,
-                        12,
-                        5
                 );
             }
         }
@@ -202,6 +195,12 @@ public class Escenario extends Canvas {
                 }
             }
         }
+        tux = new Tux(214, 129, 11, 14);
+        contadorPeces = new ContadorPeces(244, 88, 35, 20);
+        contadorVidas = new ContadorVidas(244, 127, 35, 20);
+        familiaTux = new FamiliaTux(249, 17, 16, 14);
+        tiempo = new Tiempo(244, 52, 35, 20);
+        titulo = new Titulo(0, 0, 16, totalHeight);
     }
 
     @Override
@@ -214,12 +213,11 @@ public class Escenario extends Canvas {
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
-        tux.paint(graphics2D);
-        contadorPeces.paint(graphics2D);
-        contadorVidas.paint(graphics2D);
-        familiaTux.paint(graphics2D);
-        tiempo.paint(graphics2D);
-        titulo.paint(graphics2D);
+        for (Pez[] filaPeces : peces) {
+            for (Pez pez : filaPeces) {
+                pez.paint(graphics2D);
+            }
+        }
         for (Orca orca : orcas) {
             orca.paint(graphics2D);
         }
@@ -228,11 +226,6 @@ public class Escenario extends Canvas {
         for (Iceberg[] filaIcebergs : icebergs) {
             for (Iceberg iceberg : filaIcebergs) {
                 iceberg.paint(graphics2D);
-            }
-        }
-        for (Pez[] filaPeces : peces) {
-            for (Pez pez : filaPeces) {
-                pez.paint(graphics2D);
             }
         }
         for (CuboDeHielo[] cs : columnas) {
@@ -247,6 +240,12 @@ public class Escenario extends Canvas {
                 }
             }
         }
+        tux.paint(graphics2D);
+        contadorPeces.paint(graphics2D);
+        contadorVidas.paint(graphics2D);
+        familiaTux.paint(graphics2D);
+        tiempo.paint(graphics2D);
+        titulo.paint(graphics2D);
 
         // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
