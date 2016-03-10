@@ -19,6 +19,7 @@ package elpinguinotux_pasoapaso;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
 import javax.swing.JFrame;
@@ -63,8 +64,19 @@ public class Escenario extends Canvas {
         double orcaSeparaciónAlto = 37.0d;
         double orcaAnchoPosicion = 163;
 
+        
+        // Constantes de las teselas
+        final double inicioxBloques = 17.0d;
+        final double inicioyBloques = 0.0d;
+        final int numBloquesX = 28;
+        final int numBloquesY = 17;
+        final double widthCuboDeHielo = (totalWidth - inicioxBloques)
+                / (double) numBloquesX;
+        final double heightCuboDeHielo = (totalHeight - inicioyBloques)
+                / (double) numBloquesY;
+        
         // Los peces
-        final double inicioXpeces = 12;
+        final double inicioXpeces = 12 + inicioxBloques;
         final double inicioYpeces = 21;
         final double anchoPosXpeces = 194;
         final double separacionYpeces = 37;
@@ -118,16 +130,6 @@ public class Escenario extends Canvas {
             }
         }
 
-        // Constantes de las teselas
-        final double inicioxBloques = 17.0d;
-        final double inicioyBloques = 0.0d;
-        final int numBloquesX = 28;
-        final int numBloquesY = 17;
-        final double widthCuboDeHielo = (totalWidth - inicioxBloques)
-                / (double) numBloquesX;
-        final double heightCuboDeHielo = (totalHeight - inicioyBloques)
-                / (double) numBloquesY;
-        
         icebergInicial = new Iceberg(
                         inicioxBloques + 20 * widthCuboDeHielo,
                         13 * heightCuboDeHielo,
@@ -213,6 +215,10 @@ public class Escenario extends Canvas {
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
+        graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        
         for (Pez[] filaPeces : peces) {
             for (Pez pez : filaPeces) {
                 pez.paint(graphics2D);
