@@ -158,7 +158,13 @@ public class Escenario extends Canvas {
                                     );
             }
         }
-
+        int[][] lonHileras = {
+                                {28},
+                                {10, 15},
+                                {3, 12, 3},
+                                {10, 10},
+                                {24}
+                            };
     }
 
     @Override
