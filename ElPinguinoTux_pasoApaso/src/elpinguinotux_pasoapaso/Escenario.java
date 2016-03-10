@@ -179,6 +179,8 @@ public class Escenario extends Canvas {
             {inicioyBloques + heightCuboDeHielo * 12, inicioyBloques + heightCuboDeHielo * 12},
             {inicioyBloques + heightCuboDeHielo * 16}
         };
+        hileras = new CuboDeHielo[lonHileras.length][][];
+        
     }
 
     @Override
