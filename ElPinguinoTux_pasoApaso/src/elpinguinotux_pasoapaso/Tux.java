@@ -42,6 +42,7 @@ public class Tux {
     private final double escalaX, escalaY;
     
     private TipoDireccion direccion = TipoDireccion.parado;
+    private final double longitudPaso = 5;
 
     public Tux(double x, double y, double width, double height) {
         this.x = x;
