@@ -52,38 +52,6 @@ public class Tux {
         this.escalaY = height / totalHeight;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
     public void paint(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
@@ -143,5 +111,45 @@ public class Tux {
         graphics2D.setTransform(affineTransform);
 
     } // paint()
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public double getEscalaX() {
+        return escalaX;
+    }
+
+    public double getEscalaY() {
+        return escalaY;
+    }
+
+    public double getTotalWidth() {
+        return totalWidth;
+    }
+
+    public double getTotalHeight() {
+        return totalHeight;
+    }
+
+    public TipoDireccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(TipoDireccion direccion) {
+        this.direccion = direccion;
+    }
 
 } // class Tux
