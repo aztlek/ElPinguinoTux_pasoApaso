@@ -32,7 +32,6 @@ import java.awt.geom.Ellipse2D;
 public class Tux implements KeyListener {
 
     // Ancho y alto total de la figura
-
     private final double totalWidth = 190.0d;
     private final double totalHeight = 237.0d;
 
@@ -42,7 +41,7 @@ public class Tux implements KeyListener {
 
     // Escalas
     private final double escalaX, escalaY;
-    
+
     private TipoDireccion direccion = TipoDireccion.parado;
     private final double longitudPaso = 5;
 
@@ -109,14 +108,13 @@ public class Tux implements KeyListener {
 
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
     } // paint()
-    
-    public void darPaso(){
-        switch(direccion){
+
+    public void darPaso() {
+        switch (direccion) {
             case derecha:
                 x += longitudPaso;
                 break;
@@ -178,6 +176,26 @@ public class Tux implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        int tecla = e.getKeyCode();
+
+        switch (tecla) {
+            case KeyEvent.VK_RIGHT:
+                setDireccion(TipoDireccion.derecha);
+                break;
+            case KeyEvent.VK_LEFT:
+                setDireccion(TipoDireccion.izquierda);
+                break;
+            case KeyEvent.VK_UP:
+                setDireccion(TipoDireccion.arriba);
+                break;
+            case KeyEvent.VK_DOWN:
+                setDireccion(TipoDireccion.abajo);
+                break;
+            default:
+                setDireccion(TipoDireccion.parado);
+                break;
+        }
+        darPaso();
     }
 
     @Override
