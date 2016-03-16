@@ -35,7 +35,7 @@ public class Tux {
     private final double totalHeight = 237.0d;
 
     // Posición, ancho y alto en el Escenario
-    private final double x, y;
+    private double x, y;
     private final double width, height;
 
     // Escalas
@@ -112,6 +112,23 @@ public class Tux {
         graphics2D.setTransform(affineTransform);
 
     } // paint()
+    
+    public void darPaso(){
+        switch(direccion){
+            case derecha:
+                x += longitudPaso;
+                break;
+            case izquierda:
+                x -= longitudPaso;
+                break;
+            case arriba:
+                y -= longitudPaso;
+                break;
+            case abajo:
+                y += longitudPaso;
+                break;
+        }
+    }
 
     public double getX() {
         return x;
