@@ -19,6 +19,7 @@ package elpinguinotux_pasoapaso;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
+import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 
@@ -27,7 +28,7 @@ import java.awt.geom.Ellipse2D;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Tux {
+public class Tux implements KeyListener {
 
     // Ancho y alto total de la figura
 
