@@ -55,13 +55,15 @@ public class FamiliaTux {
                 x + width * 0 / getTotalWidth(),
                 y + height * 110 / getTotalHeight(),
                 width * 62 / getTotalWidth(),
-                height * 77 / getTotalHeight()
+                height * 77 / getTotalHeight(),
+                null
         );
         pareja = new Tux(
                 x + width * 60 / getTotalWidth(),
                 y + height * 0 / getTotalHeight(),
                 width * 154 / getTotalWidth(),
-                height * 190 / getTotalHeight()
+                height * 190 / getTotalHeight(),
+                null
         );
     } // FamiliaTux()
 
