@@ -197,7 +197,7 @@ public class Escenario extends Canvas {
                 }
             }
         }
-        tux = new Tux(214, 129, 11, 14);
+        tux = new Tux(214, 129, 11, 14, this);
         contadorPeces = new ContadorPeces(244, 88, 35, 20);
         contadorVidas = new ContadorVidas(244, 127, 35, 20);
         familiaTux = new FamiliaTux(249, 17, 16, 14);
