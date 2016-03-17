@@ -16,6 +16,7 @@
  */
 package elpinguinotux_pasoapaso;
 
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -44,14 +45,16 @@ public class Tux implements KeyListener {
 
     private TipoDireccion direccion = TipoDireccion.parado;
     private final double longitudPaso = 5;
+    private final Escenario escenario;
 
-    public Tux(double x, double y, double width, double height) {
+    public Tux(double x, double y, double width, double height, Escenario escenario) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.escalaX = width / totalWidth;
         this.escalaY = height / totalHeight;
+        this.escenario = escenario;
     }
 
     public void paint(Graphics2D graphics2D) {
