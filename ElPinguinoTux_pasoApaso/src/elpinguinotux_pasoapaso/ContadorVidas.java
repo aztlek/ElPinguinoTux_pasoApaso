@@ -114,7 +114,8 @@ public class ContadorVidas {
                     inicioXPinquino + i * (anchoPinguino + separacionEntrePinguinos),
                     inicioYPinguino,
                     anchoPinguino,
-                    altoPinguino
+                    altoPinguino,
+                    null
             ).paint(graphics2D);
         }
 
