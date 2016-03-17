@@ -199,6 +199,7 @@ public class Tux implements KeyListener {
                 break;
         }
         darPaso();
+        escenario.repaint();
     }
 
     @Override
