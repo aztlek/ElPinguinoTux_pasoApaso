@@ -261,6 +261,11 @@ public class Escenario extends Canvas {
         g.drawImage(imagenSegundoBuffer, 0, 0, null);
     } // paint()
 
+    @Override
+    public void update(Graphics g) {
+        paint(g);
+    }
+    
     public double getTotalWidth() {
         return totalWidth;
     }
