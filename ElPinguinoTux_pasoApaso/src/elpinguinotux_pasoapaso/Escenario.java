@@ -19,6 +19,7 @@ package elpinguinotux_pasoapaso;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.util.Random;
@@ -55,7 +56,6 @@ public class Escenario extends Canvas {
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
 
-
         // Los villanos
         orcas = new Orca[4];
         Random random = new Random();
@@ -64,7 +64,6 @@ public class Escenario extends Canvas {
         double orcaSeparaciónAlto = 37.0d;
         double orcaAnchoPosicion = 163;
 
-        
         // Constantes de las teselas
         final double inicioxBloques = 17.0d;
         final double inicioyBloques = 0.0d;
@@ -74,7 +73,7 @@ public class Escenario extends Canvas {
                 / (double) numBloquesX;
         final double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
-        
+
         // Los peces
         final double inicioXpeces = 12 + inicioxBloques;
         final double inicioYpeces = 21;
@@ -131,18 +130,18 @@ public class Escenario extends Canvas {
         }
 
         icebergInicial = new Iceberg(
-                        inicioxBloques + 20 * widthCuboDeHielo,
-                        13 * heightCuboDeHielo,
-                        3 * widthCuboDeHielo,
-                        3 * heightCuboDeHielo
-                );
+                inicioxBloques + 20 * widthCuboDeHielo,
+                13 * heightCuboDeHielo,
+                3 * widthCuboDeHielo,
+                3 * heightCuboDeHielo
+        );
         icebergFinal = new Iceberg(
                 inicioxBloques + 24 * widthCuboDeHielo,
                 1 * heightCuboDeHielo,
                 3 * widthCuboDeHielo,
                 3 * heightCuboDeHielo
         );
-        
+
         final int[] lonColumnas = {15, 11, 3};
         final double[] iniYColumnas = {
             heightCuboDeHielo,
@@ -178,7 +177,7 @@ public class Escenario extends Canvas {
         final double[][] iniXhileras = {
             {inicioxBloques},
             {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
-            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo *  6, inicioxBloques + widthCuboDeHielo * 20},
+            {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 6, inicioxBloques + widthCuboDeHielo * 20},
             {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
             {inicioxBloques}
         };
@@ -189,9 +188,9 @@ public class Escenario extends Canvas {
                 hileras[i][j] = new CuboDeHielo[lonHileras[i][j]];
                 for (int k = 0; k < hileras[i][j].length; k++) {
                     hileras[i][j][k] = new CuboDeHielo(
-                            iniXhileras[i][j] + widthCuboDeHielo * k, 
-                            inicioyBloques + heightCuboDeHielo * i * 4, 
-                            widthCuboDeHielo, 
+                            iniXhileras[i][j] + widthCuboDeHielo * k,
+                            inicioyBloques + heightCuboDeHielo * i * 4,
+                            widthCuboDeHielo,
                             heightCuboDeHielo
                     );
                 }
@@ -208,18 +207,18 @@ public class Escenario extends Canvas {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
-        Graphics2D graphics2D = (Graphics2D) g;
+        Image imagenSegundoBuffer = createImage(marco.getWidth(), marco.getHeight());
+        Graphics2D graphics2D = (Graphics2D) imagenSegundoBuffer.getGraphics();
 
         // Transformaciones
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(x, y);
         graphics2D.scale(escalaX, escalaY);
 
-        graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+        graphics2D.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        
+
         for (Pez[] filaPeces : peces) {
             for (Pez pez : filaPeces) {
                 pez.paint(graphics2D);
@@ -256,9 +255,10 @@ public class Escenario extends Canvas {
 
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
+        
+        g.drawImage(imagenSegundoBuffer, 0, 0, null);
     } // paint()
 
     public double getTotalWidth() {
