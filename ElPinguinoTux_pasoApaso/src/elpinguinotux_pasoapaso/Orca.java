@@ -37,6 +37,7 @@ public class Orca {
     private final double width, height;
     private final double escalaX, escalaY;
     private TipoDireccion direccion = TipoDireccion.derecha;
+    private final double longitudPaso = 5;
 
     public Orca(double x, double y, double width, double height) {
         this.x = x;
