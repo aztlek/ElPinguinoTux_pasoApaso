@@ -33,9 +33,10 @@ public class Orca {
 
     private final double totalWidth = 280.0d;
     private final double totalHeight = 160.0d;
-    private final double x, y;
+    private double x, y;
     private final double width, height;
     private final double escalaX, escalaY;
+    private TipoDireccion direccion = TipoDireccion.derecha;
 
     public Orca(double x, double y, double width, double height) {
         this.x = x;
@@ -124,6 +125,14 @@ public class Orca {
 
     public double getEscalaY() {
         return escalaY;
+    }
+
+    public TipoDireccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(TipoDireccion direccion) {
+        this.direccion = direccion;
     }
 
 } // class Orca
