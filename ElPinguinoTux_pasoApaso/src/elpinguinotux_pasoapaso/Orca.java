@@ -58,7 +58,6 @@ public class Orca {
             case izquierda:
                 dibujarIzquierda(graphics2D);
                 break;
-                
         } // switch
     } // paint()
 
