@@ -53,6 +53,12 @@ public class Orca {
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
 
+
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+    } // paint()
+    
+    private void dibujar(Graphics2D graphics2D){
         // Cuerpo
         graphics2D.setColor(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(50, 65, 230, 71));
@@ -88,12 +94,8 @@ public class Orca {
         graphics2D.fill(new Ellipse2D.Double(172, 102, 88, 29));
         
 //        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
-        // Volver a la translación y escalación anterior
-        graphics2D.setTransform(affineTransform);
-
-    } // paint()
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);        
+    }
 
     public double getTotalWidth() {
         return totalWidth;
