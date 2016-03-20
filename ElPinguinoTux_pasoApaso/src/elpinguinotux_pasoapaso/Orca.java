@@ -50,6 +50,18 @@ public class Orca {
         this.escenario = escenario;
     } // Orca()
 
+    public void paint(Graphics2D graphics2D) {
+        switch (direccion) {
+            case derecha:
+                dibujarDerecha(graphics2D);
+                break;
+            case izquierda:
+                dibujarIzquierda(graphics2D);
+                break;
+                
+        } // switch
+    } // paint()
+
     private void dibujarDerecha(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
