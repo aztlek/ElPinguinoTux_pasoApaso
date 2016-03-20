@@ -103,7 +103,8 @@ public class Escenario extends Canvas {
                     orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
-                    23.0d
+                    23.0d,
+                    this
             );
         }
 
