@@ -38,14 +38,16 @@ public class Orca {
     private final double escalaX, escalaY;
     private TipoDireccion direccion = TipoDireccion.derecha;
     private final double longitudPaso = 5;
+    private final Escenario escenario;
 
-    public Orca(double x, double y, double width, double height) {
+    public Orca(double x, double y, double width, double height, Escenario escenario) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.escalaX = width / totalWidth;
         this.escalaY = height / totalHeight;
+        this.escenario = escenario;
     } // Orca()
 
     public void paint(Graphics2D graphics2D) {
