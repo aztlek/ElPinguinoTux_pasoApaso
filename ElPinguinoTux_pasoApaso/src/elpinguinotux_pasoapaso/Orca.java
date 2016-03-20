@@ -54,12 +54,28 @@ public class Orca {
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
 
-
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
     } // paint()
-    
-    private void dibujar(Graphics2D graphics2D){
+
+    public void darPaso() {
+        switch (direccion) {
+            case derecha:
+                x += longitudPaso;
+                break;
+            case izquierda:
+                x -= longitudPaso;
+                break;
+            case arriba:
+                y -= longitudPaso;
+                break;
+            case abajo:
+                y += longitudPaso;
+                break;
+        }
+    }
+
+    private void dibujar(Graphics2D graphics2D) {
         // Cuerpo
         graphics2D.setColor(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(50, 65, 230, 71));
@@ -93,7 +109,7 @@ public class Orca {
         graphics2D.setColor(Color.WHITE);
         graphics2D.fill(new Ellipse2D.Double(74, 104, 58, 27));
         graphics2D.fill(new Ellipse2D.Double(172, 102, 88, 29));
-        
+
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);        
     }
@@ -117,11 +133,11 @@ public class Orca {
     public double getY() {
         return y;
     }
-    
+
     public void setY(double y) {
         this.y = y;
-    }    
-    
+    }
+
     public double getWidth() {
         return width;
     }
