@@ -55,12 +55,25 @@ public class Orca {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
-        
+
         dibujar(graphics2D);
 
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
-    } // paint()
+    } // dibujarDerecha()
+
+    private void dibujarIzquierda(Graphics2D graphics2D) {
+        // Transladar y escalar
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(getX(), getY());
+        graphics2D.scale(-getEscalaX(), getEscalaY());
+        graphics2D.translate(-getTotalWidth(), 0d);
+
+        dibujar(graphics2D);
+
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+    } // dibujarIzquierda()
 
     public void darPaso() {
         switch (direccion) {
