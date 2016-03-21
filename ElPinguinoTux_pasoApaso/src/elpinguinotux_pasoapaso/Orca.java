@@ -24,6 +24,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -204,10 +206,14 @@ public class Orca implements Runnable{
     @Override
     public void run() {
         for(;;){
-            if(x <= 0 || x + getWidth() >= escenario.getWidth()){
+            darPaso();
+            if(x <= 0 || x + getWidth() >= escenario.getTotalWidth()){
                 voltear();
             }
-                    
+            escenario.repaint();
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) { }
         }
     }
 
