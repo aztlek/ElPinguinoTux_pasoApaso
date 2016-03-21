@@ -103,7 +103,8 @@ public class ContadorPeces {
                     (inicioX + (i % 4) * (anchoPez + separacionXEntrePeces)),
                     inicioY,
                     anchoPez,
-                    altoPez
+                    altoPez,
+                    null
             ).paint(graphics2D);
 
             i++;
