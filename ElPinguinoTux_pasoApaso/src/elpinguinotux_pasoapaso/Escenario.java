@@ -92,8 +92,11 @@ public class Escenario extends Canvas {
                         inicioXpeces + random.nextDouble() * anchoPosXpeces,
                         inicioYpeces + i * separacionYpeces,
                         12,
-                        5
+                        5,
+                        this
                 );
+                Thread threadPez = new Thread(peces[i][j]);
+                threadPez.start();
             }
         }
 
