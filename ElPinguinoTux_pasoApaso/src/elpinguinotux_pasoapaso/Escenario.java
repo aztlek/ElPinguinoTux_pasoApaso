@@ -106,6 +106,8 @@ public class Escenario extends Canvas {
                     23.0d,
                     this
             );
+            Thread threadOrca = new Thread(orcas[j]);
+            threadOrca.start();
         }
 
         // Los icebergs
