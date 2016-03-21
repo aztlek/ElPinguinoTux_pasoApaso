@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,7 +40,8 @@ public class Orca implements Runnable{
     private final double width, height;
     private final double escalaX, escalaY;
     private TipoDireccion direccion = TipoDireccion.derecha;
-    private final double longitudPaso = 0.05d;
+    private final Random random = new Random();
+    private final double longitudPaso = 0.05d * random.nextDouble();
     private final Escenario escenario;
 
     public Orca(double x, double y, double width, double height, Escenario escenario) {
@@ -154,6 +156,20 @@ public class Orca implements Runnable{
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);        
     }
+    
+    @Override
+    public void run() {
+        for(;;){
+            darPaso();
+            if(x <= 0 || x + getWidth() >= escenario.getTotalWidth()){
+                voltear();
+            }
+            escenario.repaint();
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ex) { }
+        }
+    }
 
     public double getTotalWidth() {
         return totalWidth;
@@ -203,18 +219,5 @@ public class Orca implements Runnable{
         this.direccion = direccion;
     }
 
-    @Override
-    public void run() {
-        for(;;){
-            darPaso();
-            if(x <= 0 || x + getWidth() >= escenario.getTotalWidth()){
-                voltear();
-            }
-            escenario.repaint();
-            try {
-                Thread.sleep(2);
-            } catch (InterruptedException ex) { }
-        }
-    }
 
 } // class Orca
