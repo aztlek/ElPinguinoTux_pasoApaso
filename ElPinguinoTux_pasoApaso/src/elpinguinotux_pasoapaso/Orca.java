@@ -102,6 +102,17 @@ public class Orca implements Runnable{
                 break;
         }
     }
+    
+    public void voltear(){
+        switch (direccion) {
+            case derecha:
+                direccion = TipoDireccion.izquierda;
+                break;
+            case izquierda:
+                direccion = TipoDireccion.derecha;
+                break;
+        }
+    }
 
     private void dibujar(Graphics2D graphics2D) {
         // Cuerpo
@@ -192,7 +203,12 @@ public class Orca implements Runnable{
 
     @Override
     public void run() {
-        
+        for(;;){
+            if(x <= 0 || x + getWidth() >= escenario.getWidth()){
+                voltear();
+            }
+                    
+        }
     }
 
 } // class Orca
