@@ -29,7 +29,7 @@ import java.awt.geom.Ellipse2D;
  *
  * @author aztlek
  */
-public class Orca {
+public class Orca implements Runnable{
 
     private final double totalWidth = 280.0d;
     private final double totalHeight = 160.0d;
