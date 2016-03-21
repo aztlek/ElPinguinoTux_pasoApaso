@@ -39,7 +39,7 @@ public class Orca implements Runnable{
     private final double width, height;
     private final double escalaX, escalaY;
     private TipoDireccion direccion = TipoDireccion.derecha;
-    private final double longitudPaso = 5;
+    private final double longitudPaso = 0.05d;
     private final Escenario escenario;
 
     public Orca(double x, double y, double width, double height, Escenario escenario) {
@@ -212,7 +212,7 @@ public class Orca implements Runnable{
             }
             escenario.repaint();
             try {
-                Thread.sleep(100);
+                Thread.sleep(2);
             } catch (InterruptedException ex) { }
         }
     }
