@@ -190,4 +190,9 @@ public class Orca implements Runnable{
         this.direccion = direccion;
     }
 
+    @Override
+    public void run() {
+        
+    }
+
 } // class Orca
