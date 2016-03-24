@@ -86,19 +86,19 @@ public class Tux implements KeyListener {
 
         // Ojo derecho
         graphics2D.setPaint(Color.WHITE);
-        graphics2D.fill(new Ellipse2D.Double(49d, 13d, 41d, 51d));
+        graphics2D.fill(new Ellipse2D.Double(49d, 13d, 42d, 51d));
 
         // Pupila derecha
         graphics2D.setPaint(Color.BLACK);
-        graphics2D.fill(new Ellipse2D.Double(71d, 44d, 13d, 15d));
+        graphics2D.fill(new Ellipse2D.Double(72d, 45d, 12d, 15d));
 
         // Ojo izquierdo
         graphics2D.setPaint(Color.WHITE);
-        graphics2D.fill(new Ellipse2D.Double(100d, 13d, 41d, 51d));
+        graphics2D.fill(new Ellipse2D.Double(99d, 13d, 42d, 51d));
 
         // Pupila izquierda
         graphics2D.setPaint(Color.BLACK);
-        graphics2D.fill(new Ellipse2D.Double(107d, 44d, 13d, 15d));
+        graphics2D.fill(new Ellipse2D.Double(105d, 45d, 12d, 15d));
 
         // Pata derecha
         graphics2D.setPaint(new Color(255, 149, 0));
