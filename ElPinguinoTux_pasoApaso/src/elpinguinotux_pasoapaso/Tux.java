@@ -102,11 +102,11 @@ public class Tux implements KeyListener {
 
         // Pata derecha
         graphics2D.setPaint(new Color(255, 149, 0));
-        graphics2D.fill(new Ellipse2D.Double(27d, 209d, 50d, 28d));
+        graphics2D.fill(new Ellipse2D.Double(27d, 210d, 50d, 27d));
 
         // Pata  izquierda
         graphics2D.setPaint(new Color(255, 149, 0));
-        graphics2D.fill(new Ellipse2D.Double(113d, 209d, 50d, 28d));
+        graphics2D.fill(new Ellipse2D.Double(113d, 210d, 50d, 27d));
 
 //        // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
