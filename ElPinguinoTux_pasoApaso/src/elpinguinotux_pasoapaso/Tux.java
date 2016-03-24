@@ -161,9 +161,27 @@ public class Tux implements KeyListener {
         int picoy[] = {64, 72, 84, 90};
         graphics2D.fill(new Polygon(picox, picoy, picox.length));
 
-        // Aleta derecha
+        // Aleta
         graphics2D.setPaint(Color.BLACK);
-        graphics2D.fill(new Ellipse2D.Double(58d, 80d, 44d, 127d));     
+        graphics2D.fill(new Ellipse2D.Double(58d, 80d, 44d, 127d));
+        
+        // Ojo
+        graphics2D.setPaint(Color.WHITE);
+        graphics2D.fill(new Ellipse2D.Double(47d, 13d, 42d, 51d));
+
+        // Pupila
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(50d, 45d, 12d, 15d));
+
+        // Pata
+        graphics2D.setPaint(new Color(255, 149, 0));
+        graphics2D.fill(new Ellipse2D.Double(55d, 210d, 50d, 27d));
+        
+        // Cola
+        graphics2D.setPaint(Color.BLACK);
+        int colax[] = {190, 164, 164};
+        int colay[] = {180, 195, 183};
+        graphics2D.fill(new Polygon(colax, colay, colax.length));
     
 //        // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
