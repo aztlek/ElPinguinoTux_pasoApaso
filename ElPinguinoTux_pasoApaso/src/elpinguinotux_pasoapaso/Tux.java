@@ -72,8 +72,8 @@ public class Tux implements KeyListener {
 
         // Pico
         graphics2D.setPaint(new Color(255, 149, 0));
-        int picox[] = {80, 110, 95};
-        int picoy[] = {65, 65, 90};
+        int picox[] = { 95, 111, 103, 95, 87, 79};
+        int picoy[] = { 64,  72,  84, 90, 84, 72};
         graphics2D.fill(new Polygon(picox, picoy, picox.length));
 
         // Aleta derecha
@@ -109,7 +109,7 @@ public class Tux implements KeyListener {
         graphics2D.fill(new Ellipse2D.Double(113d, 209d, 50d, 28d));
 
 //        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
