@@ -22,6 +22,7 @@ import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 
 /**
@@ -55,8 +56,26 @@ public class Tux implements KeyListener {
         this.escalaY = height / totalHeight;
         this.escenario = escenario;
     }
+    
+    public void paint(Graphics2D graphics2D){
+        switch (direccion) {
+            case parado:
+                dibujarParado(graphics2D);
+                break;
+//            case derecha:
+//                dibujarDerecha(graphics2D);
+//                break;
+            case izquierda:
+                dibujarIzquierda(graphics2D);
+                break;
+            case abajo:
+                dibujarAbajo(graphics2D);
+                break;
+        } // switch
+    }
 
-    public void paint(Graphics2D graphics2D) {
+    
+    public void dibujarParado(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -113,8 +132,46 @@ public class Tux implements KeyListener {
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
-    } // paint()
+    } // dibujarParado()
+    
+    public void dibujarAbajo(Graphics2D graphics2D){
+        dibujarParado(graphics2D);
+    }
+    
+    public void dibujarIzquierda(Graphics2D graphics2D) {
+        // Transladar y escalar
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(getX(), getY());
+        graphics2D.scale(getEscalaX(), getEscalaY());
 
+        // Cuerpo
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(13d, 0d, 177d, 230d));
+
+        // Pecho
+        graphics2D.setPaint(Color.WHITE);
+        Area a1 = new Area(new Ellipse2D.Double( 13d,  0d, 177d, 230d));
+        Area a2 = new Area(new Ellipse2D.Double(-42d, 83d, 138d, 145d));
+        a1.intersect(a2);
+        graphics2D.fill(a1);
+
+//        // Pico
+//        graphics2D.setPaint(new Color(255, 149, 0));
+//        int picox[] = { 95, 111, 103, 95, 87, 79};
+//        int picoy[] = { 64,  72,  84, 90, 84, 72};
+//        graphics2D.fill(new Polygon(picox, picoy, picox.length));
+//
+//        // Aleta derecha
+//        graphics2D.setPaint(Color.BLACK);
+//        graphics2D.fill(new Ellipse2D.Double(0d, 80d, 44d, 127d));
+//        
+    
+//        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+    } // dibujarIzquierda()
+    
     public void darPaso() {
         switch (direccion) {
             case derecha:
