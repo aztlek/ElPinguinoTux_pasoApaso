@@ -160,11 +160,10 @@ public class Tux implements KeyListener {
         int picox[] = {23, 43, 39,  0};
         int picoy[] = {64, 72, 84, 90};
         graphics2D.fill(new Polygon(picox, picoy, picox.length));
-//
-//        // Aleta derecha
-//        graphics2D.setPaint(Color.BLACK);
-//        graphics2D.fill(new Ellipse2D.Double(0d, 80d, 44d, 127d));
-//        
+
+        // Aleta derecha
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(58d, 80d, 44d, 127d));     
     
 //        // Rejilla de referencia
         new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
