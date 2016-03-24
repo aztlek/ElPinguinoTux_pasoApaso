@@ -75,7 +75,7 @@ public class Tux implements KeyListener {
     }
 
     
-    public void dibujarParado(Graphics2D graphics2D) {
+    private void dibujarParado(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -134,11 +134,11 @@ public class Tux implements KeyListener {
 
     } // dibujarParado()
     
-    public void dibujarAbajo(Graphics2D graphics2D){
+    private void dibujarAbajo(Graphics2D graphics2D){
         dibujarParado(graphics2D);
     }
     
-    public void dibujarIzquierda(Graphics2D graphics2D) {
+    private void dibujarIzquierda(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
