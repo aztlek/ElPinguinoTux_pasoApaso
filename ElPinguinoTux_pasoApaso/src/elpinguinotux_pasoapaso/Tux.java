@@ -62,9 +62,9 @@ public class Tux implements KeyListener {
             case parado:
                 dibujarParado(graphics2D);
                 break;
-//            case derecha:
-//                dibujarDerecha(graphics2D);
-//                break;
+            case derecha:
+                dibujarDerecha(graphics2D);
+                break;
             case izquierda:
                 dibujarIzquierda(graphics2D);
                 break;
@@ -74,7 +74,6 @@ public class Tux implements KeyListener {
         } // switch
     }
 
-    
     private void dibujarParado(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
@@ -138,11 +137,40 @@ public class Tux implements KeyListener {
         dibujarParado(graphics2D);
     }
     
-    private void dibujarIzquierda(Graphics2D graphics2D) {
+    private void dibujarIzquierda(Graphics2D graphics2D){
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
+        
+        dibujarIzquierdaSinEscalar(graphics2D);
+        
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+
+    }
+    
+    private void dibujarDerecha(Graphics2D graphics2D){
+        // Transladar y escalar
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(getX(), getY());
+        graphics2D.scale(-getEscalaX(), getEscalaY());
+        graphics2D.translate(-getTotalWidth(), 0d);
+        
+        dibujarIzquierdaSinEscalar(graphics2D);
+        
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+
+    } // dibujarDerecha()
+    
+    private void dibujarIzquierdaSinEscalar(Graphics2D graphics2D) {
 
         // Cuerpo
         graphics2D.setPaint(Color.BLACK);
@@ -183,11 +211,7 @@ public class Tux implements KeyListener {
         int colay[] = {180, 195, 183};
         graphics2D.fill(new Polygon(colax, colay, colax.length));
     
-//        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        // Volver a la translación y escalación anterior
-        graphics2D.setTransform(affineTransform);
-    } // dibujarIzquierda()
+    } // dibujarIzquierdaSinEscalar()
     
     public void darPaso() {
         switch (direccion) {
