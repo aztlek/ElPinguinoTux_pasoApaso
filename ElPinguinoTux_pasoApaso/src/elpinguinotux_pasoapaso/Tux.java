@@ -68,6 +68,9 @@ public class Tux implements KeyListener {
             case izquierda:
                 dibujarIzquierda(graphics2D);
                 break;
+            case arriba:
+                dibujarArriba(graphics2D);
+                break;
             case abajo:
                 dibujarAbajo(graphics2D);
                 break;
@@ -127,11 +130,55 @@ public class Tux implements KeyListener {
         graphics2D.fill(new Ellipse2D.Double(113d, 210d, 50d, 27d));
 
 //        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
     } // dibujarParado()
+    
+    private void dibujarArriba(Graphics2D graphics2D) {
+        // Transladar y escalar
+        AffineTransform affineTransform = graphics2D.getTransform();
+        graphics2D.translate(getX(), getY());
+        graphics2D.scale(getEscalaX(), getEscalaY());
+
+        // Pata derecha
+        graphics2D.setPaint(new Color(255, 149, 0));
+        graphics2D.fill(new Ellipse2D.Double(27d, 210d, 50d, 27d));
+
+        // Pata  izquierda
+        graphics2D.setPaint(new Color(255, 149, 0));
+        graphics2D.fill(new Ellipse2D.Double(113d, 210d, 50d, 27d));
+
+        // Cuerpo
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(7d, 0d, 177d, 230d));
+
+        // Aleta derecha
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(0d, 80d, 44d, 127d));
+
+        // Aleta izquierda
+        graphics2D.setPaint(Color.BLACK);
+        graphics2D.fill(new Ellipse2D.Double(146d, 80d, 44d, 127d));
+        
+        // Cola
+        graphics2D.setPaint(Color.darkGray);
+        Area areaCuerpo = new Area(new Ellipse2D.Double( 7d,  0d, 177d, 230d));
+        int colax[] = { 95, 115,  75};
+        int colay[] = {180, 230, 230};
+        Area areaCola =  new Area(new Polygon(colax, colay, colax.length));
+        areaCola.intersect(areaCuerpo);
+        graphics2D.fill(areaCola);
+
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
+        // Volver a la translación y escalación anterior
+        graphics2D.setTransform(affineTransform);
+
+    } // dibujarArriba()
     
     private void dibujarAbajo(Graphics2D graphics2D){
         dibujarParado(graphics2D);
@@ -145,8 +192,8 @@ public class Tux implements KeyListener {
         
         dibujarIzquierdaSinEscalar(graphics2D);
         
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
@@ -162,8 +209,8 @@ public class Tux implements KeyListener {
         
         dibujarIzquierdaSinEscalar(graphics2D);
         
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
