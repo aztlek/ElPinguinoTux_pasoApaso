@@ -150,16 +150,16 @@ public class Tux implements KeyListener {
 
         // Pecho
         graphics2D.setPaint(Color.WHITE);
-        Area a1 = new Area(new Ellipse2D.Double( 13d,  0d, 177d, 230d));
-        Area a2 = new Area(new Ellipse2D.Double(-42d, 83d, 138d, 145d));
-        a1.intersect(a2);
-        graphics2D.fill(a1);
+        Area areaCuerpo = new Area(new Ellipse2D.Double( 13d,  0d, 177d, 230d));
+        Area areaPecho = new Area(new Ellipse2D.Double(-42d, 83d, 138d, 145d));
+        areaPecho.intersect(areaCuerpo);
+        graphics2D.fill(areaPecho);
 
-//        // Pico
-//        graphics2D.setPaint(new Color(255, 149, 0));
-//        int picox[] = { 95, 111, 103, 95, 87, 79};
-//        int picoy[] = { 64,  72,  84, 90, 84, 72};
-//        graphics2D.fill(new Polygon(picox, picoy, picox.length));
+        // Pico
+        graphics2D.setPaint(new Color(255, 149, 0));
+        int picox[] = { 95, 111, 103, 95, 87, 79};
+        int picoy[] = { 64,  72,  84, 90, 84, 72};
+        graphics2D.fill(new Polygon(picox, picoy, picox.length));
 //
 //        // Aleta derecha
 //        graphics2D.setPaint(Color.BLACK);
