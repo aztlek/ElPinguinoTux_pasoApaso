@@ -26,31 +26,12 @@ import java.awt.Graphics2D;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class FamiliaTux {
-    private final double totalWidth = 223.0d;
-    private final double totalHeight = 190.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
-    
+public class FamiliaTux extends ObjetoGrafico{
     private final Tux bebe;
     private final Tux pareja;
 
-    /**
-     * Construye a la familia de Tux.
-     *
-     * @param x posición x en pixels
-     * @param y posición y en pixels.
-     * @param width ancho en pixels.
-     * @param height alto en pixels.
-     */
     public FamiliaTux(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 223, 190);
         bebe = new Tux(
                 x + width * 0 / getTotalWidth(),
                 y + height * 110 / getTotalHeight(),
@@ -67,46 +48,9 @@ public class FamiliaTux {
         );
     } // FamiliaTux()
 
-    /**
-     * Dibuja la familia
-     *
-     * @param graphics2D El contexto gráfico donde se dibuja.
-     */
+    @Override
     public void paint(Graphics2D graphics2D) {
         bebe.paint(graphics2D);
         pareja.paint(graphics2D);
     }
-
-    public final double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public final double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
 } // class FamiliaTux

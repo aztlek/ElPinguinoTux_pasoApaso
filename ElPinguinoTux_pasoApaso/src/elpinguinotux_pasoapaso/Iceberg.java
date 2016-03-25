@@ -31,37 +31,16 @@ import java.awt.geom.RoundRectangle2D;
  *
  * @author Liuis Alejandro Bernal Romero (Aztlek)
  */
-public class Iceberg  {
-    private final double totalWidth = 190.0d;
-    private final double totalHeight = 190.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
+public class Iceberg extends ObjetoGrafico{
+    
     private final float radio = (float)totalWidth / 2.0f;
     private final float anchoLinea = 5.0f;
 
-    /**
-     * Crea un nuevo Iceberg.
-     *
-     * @param x posición x en pixels.
-     * @param y posición y en pixels.
-     * @param width ancho en pixels.
-     * @param height alto en pixels.
-     */
     public Iceberg(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 190, 190);
     }
-
-    /**
-     * Dibuja el iceberg.
-     *
-     * @param graphics2D donde se dibuja el villano
-     */
+    
+    @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -103,37 +82,4 @@ public class Iceberg  {
         graphics2D.setTransform(affineTransform);
 
     } // paint()
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
 } // class Iceberg

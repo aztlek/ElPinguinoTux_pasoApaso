@@ -29,14 +29,7 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class ContadorPeces {
-
-    private final double totalWidth = 290.0d;
-    private final double totalHeight = 160.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
-
+public class ContadorPeces extends ObjetoGrafico{
     private int numeroDePeces = 8;
 
     private final String titulo = "Peces";
@@ -57,12 +50,7 @@ public class ContadorPeces {
      * @param height alto en pixels.
      */
     public ContadorPeces(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 290, 160);
     }
 
     /**
@@ -72,6 +60,7 @@ public class ContadorPeces {
         return numeroDePeces;
     }
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -129,37 +118,5 @@ public class ContadorPeces {
      */
     public void inc() {
         numeroDePeces++;
-    }
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
     }
 } // class Peces

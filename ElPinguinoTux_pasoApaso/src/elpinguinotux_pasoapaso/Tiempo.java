@@ -30,13 +30,7 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Tiempo  {
-    private final double totalWidth = 290.0d;
-    private final double totalHeight = 160.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
-
+public class Tiempo extends ObjetoGrafico{
     private static final int TIEMPO_INICIAL = 24;
     private final String titulo = "Tiempo";
     private boolean parar = false;
@@ -49,23 +43,11 @@ public class Tiempo  {
     private static final double altoTituloContadores = 50.0d;
     private static final double escalaTextos = 1.3;
 
-    /**
-     * Inicializa los atributos
-     *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     */
     public Tiempo(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 290, 160);
     } // Tiempo()
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -145,46 +127,10 @@ public class Tiempo  {
         return minutos * 60 + horas * 60 * 60;
     }
 
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
     public int getPaso() {
         return paso;
     }
 
-    /**
-     * Convierte el tiempo a cadena. Se usa en la ventana de puntajes.
-     * @return el tiempo en forme de cadena
-     */
     @Override
     public String toString() {
         return ((horas <= 9 && horas >= 0) ? "0" : "") + horas + ":" + ((minutos <= 9) ? "0" : "") + minutos + "";

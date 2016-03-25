@@ -30,13 +30,7 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class ContadorVidas {
-    private final double totalWidth = 280.0d;
-    private final double totalHeight = 184.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
-
+public class ContadorVidas extends ObjetoGrafico{
     private final String titulo = "Vidas";
     private final int vidasInicial = 3;
     private int vidas = vidasInicial;
@@ -51,38 +45,19 @@ public class ContadorVidas {
     
     public static final double altoTituloContadores = 50.0d;
 
-    /**
-     * Constructora de vidas.
-     *
-     * @param x Posición x
-     * @param y Posición y
-     * @param width Ancho
-     * @param height alto
-     */
     public ContadorVidas(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 280, 184);
     }
 
-    
-    /**
-     * Decrementa las vidas del protagonista
-     */
     public void dec() {
         vidas--;
     }
 
-    /**
-     * @return el número de vidas.
-     */
     public int getVidas() {
         return vidas;
     }
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform transformacionesAnteriores = graphics2D.getTransform();
 
@@ -128,44 +103,8 @@ public class ContadorVidas {
         graphics2D.setTransform(transformacionesAnteriores);
     }
 
-    /**
-     * Reinicia el contador de vidas.
-     */
     public void reiniciar() {
         vidas = vidasInicial;
     }
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
 }
 // class Vidas

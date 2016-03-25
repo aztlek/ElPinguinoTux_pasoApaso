@@ -25,7 +25,7 @@ import java.awt.Graphics2D;
 public abstract class ObjetoGrafico {
     protected double x, y;
     private final double width, height;
-    private final double totalWidth, totalHeight;
+    protected final double totalWidth, totalHeight;
     private final double escalaX, escalaY;
 
     public ObjetoGrafico(double x, double y, double width, double height, double totalWidth, double totalHeight) {

@@ -30,36 +30,18 @@ import java.util.Random;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Pez implements Runnable{
-    
-    private final double totalWidth = 280.0d;
-    private final double totalHeight = 110.0d;
-    private double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
+public class Pez extends ObjetoGrafico implements Runnable{
     private TipoDireccion direccion = TipoDireccion.derecha;
     private final Random random = new Random();
     private final double longitudPaso = 0.1 * random.nextDouble();
     private final Escenario escenario;
 
-    /**
-     * Construye un pez que nada.
-     *
-     * @param x posición x del pez en pixels.
-     * @param y posición y del pez en pixels.
-     * @param width ancho del pez en pixels.
-     * @param height alto del pez en pixels.
-     */
     public Pez(double x, double y, double width, double height, Escenario escenario) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 280, 110);
         this.escenario = escenario;
     }
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         switch (direccion) {
             case derecha:
@@ -167,38 +149,5 @@ public class Pez implements Runnable{
             } catch (InterruptedException ex) { }
         }
     }
-    
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
 } // class Pez
 

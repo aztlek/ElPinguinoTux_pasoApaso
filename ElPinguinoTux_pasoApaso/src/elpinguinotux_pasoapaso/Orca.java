@@ -30,28 +30,18 @@ import java.util.Random;
  *
  * @author aztlek
  */
-public class Orca implements Runnable{
-
-    private final double totalWidth = 280.0d;
-    private final double totalHeight = 160.0d;
-    private double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
+public class Orca extends ObjetoGrafico implements Runnable{
     private TipoDireccion direccion = TipoDireccion.derecha;
     private final Random random = new Random();
     private final double longitudPaso = 0.05d * random.nextDouble();
     private final Escenario escenario;
 
     public Orca(double x, double y, double width, double height, Escenario escenario) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 280, 160);
         this.escenario = escenario;
     } // Orca()
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         switch (direccion) {
             case derecha:
@@ -168,54 +158,4 @@ public class Orca implements Runnable{
             } catch (InterruptedException ex) { }
         }
     }
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
-        this.y = y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
-    public TipoDireccion getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(TipoDireccion direccion) {
-        this.direccion = direccion;
-    }
-
-
 } // class Orca

@@ -42,6 +42,7 @@ public class Tux extends ObjetoGrafico implements KeyListener {
         this.escenario = escenario;
     }
     
+    @Override
     public void paint(Graphics2D graphics2D){
         switch (direccion) {
             case parado:

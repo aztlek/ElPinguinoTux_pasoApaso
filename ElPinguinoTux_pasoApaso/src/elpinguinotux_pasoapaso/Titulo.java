@@ -30,34 +30,16 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Titulo {
-
-    private final double totalWidth = 16.0d;
-    private final double totalHeight = 150.0d;
-    private final double x, y;
-    private final double width, height;
-    private final double escalaX, escalaY;
-    
+public class Titulo extends ObjetoGrafico{
     private static final double altoTituloContadores = 50.0d;
     private static final double escalaTextos = 1.3;
     private static final String titulo = "El Pingüino Tux";
-    /**
-     * Construye el título del juego.
-     *
-     * @param x posición x en pixels.
-     * @param y posición y en pixels.
-     * @param width ancho en pixels.
-     * @param height alto en pixels.
-     */
+    
     public Titulo(double x, double y, double width, double height) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 16, 150);
     } // Título()
 
+    @Override
     public void paint(Graphics2D graphics2D) {
         // Obtener las transformaciones actales.
         AffineTransform affineTransform = graphics2D.getTransform();
@@ -83,37 +65,4 @@ public class Titulo {
         // Volver a las anteriores transformaciones.
         graphics2D.setTransform(affineTransform);
     } // paint()
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
 } // class Titulo
