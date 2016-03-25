@@ -23,7 +23,7 @@ import java.awt.Graphics2D;
  * @author aztlek
  */
 public abstract class ObjetoGrafico {
-    private double x, y;
+    protected double x, y;
     private final double width, height;
     private final double totalWidth, totalHeight;
     private final double escalaX, escalaY;
