@@ -30,30 +30,15 @@ import java.awt.geom.Ellipse2D;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Tux implements KeyListener {
-
-    // Ancho y alto total de la figura
+public class Tux extends ObjetoGrafico implements KeyListener {
     private final double totalWidth = 190.0d;
     private final double totalHeight = 237.0d;
-
-    // Posición, ancho y alto en el Escenario
-    private double x, y;
-    private final double width, height;
-
-    // Escalas
-    private final double escalaX, escalaY;
-
     private TipoDireccion direccion = TipoDireccion.parado;
     private final double longitudPaso = 5;
     private final Escenario escenario;
 
     public Tux(double x, double y, double width, double height, Escenario escenario) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.escalaX = width / totalWidth;
-        this.escalaY = height / totalHeight;
+        super(x, y, width, height, 190, 237);
         this.escenario = escenario;
     }
     
@@ -197,7 +182,6 @@ public class Tux implements KeyListener {
         
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
-
     }
     
     private void dibujarDerecha(Graphics2D graphics2D){
@@ -214,11 +198,9 @@ public class Tux implements KeyListener {
         
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
-
     } // dibujarDerecha()
     
     private void dibujarIzquierdaSinEscalar(Graphics2D graphics2D) {
-
         // Cuerpo
         graphics2D.setPaint(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(13d, 0d, 177d, 230d));
@@ -257,7 +239,6 @@ public class Tux implements KeyListener {
         int colax[] = {190, 164, 164};
         int colay[] = {180, 195, 183};
         graphics2D.fill(new Polygon(colax, colay, colax.length));
-    
     } // dibujarIzquierdaSinEscalar()
     
     public void darPaso() {
@@ -275,38 +256,6 @@ public class Tux implements KeyListener {
                 y += longitudPaso;
                 break;
         }
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public double getEscalaX() {
-        return escalaX;
-    }
-
-    public double getEscalaY() {
-        return escalaY;
-    }
-
-    public double getTotalWidth() {
-        return totalWidth;
-    }
-
-    public double getTotalHeight() {
-        return totalHeight;
     }
 
     public TipoDireccion getDireccion() {
