@@ -31,8 +31,6 @@ import java.awt.geom.Ellipse2D;
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Tux extends ObjetoGrafico implements KeyListener {
-    private final double totalWidth = 190.0d;
-    private final double totalHeight = 237.0d;
     private TipoDireccion direccion = TipoDireccion.parado;
     private final double longitudPaso = 5;
     private final Escenario escenario;
