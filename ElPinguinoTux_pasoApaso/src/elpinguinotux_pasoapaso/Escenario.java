@@ -51,12 +51,22 @@ public class Escenario extends Canvas {
         objetosGraficos.add( new ContadorPeces(244, 88, 35, 20) );
         objetosGraficos.add( new ContadorVidas(244, 127, 35, 20) );
 
+        // Constantes de las teselas
+        final double inicioxBloques = 17.0d;
+        final double inicioyBloques = 0.0d;
+        final int numBloquesX = 28;
+        final int numBloquesY = 17;
+        final double widthCuboDeHielo = (totalWidth - inicioxBloques)
+                / (double) numBloquesX;
+        final double heightCuboDeHielo = (totalHeight - inicioyBloques)
+                / (double) numBloquesY;
+
         // Los villanos
         int orcasLength = 4;
         Random random = new Random();
         double orcasInicioX = 27.0d;
         double orcasInicioY = 12.0d;
-        double orcaSeparaciónAlto = 37.0d;
+        double orcaSeparaciónAlto = 4 * heightCuboDeHielo;
         double orcaAnchoPosicion = 163;
 
         // Instanciar las orcas
@@ -73,21 +83,11 @@ public class Escenario extends Canvas {
             threadOrca.start();
         }
 
-        // Constantes de las teselas
-        final double inicioxBloques = 17.0d;
-        final double inicioyBloques = 0.0d;
-        final int numBloquesX = 28;
-        final int numBloquesY = 17;
-        final double widthCuboDeHielo = (totalWidth - inicioxBloques)
-                / (double) numBloquesX;
-        final double heightCuboDeHielo = (totalHeight - inicioyBloques)
-                / (double) numBloquesY;
-
         // Los peces
         final double inicioXpeces = 12 + inicioxBloques;
         final double inicioYpeces = 21;
         final double anchoPosXpeces = 194;
-        final double separacionYpeces = 37;
+        final double separacionYpeces = orcaSeparaciónAlto;
         final int[] lonFilPeces = {2, 3, 2, 1};
 
         for (int i = 0; i < lonFilPeces.length; i++) {
@@ -111,7 +111,7 @@ public class Escenario extends Canvas {
         final double anchoIceberg = 14;
         final double altoIceberg = 14;
         final double separacionAnchoIceberg = 70;
-        final double separacionAltoIceberg = 37;
+        final double separacionAltoIceberg = orcaSeparaciónAlto;
         final int numFilIcebergs = 4;
         final int numColIcebergs = 2;
 
