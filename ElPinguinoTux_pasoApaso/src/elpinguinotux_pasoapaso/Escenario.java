@@ -89,9 +89,8 @@ public class Escenario extends Canvas {
         final double anchoPosXpeces = 194;
         final double separacionYpeces = 37;
         final int[] lonFilPeces = {2, 3, 2, 1};
-        int pecesLength = 4;
 
-        for (int i = 0; i < pecesLength; i++) {
+        for (int i = 0; i < lonFilPeces.length; i++) {
             for (int j = 0; j < lonFilPeces[i]; j++) {
                 Pez pez = new Pez(
                         inicioXpeces + random.nextDouble() * anchoPosXpeces,
@@ -225,8 +224,7 @@ public class Escenario extends Canvas {
         for (ObjetoGrafico objetoGrafico : objetosGraficos) {
             objetoGrafico.paint(graphics2D);
         }
-//        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+        
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
         
