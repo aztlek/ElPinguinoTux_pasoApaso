@@ -22,11 +22,11 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JFrame;
 
 public class Escenario extends Canvas {
-
     private final int x;
     private final int y;
     private final double totalWidth = 280.0d;
@@ -34,19 +34,7 @@ public class Escenario extends Canvas {
     private final JFrame marco;
     private final double escalaX;
     private final double escalaY;
-
-    private final Tux tux;
-    private final ContadorPeces contadorPeces;
-    private final ContadorVidas contadorVidas;
-    private final FamiliaTux familiaTux;
-    private final Tiempo tiempo;
-    private final Titulo titulo;
-    private final Iceberg icebergInicial, icebergFinal;
-    private final Orca[] orcas;
-    private final Iceberg[][] icebergs;
-    private final Pez[][] peces;
-    private final CuboDeHielo[][] columnas;
-    private final CuboDeHielo[][][] hileras;
+    private final ArrayList<ObjetoGrafico> objetosGraficos;
 
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
@@ -55,14 +43,35 @@ public class Escenario extends Canvas {
         this.marco = marco;
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
+        
+        objetosGraficos = new ArrayList<>();
+        
+        objetosGraficos.add( new Titulo(0, 0, 16, totalHeight) );
+        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
+        objetosGraficos.add( new ContadorPeces(244, 88, 35, 20) );
+        objetosGraficos.add( new ContadorVidas(244, 127, 35, 20) );
 
         // Los villanos
-        orcas = new Orca[4];
+        int orcasLength = 4;
         Random random = new Random();
         double orcasInicioX = 27.0d;
         double orcasInicioY = 12.0d;
         double orcaSeparaciónAlto = 37.0d;
         double orcaAnchoPosicion = 163;
+
+        // Instanciar las orcas
+        for (int j = 0; j < orcasLength; j++) {
+            Orca orca = new Orca(
+                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
+                    orcasInicioY + j * orcaSeparaciónAlto,
+                    43.0d,
+                    23.0d,
+                    this
+            );
+            objetosGraficos.add(orca);
+            Thread threadOrca = new Thread(orca);
+            threadOrca.start();
+        }
 
         // Constantes de las teselas
         final double inicioxBloques = 17.0d;
@@ -80,37 +89,21 @@ public class Escenario extends Canvas {
         final double anchoPosXpeces = 194;
         final double separacionYpeces = 37;
         final int[] lonFilPeces = {2, 3, 2, 1};
-        peces = new Pez[4][];
+        int pecesLength = 4;
 
-        for (int i = 0; i < peces.length; i++) {
-            peces[i] = new Pez[lonFilPeces[i]];
-        }
-
-        for (int i = 0; i < peces.length; i++) {
-            for (int j = 0; j < peces[i].length; j++) {
-                peces[i][j] = new Pez(
+        for (int i = 0; i < pecesLength; i++) {
+            for (int j = 0; j < lonFilPeces[i]; j++) {
+                Pez pez = new Pez(
                         inicioXpeces + random.nextDouble() * anchoPosXpeces,
                         inicioYpeces + i * separacionYpeces,
                         12,
                         5,
                         this
                 );
-                Thread threadPez = new Thread(peces[i][j]);
+                objetosGraficos.add(pez);
+                Thread threadPez = new Thread(pez);
                 threadPez.start();
             }
-        }
-
-        // Instanciar las orcas
-        for (int j = 0; j < orcas.length; j++) {
-            orcas[j] = new Orca(
-                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
-                    orcasInicioY + j * orcaSeparaciónAlto,
-                    43.0d,
-                    23.0d,
-                    this
-            );
-            Thread threadOrca = new Thread(orcas[j]);
-            threadOrca.start();
         }
 
         // Los icebergs
@@ -122,32 +115,40 @@ public class Escenario extends Canvas {
         final double separacionAltoIceberg = 37;
         final int numFilIcebergs = 4;
         final int numColIcebergs = 2;
-        icebergs = new Iceberg[numFilIcebergs][numColIcebergs];
 
-        for (int i = 0; i < icebergs.length; i++) {
-            for (int j = 0; j < icebergs[i].length; j++) {
-                icebergs[i][j] = new Iceberg(
+        for (int i = 0; i < numFilIcebergs; i++) {
+            for (int j = 0; j < numColIcebergs; j++) {
+                objetosGraficos.add(new Iceberg(
                         inicioXIceberg + j * separacionAnchoIceberg + separacionAnchoIceberg * random.nextDouble(),
                         inicioYIceberg + i * separacionAltoIceberg,
                         anchoIceberg,
                         altoIceberg
+                    )
                 );
             }
         }
 
-        icebergInicial = new Iceberg(
+        objetosGraficos.add( new Iceberg(
                 inicioxBloques + 20 * widthCuboDeHielo,
                 13 * heightCuboDeHielo,
                 3 * widthCuboDeHielo,
                 3 * heightCuboDeHielo
+            )
         );
-        icebergFinal = new Iceberg(
+        
+        Iceberg icebergFinal = new Iceberg(
                 inicioxBloques + 24 * widthCuboDeHielo,
                 1 * heightCuboDeHielo,
                 3 * widthCuboDeHielo,
                 3 * heightCuboDeHielo
         );
+        objetosGraficos.add(icebergFinal);
+        
+        // Familia Tux
+        objetosGraficos.add( new FamiliaTux(249, 17, 16, 14) );
 
+        // Columnas
+        
         final int[] lonColumnas = {15, 11, 3};
         final double[] iniYColumnas = {
             heightCuboDeHielo,
@@ -159,20 +160,20 @@ public class Escenario extends Canvas {
             inicioxBloques + 23 * widthCuboDeHielo,
             inicioxBloques + 27 * widthCuboDeHielo
         };
-        columnas = new CuboDeHielo[lonColumnas.length][];
-        for (int j = 0; j < columnas.length; j++) {
-            columnas[j] = new CuboDeHielo[lonColumnas[j]];
-        }
-        for (int j = 0; j < columnas.length; j++) {
-            for (int i = 0; i < columnas[j].length; i++) {
-                columnas[j][i] = new CuboDeHielo(
+        
+        for (int j = 0; j < lonColumnas.length; j++) {
+            for (int i = 0; i < lonColumnas[j]; i++) {
+                objetosGraficos.add(new CuboDeHielo(
                         iniXcolumnas[j],
                         iniYColumnas[j] + i * heightCuboDeHielo,
                         widthCuboDeHielo,
                         heightCuboDeHielo
+                    )
                 );
             }
         }
+        
+        // Hileras
         final int[][] lonHileras = {
             {28},
             {10, 15},
@@ -187,28 +188,24 @@ public class Escenario extends Canvas {
             {inicioxBloques + widthCuboDeHielo, inicioxBloques + widthCuboDeHielo * 13},
             {inicioxBloques}
         };
-        hileras = new CuboDeHielo[lonHileras.length][][];
-        for (int i = 0; i < hileras.length; i++) {
-            hileras[i] = new CuboDeHielo[lonHileras[i].length][];
-            for (int j = 0; j < hileras[i].length; j++) {
-                hileras[i][j] = new CuboDeHielo[lonHileras[i][j]];
-                for (int k = 0; k < hileras[i][j].length; k++) {
-                    hileras[i][j][k] = new CuboDeHielo(
+        for (int i = 0; i < lonHileras.length; i++) {
+            for (int j = 0; j < lonHileras[i].length; j++) {
+                for (int k = 0; k < lonHileras[i][j]; k++) {
+                    objetosGraficos.add( new CuboDeHielo(
                             iniXhileras[i][j] + widthCuboDeHielo * k,
                             inicioyBloques + heightCuboDeHielo * i * 4,
                             widthCuboDeHielo,
                             heightCuboDeHielo
+                        )
                     );
                 }
             }
         }
-        tux = new Tux(214, 129, 11, 14, this);
+        
+        // Tux
+        Tux tux = new Tux(214, 129, 11, 14, this);
+        objetosGraficos.add(tux);
         marco.addKeyListener(tux);
-        contadorPeces = new ContadorPeces(244, 88, 35, 20);
-        contadorVidas = new ContadorVidas(244, 127, 35, 20);
-        familiaTux = new FamiliaTux(249, 17, 16, 14);
-        tiempo = new Tiempo(244, 52, 35, 20);
-        titulo = new Titulo(0, 0, 16, totalHeight);
     }
 
     @Override
@@ -225,40 +222,9 @@ public class Escenario extends Canvas {
         graphics2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-        for (Pez[] filaPeces : peces) {
-            for (Pez pez : filaPeces) {
-                pez.paint(graphics2D);
-            }
+        for (ObjetoGrafico objetoGrafico : objetosGraficos) {
+            objetoGrafico.paint(graphics2D);
         }
-        for (Orca orca : orcas) {
-            orca.paint(graphics2D);
-        }
-        icebergInicial.paint(graphics2D);
-        icebergFinal.paint(graphics2D);
-        for (Iceberg[] filaIcebergs : icebergs) {
-            for (Iceberg iceberg : filaIcebergs) {
-                iceberg.paint(graphics2D);
-            }
-        }
-        for (CuboDeHielo[] cs : columnas) {
-            for (CuboDeHielo c : cs) {
-                c.paint(graphics2D);
-            }
-        }
-        for (CuboDeHielo[][] hss : hileras) {
-            for (CuboDeHielo[] hs : hss) {
-                for (CuboDeHielo hilera : hs) {
-                    hilera.paint(graphics2D);
-                }
-            }
-        }
-        tux.paint(graphics2D);
-        contadorPeces.paint(graphics2D);
-        contadorVidas.paint(graphics2D);
-        familiaTux.paint(graphics2D);
-        tiempo.paint(graphics2D);
-        titulo.paint(graphics2D);
-
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         // Reestrablece las transformaciones
