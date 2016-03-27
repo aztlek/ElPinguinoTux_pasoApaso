@@ -31,17 +31,12 @@ import java.awt.geom.AffineTransform;
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Tiempo extends ObjetoGrafico{
-    private static final int TIEMPO_INICIAL = 24;
-    private final String titulo = "Tiempo";
-    private boolean parar = false;
-    private int horas = TIEMPO_INICIAL;
+    private int horas = 24;
     private int minutos = 60;
     private final int paso = 1;
-    private final int horaInicial = horas;
-    private final int minutosInicial = minutos;
-    private final Color colorConteo = new Color(0, 128, 128);
-    private static final double altoTituloContadores = 50.0d;
-    private static final double escalaTextos = 1.3;
+    private final String titulo = "Tiempo";
+    private static final float altoTituloContadores = 50.0f;
+    private static final double escalaTextos = 1.3d;
 
     public Tiempo(double x, double y, double width, double height) {
         super(x, y, width, height, 290, 160);
@@ -53,11 +48,8 @@ public class Tiempo extends ObjetoGrafico{
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
 
-        // Averiguar el tipo de letra actual
-        Font oldFont = graphics2D.getFont();
-
         // Poner el color, el nuevo tipo de letra y obtener las métricas
-        graphics2D.setColor(colorConteo);
+        graphics2D.setColor(new Color(0, 128, 128));
         graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round((altoTituloContadores) * escalaTextos)));
         FontMetrics fontMetrics = graphics2D.getFontMetrics();
 
@@ -65,39 +57,26 @@ public class Tiempo extends ObjetoGrafico{
         int widthFont = fontMetrics.stringWidth(titulo);
         graphics2D.drawString(
                 titulo,
-                (int) Math.round(((getTotalWidth() - widthFont) / 2.0d)),
-                (int) Math.round(altoTituloContadores)
+                (float)((getTotalWidth() - widthFont) / 2f),
+                altoTituloContadores
         );
 
         //Conteo
-        graphics2D.setColor(colorConteo);
+        graphics2D.setColor(new Color(0, 128, 128));
         String stringConteo = toString();
-        double altoConteo = altoTituloContadores * 8d / 10d; // En milímetros.
-        double inicioYconteo = getTotalHeight(); //117d; // En milímetros.
-        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round((altoConteo) * escalaTextos)));
+        double altoConteo = altoTituloContadores * 4d / 5d;
+        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round(altoConteo * escalaTextos)));
         fontMetrics = graphics2D.getFontMetrics();
-        double widthFontConteo = fontMetrics.stringWidth(stringConteo);
+        int widthFontConteo = fontMetrics.stringWidth(stringConteo);
         graphics2D.drawString(
                 stringConteo,
-                (int) Math.round(((getTotalWidth() - widthFontConteo) / 2.0d)),
-                (int) Math.round(inicioYconteo)
+                (float) ((getTotalWidth() - widthFontConteo) / 2f),
+                (float) getTotalHeight()
         );
 
-        // Restablecer el anterior tipo de letra
-        graphics2D.setFont(oldFont);
-
         graphics2D.setTransform(affineTransform);
-
-//        // Rejilla de referencia
-//        new Grid(getX(), getY(), getWidth(), getHeight(), getTotalWidth(), getTotalHeight()).paint(graphics2D);
-////         Rectángulo de referencia
-//        graphics2D.setColor(Color.RED);
-//        graphics2D.draw(new Rectangle2D.Double(getX(), getY(), getWidth(), getHeight()));
     }
 
-    /**
-     * Decrementa el tiempo
-     */
     public void dec() {
         if (horas > 0) {
             minutos -= paso;
@@ -109,30 +88,14 @@ public class Tiempo extends ObjetoGrafico{
             horas = 0;
             minutos = 0;
         } // if
-    } // dec()
-
-    /**
-     * Para el tiempo
-     */
-    public void parar() {
-        parar = true;
     }
 
-    /**
-     * Convierte a segundos. Es usado en el compareTo.
-     *
-     * @return el tiempo en segundos.
-     */
     public int toSeconds() {
         return minutos * 60 + horas * 60 * 60;
-    }
-
-    public int getPaso() {
-        return paso;
     }
 
     @Override
     public String toString() {
         return ((horas <= 9 && horas >= 0) ? "0" : "") + horas + ":" + ((minutos <= 9) ? "0" : "") + minutos + "";
-    } // reiniciar()
+    }
 } // class Tiempo
