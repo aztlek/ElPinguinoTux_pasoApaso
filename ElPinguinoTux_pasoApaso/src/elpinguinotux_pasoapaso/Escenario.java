@@ -24,6 +24,7 @@ import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Timer;
 import javax.swing.JFrame;
 
 public class Escenario extends Canvas {
@@ -35,6 +36,7 @@ public class Escenario extends Canvas {
     private final double escalaX;
     private final double escalaY;
     private final ArrayList<ObjetoGrafico> objetosGraficos;
+    private final CuentaRegresiva cuentaRegresiva;
 
     public Escenario(int x, int y, int width, int height, JFrame marco) {
         setBounds(x, y, width, height);
@@ -47,7 +49,10 @@ public class Escenario extends Canvas {
         objetosGraficos = new ArrayList<>();
         
         objetosGraficos.add( new Titulo(0, 0, 16, totalHeight) );
-        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
+//        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
+        cuentaRegresiva= new CuentaRegresiva(244, 52, 35, 20, this);
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(cuentaRegresiva, 10, 100);
         objetosGraficos.add( new ContadorPeces(244, 88, 35, 20) );
         objetosGraficos.add( new ContadorVidas(244, 127, 35, 20) );
 
@@ -224,6 +229,7 @@ public class Escenario extends Canvas {
         for (ObjetoGrafico objetoGrafico : objetosGraficos) {
             objetoGrafico.paint(graphics2D);
         }
+        cuentaRegresiva.paint(graphics2D);
         
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
