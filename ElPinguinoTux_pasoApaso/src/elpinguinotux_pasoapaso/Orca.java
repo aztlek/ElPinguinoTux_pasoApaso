@@ -30,30 +30,17 @@ import java.util.Random;
  *
  * @author aztlek
  */
-public class Orca extends ObjetoGrafico implements Runnable{
-    private TipoDireccion direccion = TipoDireccion.derecha;
-    private final Random random = new Random();
-    private final double longitudPaso = 0.05d * random.nextDouble();
+public class Orca extends ObjetoMovil implements Runnable{
+    private final double longitudPaso = 0;
     private final Escenario escenario;
 
     public Orca(double x, double y, double width, double height, Escenario escenario) {
-        super(x, y, width, height, 280, 160);
+        super(x, y, width, height, 280, 160, TipoDireccion.derecha, .05d * new Random().nextDouble());
         this.escenario = escenario;
     } // Orca()
 
     @Override
-    public void paint(Graphics2D graphics2D) {
-        switch (direccion) {
-            case derecha:
-                dibujarDerecha(graphics2D);
-                break;
-            case izquierda:
-                dibujarIzquierda(graphics2D);
-                break;
-        } // switch
-    } // paint()
-
-    private void dibujarDerecha(Graphics2D graphics2D) {
+    public void dibujarDerecha(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -65,7 +52,8 @@ public class Orca extends ObjetoGrafico implements Runnable{
         graphics2D.setTransform(affineTransform);
     } // dibujarDerecha()
 
-    private void dibujarIzquierda(Graphics2D graphics2D) {
+    @Override
+    public void dibujarIzquierda(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -77,34 +65,6 @@ public class Orca extends ObjetoGrafico implements Runnable{
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
     } // dibujarIzquierda()
-
-    public void darPaso() {
-        switch (direccion) {
-            case derecha:
-                x += longitudPaso;
-                break;
-            case izquierda:
-                x -= longitudPaso;
-                break;
-            case arriba:
-                y -= longitudPaso;
-                break;
-            case abajo:
-                y += longitudPaso;
-                break;
-        }
-    }
-    
-    public void voltear(){
-        switch (direccion) {
-            case derecha:
-                direccion = TipoDireccion.izquierda;
-                break;
-            case izquierda:
-                direccion = TipoDireccion.derecha;
-                break;
-        }
-    }
 
     private void dibujar(Graphics2D graphics2D) {
         // Cuerpo
@@ -157,5 +117,20 @@ public class Orca extends ObjetoGrafico implements Runnable{
                 Thread.sleep(1);
             } catch (InterruptedException ex) { }
         }
+    }
+
+    @Override
+    public void dibujarParado(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void dibujarArriba(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void dibujarAbajo(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 } // class Orca

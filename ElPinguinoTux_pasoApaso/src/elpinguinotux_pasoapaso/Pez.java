@@ -30,28 +30,13 @@ import java.util.Random;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Pez extends ObjetoGrafico implements Runnable{
-    private TipoDireccion direccion = TipoDireccion.derecha;
-    private final Random random = new Random();
-    private final double longitudPaso = 0.1 * random.nextDouble();
+public class Pez extends ObjetoMovil implements Runnable{
     private final Escenario escenario;
 
     public Pez(double x, double y, double width, double height, Escenario escenario) {
-        super(x, y, width, height, 280, 110);
+        super(x, y, width, height, 280, 110, TipoDireccion.derecha, 0.1 * new Random().nextDouble());
         this.escenario = escenario;
     }
-
-    @Override
-    public void paint(Graphics2D graphics2D) {
-        switch (direccion) {
-            case derecha:
-                dibujarDerecha(graphics2D);
-                break;
-            case izquierda:
-                dibujarIzquierda(graphics2D);
-                break;
-        } // switch
-    } // paint()
 
     private void dibujar(Graphics2D graphics2D) {
         // Color del pez
@@ -83,7 +68,8 @@ public class Pez extends ObjetoGrafico implements Runnable{
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
     } // dibujar()
     
-    private void dibujarDerecha(Graphics2D graphics2D){
+    @Override
+    public void dibujarDerecha(Graphics2D graphics2D){
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -95,7 +81,8 @@ public class Pez extends ObjetoGrafico implements Runnable{
         graphics2D.setTransform(affineTransform);
     }
     
-    private void dibujarIzquierda(Graphics2D graphics2D) {
+    @Override
+    public void dibujarIzquierda(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -108,34 +95,6 @@ public class Pez extends ObjetoGrafico implements Runnable{
         graphics2D.setTransform(affineTransform);
     } // dibujarIzquierda()
 
-    public void darPaso() {
-        switch (direccion) {
-            case derecha:
-                x += longitudPaso;
-                break;
-            case izquierda:
-                x -= longitudPaso;
-                break;
-            case arriba:
-                y -= longitudPaso;
-                break;
-            case abajo:
-                y += longitudPaso;
-                break;
-        }
-    }
-    
-    public void voltear(){
-        switch (direccion) {
-            case derecha:
-                direccion = TipoDireccion.izquierda;
-                break;
-            case izquierda:
-                direccion = TipoDireccion.derecha;
-                break;
-        }
-    }
-    
     @Override
     public void run() {
         for(;;){
@@ -148,6 +107,21 @@ public class Pez extends ObjetoGrafico implements Runnable{
                 Thread.sleep(2);
             } catch (InterruptedException ex) { }
         }
+    }
+
+    @Override
+    public void dibujarParado(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void dibujarArriba(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void dibujarAbajo(Graphics2D graphics2D) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 } // class Pez
 

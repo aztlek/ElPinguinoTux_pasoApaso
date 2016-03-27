@@ -30,38 +30,16 @@ import java.awt.geom.Ellipse2D;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Tux extends ObjetoGrafico implements KeyListener {
-    private TipoDireccion direccion = TipoDireccion.parado;
-    private final double longitudPaso = 5;
+public class Tux extends ObjetoMovil implements KeyListener {
     private final Escenario escenario;
 
     public Tux(double x, double y, double width, double height, Escenario escenario) {
-        super(x, y, width, height, 190, 237);
+        super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
     }
     
     @Override
-    public void paint(Graphics2D graphics2D){
-        switch (direccion) {
-            case parado:
-                dibujarParado(graphics2D);
-                break;
-            case derecha:
-                dibujarDerecha(graphics2D);
-                break;
-            case izquierda:
-                dibujarIzquierda(graphics2D);
-                break;
-            case arriba:
-                dibujarArriba(graphics2D);
-                break;
-            case abajo:
-                dibujarAbajo(graphics2D);
-                break;
-        } // switch
-    }
-
-    private void dibujarParado(Graphics2D graphics2D) {
+    public void dibujarParado(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -121,7 +99,8 @@ public class Tux extends ObjetoGrafico implements KeyListener {
 
     } // dibujarParado()
     
-    private void dibujarArriba(Graphics2D graphics2D) {
+    @Override
+    public void dibujarArriba(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -164,11 +143,13 @@ public class Tux extends ObjetoGrafico implements KeyListener {
 
     } // dibujarArriba()
     
-    private void dibujarAbajo(Graphics2D graphics2D){
+    @Override
+    public void dibujarAbajo(Graphics2D graphics2D){
         dibujarParado(graphics2D);
     }
     
-    private void dibujarIzquierda(Graphics2D graphics2D){
+    @Override
+    public void dibujarIzquierda(Graphics2D graphics2D){
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -183,7 +164,8 @@ public class Tux extends ObjetoGrafico implements KeyListener {
         graphics2D.setTransform(affineTransform);
     }
     
-    private void dibujarDerecha(Graphics2D graphics2D){
+    @Override
+    public void dibujarDerecha(Graphics2D graphics2D){
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
@@ -240,31 +222,6 @@ public class Tux extends ObjetoGrafico implements KeyListener {
         graphics2D.fill(new Polygon(colax, colay, colax.length));
     } // dibujarIzquierdaSinEscalar()
     
-    public void darPaso() {
-        switch (direccion) {
-            case derecha:
-                x += longitudPaso;
-                break;
-            case izquierda:
-                x -= longitudPaso;
-                break;
-            case arriba:
-                y -= longitudPaso;
-                break;
-            case abajo:
-                y += longitudPaso;
-                break;
-        }
-    }
-
-    public TipoDireccion getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(TipoDireccion direccion) {
-        this.direccion = direccion;
-    }
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
