@@ -27,6 +27,7 @@ public abstract class ObjetoGrafico {
     private final double width, height;
     protected final double totalWidth, totalHeight;
     private final double escalaX, escalaY;
+    private boolean colisionable = true;
 
     public ObjetoGrafico(double x, double y, double width, double height, double totalWidth, double totalHeight) {
         this.x = x;
@@ -80,5 +81,12 @@ public abstract class ObjetoGrafico {
     public double getEscalaY() {
         return escalaY;
     }
-    
+
+    public boolean isColisionable() {
+        return colisionable;
+    }
+
+    public void setColisionable(boolean colisionable) {
+        this.colisionable = colisionable;
+    }    
 }
