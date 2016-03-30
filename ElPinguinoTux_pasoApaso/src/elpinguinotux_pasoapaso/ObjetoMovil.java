@@ -84,9 +84,32 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
             case izquierda:
                 direccion = TipoDireccion.derecha;
                 break;
+            case arriba:
+                direccion = TipoDireccion.abajo;
+                break;
+            case abajo:
+                direccion = TipoDireccion.arriba;
+                break;
         }
     }
-
+    
+    public void devolver(ObjetoGrafico objetoGrafico){
+        switch(direccion){
+            case derecha:
+                x = objetoGrafico.x - getWidth();
+                break;
+            case izquierda:
+                x = objetoGrafico.x + objetoGrafico.getWidth();
+                break;
+            case arriba:
+                y = objetoGrafico.y + objetoGrafico.getHeight();
+                break;
+            case abajo:
+                y = objetoGrafico.y - getHeight();
+                break;
+        }
+    }
+    
     public TipoDireccion getDireccion() {
         return direccion;
     }
