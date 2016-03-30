@@ -23,6 +23,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -30,7 +31,8 @@ import java.util.Random;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Pez extends ObjetoMovil implements Runnable{
+public class Pez extends ObjetoMovil implements Runnable {
+
     private final Escenario escenario;
 
     public Pez(double x, double y, double width, double height, Escenario escenario) {
@@ -67,20 +69,20 @@ public class Pez extends ObjetoMovil implements Runnable{
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
     } // dibujar()
-    
+
     @Override
-    public void dibujarDerecha(Graphics2D graphics2D){
+    public void dibujarDerecha(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
-        
+
         dibujar(graphics2D);
 
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
     }
-    
+
     @Override
     public void dibujarIzquierda(Graphics2D graphics2D) {
         // Transladar y escalar
@@ -97,15 +99,19 @@ public class Pez extends ObjetoMovil implements Runnable{
 
     @Override
     public void run() {
-        for(;;){
+        for (;;) {
             darPaso();
-            if(x <= 0 || x + getWidth() >= escenario.getTotalWidth()){
-                voltear();
+            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+            for (ObjetoGrafico o : quienes) {
+                if (o instanceof CuboDeHielo) {
+                    voltear();
+                }
             }
             escenario.repaint();
             try {
                 Thread.sleep(2);
-            } catch (InterruptedException ex) { }
+            } catch (InterruptedException ex) {
+            }
         }
     }
 
