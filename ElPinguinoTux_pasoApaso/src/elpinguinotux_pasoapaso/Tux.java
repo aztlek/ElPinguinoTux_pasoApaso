@@ -249,11 +249,21 @@ public class Tux extends ObjetoMovil implements KeyListener {
                 break;
         }
         darPaso();
+        Pez pez = null;
+        Iceberg iceberg = null;
         ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
         for (ObjetoGrafico o : quienes) {
             if (o instanceof CuboDeHielo) {
                 devolver(o);
+            }else if (o instanceof Pez) {
+                pez = (Pez) o;
+            }else if (o instanceof Iceberg) {
+                iceberg = (Iceberg) o;
             }
+        }
+        if (pez != null && iceberg == null) {
+            pez.setColisionable(false);
+            pez.setVisible(false);
         }
         escenario.repaint();
     }
