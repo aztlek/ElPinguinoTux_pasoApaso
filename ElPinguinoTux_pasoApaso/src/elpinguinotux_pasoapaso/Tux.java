@@ -24,6 +24,7 @@ import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 
 /**
  * Tux es el protagonista del juego
@@ -248,6 +249,12 @@ public class Tux extends ObjetoMovil implements KeyListener {
                 break;
         }
         darPaso();
+        ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+        for (ObjetoGrafico o : quienes) {
+            if (o instanceof CuboDeHielo) {
+                devolver(o);
+            }
+        }
         escenario.repaint();
     }
 
