@@ -227,7 +227,9 @@ public class Escenario extends Canvas {
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
         for (ObjetoGrafico objetoGrafico : objetosGraficos) {
-            objetoGrafico.paint(graphics2D);
+            if (objetoGrafico.isVisible()) {
+                objetoGrafico.paint(graphics2D);
+            }
         }
         cuentaRegresiva.paint(graphics2D);
         
