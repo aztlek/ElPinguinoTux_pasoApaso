@@ -11,7 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You should have received arreglo copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package elpinguinotux_pasoapaso;
@@ -242,6 +242,18 @@ public class Escenario extends Canvas {
         paint(g);
     }
     
+    public ArrayList<ObjetoGrafico> conQuienesColisiona(ObjetoGrafico objetoGrafico) {
+        ArrayList<ObjetoGrafico> quienes = new ArrayList<>();
+        Object[] arreglo = objetosGraficos.toArray();
+        for (Object a : arreglo) {
+            ObjetoGrafico o = (ObjetoGrafico) a;
+            if (objetoGrafico.colisionaCon(o)) {
+                quienes.add(o);
+            }
+        }
+        return quienes;
+    }
+
     public double getTotalWidth() {
         return totalWidth;
     }
