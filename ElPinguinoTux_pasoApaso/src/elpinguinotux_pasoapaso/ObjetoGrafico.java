@@ -17,6 +17,7 @@
 package elpinguinotux_pasoapaso;
 
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  *
@@ -41,6 +42,23 @@ public abstract class ObjetoGrafico {
     }
 
     public abstract void paint(Graphics2D graphics2D);
+    
+    public boolean colisionaCon(ObjetoGrafico otro) {
+        if(otro == null || this == otro
+                || ! this.isColisionable() 
+                || ! otro.isColisionable()){
+            return false;
+        }
+        Rectangle2D rectanguloThis = new Rectangle2D.Double(
+                this.x, this.y, 
+                this.width, this.height
+        );
+        Rectangle2D rectanguloOtro = new Rectangle2D.Double(
+                otro.x, otro.y, 
+                otro.width, otro.height
+        );
+        return rectanguloThis.intersects(rectanguloOtro);
+    }
     
     public double getX() {
         return x;
