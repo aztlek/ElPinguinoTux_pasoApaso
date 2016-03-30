@@ -28,6 +28,7 @@ public abstract class ObjetoGrafico {
     private final double width, height;
     protected final double totalWidth, totalHeight;
     private final double escalaX, escalaY;
+    private boolean visible = true;
     private boolean colisionable = true;
 
     public ObjetoGrafico(double x, double y, double width, double height, double totalWidth, double totalHeight) {
@@ -107,4 +108,12 @@ public abstract class ObjetoGrafico {
     public void setColisionable(boolean colisionable) {
         this.colisionable = colisionable;
     }    
+
+    public boolean isVisible() {
+        return visible;
+    }
+
+    public void setVisible(boolean visible) {
+        this.visible = visible;
+    }
 }
