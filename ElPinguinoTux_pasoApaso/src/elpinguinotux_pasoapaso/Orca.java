@@ -24,6 +24,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -109,8 +110,11 @@ public class Orca extends ObjetoMovil implements Runnable{
     public void run() {
         for(;;){
             darPaso();
-            if(x <= 0 || x + getWidth() >= escenario.getTotalWidth()){
-                voltear();
+            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+            for (ObjetoGrafico o : quienes) {
+                if (o instanceof CuboDeHielo) {
+                    voltear();
+                }
             }
             escenario.repaint();
             try {
