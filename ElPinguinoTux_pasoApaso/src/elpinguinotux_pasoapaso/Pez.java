@@ -39,7 +39,7 @@ public class Pez extends ObjetoMovil implements Runnable {
         super(x, y, width, height, 280, 110, TipoDireccion.derecha, 0.1 * new Random().nextDouble());
         this.escenario = escenario;
     }
-
+    
     private void dibujar(Graphics2D graphics2D) {
         // Color del pez
         graphics2D.setColor(Color.BLUE);
