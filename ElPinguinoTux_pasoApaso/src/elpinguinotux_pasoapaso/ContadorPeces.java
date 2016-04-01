@@ -72,22 +72,17 @@ public class ContadorPeces extends ObjetoGrafico{
 
         // Poner el color, el nuevo tipo de letra obtener las métricas
         graphics2D.setColor(colorConteo);
-        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round((altoTituloContadores) * factorEscala)));
+        graphics2D.setFont(new Font("sans", Font.BOLD, 68));
 
         // Título
         int widthFont = graphics2D.getFontMetrics().stringWidth(titulo);
-        graphics2D.drawString(
-                titulo,
-                (int) Math.round((getTotalWidth() - widthFont) / 2.0d),
-                (int) Math.round(altoTituloContadores)
-        );
+        graphics2D.drawString(titulo, 34, 34);
 
         // Pintar los pescados
         double anchoPeces = (3 * (anchoPez + separacionXEntrePeces)) + anchoPez;
         double inicioX = (getTotalWidth() - anchoPeces) / 2.0d;
         double inicioY = inicioYPeces;
         for (int i = 0; i < numeroDePeces;) {
-
             new Pez(
                     (inicioX + (i % 4) * (anchoPez + separacionXEntrePeces)),
                     inicioY,
