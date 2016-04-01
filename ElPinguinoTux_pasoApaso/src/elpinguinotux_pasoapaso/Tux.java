@@ -32,13 +32,14 @@ import java.util.ArrayList;
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Tux extends ObjetoMovil implements KeyListener {
+
     private final Escenario escenario;
 
     public Tux(double x, double y, double width, double height, Escenario escenario) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
     }
-    
+
     @Override
     public void dibujarParado(Graphics2D graphics2D) {
         // Transladar y escalar
@@ -56,8 +57,8 @@ public class Tux extends ObjetoMovil implements KeyListener {
 
         // Pico
         graphics2D.setPaint(new Color(255, 149, 0));
-        int picox[] = { 95, 111, 103, 95, 87, 79};
-        int picoy[] = { 64,  72,  84, 90, 84, 72};
+        int picox[] = {95, 111, 103, 95, 87, 79};
+        int picoy[] = {64, 72, 84, 90, 84, 72};
         graphics2D.fill(new Polygon(picox, picoy, picox.length));
 
         // Aleta derecha
@@ -94,12 +95,11 @@ public class Tux extends ObjetoMovil implements KeyListener {
 
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
     } // dibujarParado()
-    
+
     @Override
     public void dibujarArriba(Graphics2D graphics2D) {
         // Transladar y escalar
@@ -126,62 +126,57 @@ public class Tux extends ObjetoMovil implements KeyListener {
         // Aleta izquierda
         graphics2D.setPaint(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(146d, 80d, 44d, 127d));
-        
+
         // Cola
         graphics2D.setPaint(Color.darkGray);
-        Area areaCuerpo = new Area(new Ellipse2D.Double( 7d,  0d, 177d, 230d));
-        int colax[] = { 95, 115,  75};
+        Area areaCuerpo = new Area(new Ellipse2D.Double(7d, 0d, 177d, 230d));
+        int colax[] = {95, 115, 75};
         int colay[] = {180, 230, 230};
-        Area areaCola =  new Area(new Polygon(colax, colay, colax.length));
+        Area areaCola = new Area(new Polygon(colax, colay, colax.length));
         areaCola.intersect(areaCuerpo);
         graphics2D.fill(areaCola);
 
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
 
     } // dibujarArriba()
-    
+
     @Override
-    public void dibujarAbajo(Graphics2D graphics2D){
+    public void dibujarAbajo(Graphics2D graphics2D) {
         dibujarParado(graphics2D);
     }
-    
+
     @Override
-    public void dibujarIzquierda(Graphics2D graphics2D){
+    public void dibujarIzquierda(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
-        
+
         dibujarIzquierdaSinEscalar(graphics2D);
-        
+
 //        // Rejilla de referencia
 //        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
     }
-    
+
     @Override
-    public void dibujarDerecha(Graphics2D graphics2D){
+    public void dibujarDerecha(Graphics2D graphics2D) {
         // Transladar y escalar
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(-getEscalaX(), getEscalaY());
         graphics2D.translate(-getTotalWidth(), 0d);
-        
+
         dibujarIzquierdaSinEscalar(graphics2D);
-        
-//        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-        
+
         // Volver a la translación y escalación anterior
         graphics2D.setTransform(affineTransform);
     } // dibujarDerecha()
-    
+
     private void dibujarIzquierdaSinEscalar(Graphics2D graphics2D) {
         // Cuerpo
         graphics2D.setPaint(Color.BLACK);
@@ -189,21 +184,21 @@ public class Tux extends ObjetoMovil implements KeyListener {
 
         // Pecho
         graphics2D.setPaint(Color.WHITE);
-        Area areaCuerpo = new Area(new Ellipse2D.Double( 13d,  0d, 177d, 230d));
-        Area areaPecho =  new Area(new Ellipse2D.Double(-42d, 83d, 138d, 145d));
+        Area areaCuerpo = new Area(new Ellipse2D.Double(13d, 0d, 177d, 230d));
+        Area areaPecho = new Area(new Ellipse2D.Double(-42d, 83d, 138d, 145d));
         areaPecho.intersect(areaCuerpo);
         graphics2D.fill(areaPecho);
 
         // Pico
         graphics2D.setPaint(new Color(255, 149, 0));
-        int picox[] = {23, 43, 39,  0};
+        int picox[] = {23, 43, 39, 0};
         int picoy[] = {64, 72, 84, 90};
         graphics2D.fill(new Polygon(picox, picoy, picox.length));
 
         // Aleta
         graphics2D.setPaint(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(58d, 80d, 44d, 127d));
-        
+
         // Ojo
         graphics2D.setPaint(Color.WHITE);
         graphics2D.fill(new Ellipse2D.Double(47d, 13d, 42d, 51d));
@@ -215,14 +210,38 @@ public class Tux extends ObjetoMovil implements KeyListener {
         // Pata
         graphics2D.setPaint(new Color(255, 149, 0));
         graphics2D.fill(new Ellipse2D.Double(55d, 210d, 50d, 27d));
-        
+
         // Cola
         graphics2D.setPaint(Color.BLACK);
         int colax[] = {190, 164, 164};
         int colay[] = {180, 195, 183};
         graphics2D.fill(new Polygon(colax, colay, colax.length));
+
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
     } // dibujarIzquierdaSinEscalar()
-    
+
+    public void disparar() {
+        double xPez = 0d, yPez = 0d;
+        TipoDireccion direccion = getDireccion();
+        switch (direccion) {
+            case izquierda:
+                xPez = x - getWidth();
+                yPez = y;
+                break;
+            case derecha:
+                xPez = x + getWidth();
+                yPez = y;
+                break;
+        }
+        if (direccion == TipoDireccion.izquierda || direccion == TipoDireccion.derecha) {
+            PezBala pezBala = new PezBala(xPez, yPez, 6, 2.5d, escenario, direccion);
+            escenario.add(pezBala);
+            Thread thread = new Thread(pezBala);
+            thread.start();
+        }
+    }
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -234,30 +253,36 @@ public class Tux extends ObjetoMovil implements KeyListener {
         switch (tecla) {
             case KeyEvent.VK_RIGHT:
                 setDireccion(TipoDireccion.derecha);
+                darPaso();
                 break;
             case KeyEvent.VK_LEFT:
                 setDireccion(TipoDireccion.izquierda);
+                darPaso();
                 break;
             case KeyEvent.VK_UP:
                 setDireccion(TipoDireccion.arriba);
+                darPaso();
                 break;
             case KeyEvent.VK_DOWN:
                 setDireccion(TipoDireccion.abajo);
+                darPaso();
+                break;
+            case KeyEvent.VK_SPACE:
+                disparar();
                 break;
             default:
                 setDireccion(TipoDireccion.parado);
                 break;
         }
-        darPaso();
         Pez pez = null;
         Iceberg iceberg = null;
         ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
         for (ObjetoGrafico o : quienes) {
             if (o instanceof CuboDeHielo) {
                 devolver(o);
-            }else if (o instanceof Pez) {
+            } else if (o instanceof Pez) {
                 pez = (Pez) o;
-            }else if (o instanceof Iceberg) {
+            } else if (o instanceof Iceberg) {
                 iceberg = (Iceberg) o;
             }
         }
