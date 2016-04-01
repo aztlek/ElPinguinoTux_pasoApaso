@@ -255,6 +255,10 @@ public class Escenario extends Canvas {
         }
         return quienes;
     }
+    
+    public void add(ObjetoGrafico objetoGrafico){
+        objetosGraficos.add(objetoGrafico);
+    }
 
     public double getTotalWidth() {
         return totalWidth;
