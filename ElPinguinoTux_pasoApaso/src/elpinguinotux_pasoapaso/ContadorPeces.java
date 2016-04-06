@@ -39,27 +39,12 @@ public class ContadorPeces extends ObjetoGrafico{
     private final double separacionYEntrePeces = 14;
     private final double inicioYPeces = 96;
     private final Color colorConteo = new Color(0, 128, 128);
-    private static final double altoTituloContadores = 50.0d;
+    
 
-    /**
-     * Crea un gráfico para contar los peces atrapados.
-     *
-     * @param x posición x en pixels.
-     * @param y posición y en pixels.
-     * @param width ancho en pixels.
-     * @param height alto en pixels.
-     */
     public ContadorPeces(double x, double y, double width, double height) {
         super(x, y, width, height, 290, 160);
     }
-
-    /**
-     * @return el número de pescados.
-     */
-    public int getNumeroDePeces() {
-        return numeroDePeces;
-    }
-
+    
     @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform affineTransform = graphics2D.getTransform();
@@ -82,9 +67,9 @@ public class ContadorPeces extends ObjetoGrafico{
         double anchoPeces = (3 * (anchoPez + separacionXEntrePeces)) + anchoPez;
         double inicioX = (getTotalWidth() - anchoPeces) / 2.0d;
         double inicioY = inicioYPeces;
-        for (int i = 0; i < numeroDePeces;) {
+        for (int i = 0; i < numeroDePeces; ) {
             new Pez(
-                    (inicioX + (i % 4) * (anchoPez + separacionXEntrePeces)),
+                    inicioX + (i % 4) * (anchoPez + separacionXEntrePeces),
                     inicioY,
                     anchoPez,
                     altoPez,
@@ -93,7 +78,7 @@ public class ContadorPeces extends ObjetoGrafico{
 
             i++;
             if (i % 4 == 0) {
-                inicioY += (altoPez + separacionYEntrePeces);
+                inicioY += altoPez + separacionYEntrePeces;
             } // if
         }
 
@@ -108,10 +93,11 @@ public class ContadorPeces extends ObjetoGrafico{
       
     } // paint()
 
-    /**
-     * Incrementa el numeroDePeces
-     */
-    public void inc() {
-        numeroDePeces++;
+    public int increment() {
+        return ++numeroDePeces;
+    }
+    
+    public int decrement() {
+        return --numeroDePeces;
     }
 } // class Peces
