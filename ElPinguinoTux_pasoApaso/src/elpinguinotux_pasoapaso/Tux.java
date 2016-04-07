@@ -34,10 +34,12 @@ import java.util.ArrayList;
 public class Tux extends ObjetoMovil implements KeyListener {
 
     private final Escenario escenario;
+    private final ContadorPeces contadorPeces;
 
-    public Tux(double x, double y, double width, double height, Escenario escenario) {
+    public Tux(double x, double y, double width, double height, Escenario escenario, ContadorPeces contadorPeces) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
+        this.contadorPeces = contadorPeces;
     }
 
     @Override
@@ -289,6 +291,7 @@ public class Tux extends ObjetoMovil implements KeyListener {
         if (pez != null && iceberg == null) {
             pez.setColisionable(false);
             pez.setVisible(false);
+            contadorPeces.increment();
         }
         escenario.repaint();
     }
