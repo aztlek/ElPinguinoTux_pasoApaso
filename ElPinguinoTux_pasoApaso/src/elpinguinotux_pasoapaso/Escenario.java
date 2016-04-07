@@ -53,7 +53,8 @@ public class Escenario extends Canvas {
         cuentaRegresiva= new CuentaRegresiva(244, 52, 35, 20, this);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(cuentaRegresiva, 10, 100);
-        objetosGraficos.add( new ContadorPeces(244, 88, 35, 20) );
+        ContadorPeces contadorPeces = new ContadorPeces(244, 88, 35, 20);
+        objetosGraficos.add( contadorPeces );
         objetosGraficos.add( new ContadorVidas(244, 127, 35, 20) );
 
         // Constantes de las teselas
@@ -207,7 +208,7 @@ public class Escenario extends Canvas {
         }
         
         // Tux
-        Tux tux = new Tux(214, 129, 11, 14, this);
+        Tux tux = new Tux(214, 129, 11, 14, this, contadorPeces);
         objetosGraficos.add(tux);
         marco.addKeyListener(tux);
     }
