@@ -30,7 +30,7 @@ import java.awt.geom.AffineTransform;
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class ContadorPeces extends ObjetoGrafico{
-    private int numeroDePeces = 8;
+    private int numeroDePeces = 0;
 
     private final String titulo = "Peces";
     private final double anchoPez = 65;
