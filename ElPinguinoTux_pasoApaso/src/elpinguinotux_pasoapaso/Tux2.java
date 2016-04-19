@@ -25,20 +25,22 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 /**
  *
  * @author aztlek
  */
-public class Tux2 extends ObjetoMovil implements KeyListener {
-    
+public class Tux2 extends ObjetoMovil implements KeyListener {    
     private final Escenario escenario;
     private final ContadorPeces contadorPeces;
+    private final HashSet<Integer> teclas;
 
     public Tux2(double x, double y, double width, double height, Escenario escenario, ContadorPeces contadorPeces) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
         this.contadorPeces = contadorPeces;
+        teclas = new HashSet<>();
     }
 
     @Override
@@ -249,54 +251,55 @@ public class Tux2 extends ObjetoMovil implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        int tecla = e.getKeyCode();
+        teclas.add(e.getKeyCode());
 
-        switch (tecla) {
-            case KeyEvent.VK_S:
-                setDireccion(TipoDireccion.derecha);
-                darPaso();
-                break;
-            case KeyEvent.VK_A:
-                setDireccion(TipoDireccion.izquierda);
-                darPaso();
-                break;
-            case 'w':
-                setDireccion(TipoDireccion.arriba);
-                darPaso();
-                break;
-            case 'z':
-                setDireccion(TipoDireccion.abajo);
-                darPaso();
-                break;
-            case KeyEvent.VK_SPACE:
-                disparar();
-                break;
-//            default:
-//                setDireccion(TipoDireccion.parado);
-//                break;
-        }
-        Pez pez = null;
-        Iceberg iceberg = null;
-        ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
-        for (ObjetoGrafico o : quienes) {
-            if (o instanceof CuboDeHielo) {
-                devolver(o);
-            } else if (o instanceof Pez) {
-                pez = (Pez) o;
-            } else if (o instanceof Iceberg) {
-                iceberg = (Iceberg) o;
+        for (Integer tecla : teclas) {
+            switch (tecla) {
+                case KeyEvent.VK_RIGHT:
+                    setDireccion(TipoDireccion.derecha);
+                    darPaso();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    setDireccion(TipoDireccion.izquierda);
+                    darPaso();
+                    break;
+                case KeyEvent.VK_UP:
+                    setDireccion(TipoDireccion.arriba);
+                    darPaso();
+                    break;
+                case KeyEvent.VK_DOWN:
+                    setDireccion(TipoDireccion.abajo);
+                    darPaso();
+                    break;
+                case KeyEvent.VK_SPACE:
+                    disparar();
+                    break;
             }
-        }
-        if (pez != null && iceberg == null) {
-            pez.setColisionable(false);
-            pez.setVisible(false);
-            contadorPeces.increment();
+
+            Pez pez = null;
+            Iceberg iceberg = null;
+            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+            for (ObjetoGrafico o : quienes) {
+                if (o instanceof CuboDeHielo) {
+                    devolver(o);
+                } else if (o instanceof Pez) {
+                    pez = (Pez) o;
+                } else if (o instanceof Iceberg) {
+                    iceberg = (Iceberg) o;
+                }
+            }
+            if (pez != null && iceberg == null) {
+                pez.setColisionable(false);
+                pez.setVisible(false);
+                contadorPeces.increment();
+            }
         }
         escenario.repaint();
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        teclas.remove(e.getKeyCode());
     }
 
 }
