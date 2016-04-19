@@ -219,10 +219,6 @@ public class Escenario extends Canvas {
         Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
         objetosGraficos.add(tux2);
         marco.addKeyListener(tux2);
-        System.err.println("marco.getKeyListeners() = ");
-        for (KeyListener keyListener : marco.getKeyListeners()) {
-            System.err.println("\t" + keyListener);
-        }
     }
 
     @Override
