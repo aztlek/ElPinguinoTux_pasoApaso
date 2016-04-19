@@ -25,16 +25,19 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Tux es el protagonista del juego
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Tux extends ObjetoMovil implements KeyListener {
+public class Tux extends ObjetoMovil implements KeyListener, Runnable { 
 
     private final Escenario escenario;
     private final ContadorPeces contadorPeces;
+    private boolean saltando = false;
 
     public Tux(double x, double y, double width, double height, Escenario escenario, ContadorPeces contadorPeces) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
@@ -272,9 +275,12 @@ public class Tux extends ObjetoMovil implements KeyListener {
             case KeyEvent.VK_SPACE:
                 disparar();
                 break;
-            default:
-                setDireccion(TipoDireccion.parado);
+            case KeyEvent.VK_ALT_GRAPH:
+                saltando = true;
                 break;
+//            default:
+//                setDireccion(TipoDireccion.parado);
+//                break;
         }
         Pez pez = null;
         Iceberg iceberg = null;
@@ -298,6 +304,36 @@ public class Tux extends ObjetoMovil implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+    
+    public void saltar(){
+        double dy;
+        double yOld = y;
+        double altoSalto = 5;
+        for (dy = 0; dy <= altoSalto; dy++) {
+            y -= dy;
+            escenario.repaint();
+            try { Thread.sleep(20); } catch (InterruptedException ex) { }
+        }
+        for (; y < yOld; y++) {
+            escenario.repaint();
+            try { Thread.sleep(20); } catch (InterruptedException ex) { }
+        }
+        saltando = false;
+    }
+
+    @Override
+    public void run() {
+        for(;;){
+            if(saltando){
+                saltar();
+            }
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Tux.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
 } // class Tux
