@@ -21,6 +21,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import java.util.Random;
@@ -47,6 +48,8 @@ public class Escenario extends Canvas {
         this.escalaY = (double) height / totalHeight;
         
         objetosGraficos = new ArrayList<>();
+        
+        
         
         objetosGraficos.add( new Titulo(0, 0, 16, totalHeight) );
 //        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
@@ -210,7 +213,16 @@ public class Escenario extends Canvas {
         // Tux
         Tux tux = new Tux(214, 129, 11, 14, this, contadorPeces);
         objetosGraficos.add(tux);
+        Thread threadTux = new Thread(tux);
+        threadTux.start();
         marco.addKeyListener(tux);
+        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
+        objetosGraficos.add(tux2);
+        marco.addKeyListener(tux2);
+        System.err.println("marco.getKeyListeners() = ");
+        for (KeyListener keyListener : marco.getKeyListeners()) {
+            System.err.println("\t" + keyListener);
+        }
     }
 
     @Override
