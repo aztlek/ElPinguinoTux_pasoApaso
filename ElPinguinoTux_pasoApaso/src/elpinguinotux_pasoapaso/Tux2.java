@@ -255,24 +255,21 @@ public class Tux2 extends ObjetoMovil implements KeyListener {
 
         for (Integer tecla : teclas) {
             switch (tecla) {
-                case KeyEvent.VK_RIGHT:
+                case KeyEvent.VK_S:
                     setDireccion(TipoDireccion.derecha);
                     darPaso();
                     break;
-                case KeyEvent.VK_LEFT:
+                case KeyEvent.VK_A:
                     setDireccion(TipoDireccion.izquierda);
                     darPaso();
                     break;
-                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
                     setDireccion(TipoDireccion.arriba);
                     darPaso();
                     break;
-                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_Z:
                     setDireccion(TipoDireccion.abajo);
                     darPaso();
-                    break;
-                case KeyEvent.VK_SPACE:
-                    disparar();
                     break;
             }
 
