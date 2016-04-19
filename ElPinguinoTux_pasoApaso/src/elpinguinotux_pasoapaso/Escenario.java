@@ -216,6 +216,15 @@ public class Escenario extends Canvas {
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
+        
+//        // Bomba
+//        Bomba bomba = new Bomba(0, 0, totalWidth / 2.0d, totalHeight);
+//        objetosGraficos.add(bomba);
+        
+        // Estallido
+        Estallido estallido = new Estallido(0, 0, totalWidth / 2d, totalHeight);
+        objetosGraficos.add(estallido);
+        
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
 //        objetosGraficos.add(tux2);
 //        marco.addKeyListener(tux2);
