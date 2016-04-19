@@ -216,9 +216,9 @@ public class Escenario extends Canvas {
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
-        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
-        objetosGraficos.add(tux2);
-        marco.addKeyListener(tux2);
+//        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
+//        objetosGraficos.add(tux2);
+//        marco.addKeyListener(tux2);
     }
 
     @Override
