@@ -20,6 +20,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.MenuComponent;
 import java.awt.RenderingHints;
 import java.awt.event.KeyListener;
 import java.awt.geom.AffineTransform;
@@ -217,21 +218,13 @@ public class Escenario extends Canvas {
         threadTux.start();
         marco.addKeyListener(tux);
         
-//        // Bomba
-//        Bomba bomba = new Bomba(0, 0, totalWidth / 2.0d, totalHeight);
-//        objetosGraficos.add(bomba);
-        
-        // Estallido
-        Estallido estallido = new Estallido(0, 0, totalWidth / 2d, totalHeight);
-        objetosGraficos.add(estallido);
-        
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
 //        objetosGraficos.add(tux2);
 //        marco.addKeyListener(tux2);
     }
 
     @Override
-    public void paint(Graphics g) {
+    synchronized public void paint(Graphics g) {
         Image imagenSegundoBuffer = createImage(marco.getWidth(), marco.getHeight());
         Graphics2D graphics2D = (Graphics2D) imagenSegundoBuffer.getGraphics();
 
@@ -274,10 +267,14 @@ public class Escenario extends Canvas {
         return quienes;
     }
     
-    public void add(ObjetoGrafico objetoGrafico){
+    synchronized public void add(ObjetoGrafico objetoGrafico){
         objetosGraficos.add(objetoGrafico);
     }
 
+    synchronized void remove(ObjetoGrafico objetoGrafico){
+        objetosGraficos.remove(objetoGrafico);
+    }
+    
     public double getTotalWidth() {
         return totalWidth;
     }
