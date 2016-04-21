@@ -21,21 +21,24 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 
 /**
  *
  * @author aztlek
  */
-public class Bomba extends ObjetoGrafico{
+public class Bomba extends ObjetoGrafico implements Runnable {
 
-    public Bomba(double x, double y, double width, double height) {
+    private int tiempo = 60;
+    private final Escenario escenario;
+
+    public Bomba(double x, double y, double width, double height, Escenario escenario) {
         super(x, y, width, height, 190, 260);
+        this.escenario = escenario;
     }
 
     @Override
-    public void paint(Graphics2D graphics2D) { 
+    public void paint(Graphics2D graphics2D) {
         AffineTransform affineTransform = graphics2D.getTransform();
         graphics2D.translate(getX(), getY());
         graphics2D.scale(getEscalaX(), getEscalaY());
@@ -43,23 +46,33 @@ public class Bomba extends ObjetoGrafico{
         // Esfera
         graphics2D.setColor(Color.BLACK);
         graphics2D.fill(new Ellipse2D.Double(0, 70, 190, 190));
-         
-       // Rectángulo
+
+        // Rectángulo
         graphics2D.fill(new Rectangle2D.Double(60, 60, 70, 20));
-        
+
         // Mecha
         graphics2D.setColor(new Color(30, 30, 30));
         GeneralPath poligono = new GeneralPath(GeneralPath.WIND_EVEN_ODD);
-        poligono.moveTo( 92d, 60d);
-        poligono.lineTo(125d,  0d);
-        poligono.lineTo(130d,  0d);
-        poligono.lineTo( 98d, 60d);
+        poligono.moveTo(92d, 60d);
+        poligono.lineTo(125d, 0d);
+        poligono.lineTo(130d, 0d);
+        poligono.lineTo(98d, 60d);
         poligono.closePath();
         graphics2D.fill(poligono);
-        
-        // La grilla de referencia
-        new Grid(totalWidth, totalHeight).paint(graphics2D);
-        
+
+//        // La grilla de referencia
+//        new Grid(totalWidth, totalHeight).paint(graphics2D);
         graphics2D.setTransform(affineTransform);
+    }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) { }
+        Estallido estallido = new Estallido(x - width / 4d, y - height / 4d, width * 2, height * 2, escenario);
+        escenario.add(estallido);
+        estallido.explotar();
+        escenario.remove(this);
     }
 }
