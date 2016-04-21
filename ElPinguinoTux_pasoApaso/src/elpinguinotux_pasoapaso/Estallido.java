@@ -20,19 +20,19 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.RadialGradientPaint;
 import java.awt.geom.AffineTransform;
-import java.awt.geom.Ellipse2D;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Rectangle2D;
-import sun.awt.X11.XConstants;
+import java.util.ArrayList;
 
 /**
  *
  * @author aztlek
  */
-public class Estallido extends ObjetoGrafico{
+public class Estallido extends ObjetoGrafico {
+    private final Escenario escenario;
 
-    public Estallido(double x, double y, double width, double height) {
+    public Estallido(double x, double y, double width, double height, Escenario escenario) {
         super(x, y, width, height, 190, 190);
+        this.escenario = escenario;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class Estallido extends ObjetoGrafico{
         poligono.lineTo(120, 30);
         poligono.lineTo(190, 0);
         poligono.lineTo(160, 80);
-        poligono.lineTo(150,130);
+        poligono.lineTo(150, 130);
         poligono.lineTo(190, 190);
         poligono.lineTo(90, 150);
         poligono.lineTo(55, 115);
@@ -61,20 +61,32 @@ public class Estallido extends ObjetoGrafico{
         float[] fractions = {0.33f, 1f};
         Color[] colors = {Color.RED, Color.ORANGE};
         RadialGradientPaint gradiente = new RadialGradientPaint(
-                (float)totalWidth / 2f, 
-                (float)totalHeight / 2f, 
-                (float)totalWidth / 2f, 
-                fractions, 
+                (float) totalWidth / 2f,
+                (float) totalHeight / 2f,
+                (float) totalWidth / 2f,
+                fractions,
                 colors
         );
         graphics2D.setPaint(gradiente);
         graphics2D.fill(poligono);
-        
+
 //        // La grilla de referencia
 //        new Grid(totalWidth, totalHeight).paint(graphics2D);
-        
         graphics2D.setTransform(affineTransform);
-        
+
     }
-    
+
+    public void explotar() {
+        ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+        for (ObjetoGrafico quien : quienes) {
+            quien.setVisible(false);
+            quien.setColisionable(false);
+        }
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) { }
+        escenario.remove(this);
+        escenario.repaint();
+    }
+
 }
