@@ -30,6 +30,7 @@ import java.util.Random;
 public class PezBala extends ObjetoMovil implements Runnable {
 
     private final Escenario escenario;
+    private final double longitudRecorridoBala = 20;
 
     public PezBala(double x, double y, double width, double height, Escenario escenario, TipoDireccion direccion) {
         super(x, y, width, height, 280, 110, direccion, 0.1 * new Random().nextDouble());
@@ -100,20 +101,22 @@ public class PezBala extends ObjetoMovil implements Runnable {
 
     @Override
     public void run() {
-        for (;;) {
+        double xInicial = x;
+        do {
             darPaso();
-//            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
-//            for (ObjetoGrafico o : quienes) {
-//                if (o instanceof CuboDeHielo) {
-//                    voltear();
-//                }
-//            }
+            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+            if (quienes.size() >= 1) {
+                ObjetoGrafico quien = quienes.get(0);
+                quien.setVisible(false);
+                quien.setColisionable(false);
+            }
             escenario.repaint();
             try {
                 Thread.sleep(2);
             } catch (InterruptedException ex) {
             }
-        }
+        } while (Math.abs(xInicial - x) - longitudRecorridoBala <= 0.000001d);
+        escenario.remove(this);
     }
 
     @Override
