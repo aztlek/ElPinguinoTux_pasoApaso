@@ -28,8 +28,6 @@ import java.awt.geom.Rectangle2D;
  * @author aztlek
  */
 public class Bomba extends ObjetoGrafico implements Runnable {
-
-    private int tiempo = 60;
     private final Escenario escenario;
 
     public Bomba(double x, double y, double width, double height, Escenario escenario) {
