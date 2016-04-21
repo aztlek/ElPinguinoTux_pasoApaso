@@ -282,6 +282,12 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
                 case KeyEvent.VK_ALT_GRAPH:
                     saltando = true;
                     break;
+                case KeyEvent.VK_SHIFT:
+                    Bomba bomba = new Bomba(x, y, width, height, escenario);
+                    escenario.add(bomba);
+                    Thread thread = new Thread(bomba);
+                    thread.start();
+                    break;
             }
 
             Pez pez = null;
