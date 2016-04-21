@@ -25,7 +25,7 @@ import java.awt.geom.Rectangle2D;
  */
 public abstract class ObjetoGrafico {
     protected double x, y;
-    private final double width, height;
+    protected final double width, height;
     protected final double totalWidth, totalHeight;
     private final double escalaX, escalaY;
     private boolean visible = true;
