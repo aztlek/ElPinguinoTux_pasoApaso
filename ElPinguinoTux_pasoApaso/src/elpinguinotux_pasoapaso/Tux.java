@@ -292,6 +292,7 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
 
             Pez pez = null;
             Iceberg iceberg = null;
+            Escalera escalera = null;
             ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
             for (ObjetoGrafico o : quienes) {
                 if (o instanceof CuboDeHielo) {
@@ -300,12 +301,17 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
                     pez = (Pez) o;
                 } else if (o instanceof Iceberg) {
                     iceberg = (Iceberg) o;
+                } else if (o instanceof Escalera) {
+                    escalera = (Escalera) o;
                 }
             }
             if (pez != null && iceberg == null) {
                 pez.setColisionable(false);
                 pez.setVisible(false);
                 contadorPeces.increment();
+            }
+            if ((tecla == KeyEvent.VK_UP || tecla == KeyEvent.VK_DOWN) && escalera == null) {
+                devolver();
             }
         }
         escenario.repaint();
@@ -351,5 +357,4 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
             }
         }
     }
-
 } // class Tux
