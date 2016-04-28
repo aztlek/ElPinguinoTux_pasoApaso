@@ -28,6 +28,7 @@ import java.util.Timer;
 import javax.swing.JFrame;
 
 public class Escenario extends Canvas {
+
     private final int x;
     private final int y;
     private final double totalWidth = 280.0d;
@@ -45,19 +46,17 @@ public class Escenario extends Canvas {
         this.marco = marco;
         this.escalaX = (double) width / totalWidth;
         this.escalaY = (double) height / totalHeight;
-        
+
         objetosGraficos = new ArrayList<>();
-        
-        
-        
-        objetosGraficos.add( new Titulo(0, 0, 16, totalHeight) );
+
+        objetosGraficos.add(new Titulo(0, 0, 16, totalHeight));
 //        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
-        cuentaRegresiva= new CuentaRegresiva(244, 52, 35, 20, this);
+        cuentaRegresiva = new CuentaRegresiva(244, 52, 35, 20, this);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(cuentaRegresiva, 10, 100);
         ContadorPeces contadorPeces = new ContadorPeces(244, 88, 35, 20);
-        objetosGraficos.add( contadorPeces );
-        objetosGraficos.add( new ContadorVidas(244, 127, 35, 20) );
+        objetosGraficos.add(contadorPeces);
+        objetosGraficos.add(new ContadorVidas(244, 127, 35, 20));
 
         // Constantes de las teselas
         final double inicioxBloques = 17.0d;
@@ -130,19 +129,19 @@ public class Escenario extends Canvas {
                         inicioYIceberg + i * separacionAltoIceberg,
                         anchoIceberg,
                         altoIceberg
-                    )
+                )
                 );
             }
         }
 
-        objetosGraficos.add( new Iceberg(
+        objetosGraficos.add(new Iceberg(
                 inicioxBloques + 20 * widthCuboDeHielo,
                 13 * heightCuboDeHielo,
                 3 * widthCuboDeHielo,
                 3 * heightCuboDeHielo
-            )
+        )
         );
-        
+
         Iceberg icebergFinal = new Iceberg(
                 inicioxBloques + 24 * widthCuboDeHielo,
                 1 * heightCuboDeHielo,
@@ -150,12 +149,11 @@ public class Escenario extends Canvas {
                 3 * heightCuboDeHielo
         );
         objetosGraficos.add(icebergFinal);
-        
+
         // Familia Tux
-        objetosGraficos.add( new FamiliaTux(249, 17, 16, 14) );
+        objetosGraficos.add(new FamiliaTux(249, 17, 16, 14));
 
         // Columnas
-        
         final int[] lonColumnas = {15, 11, 3};
         final double[] iniYColumnas = {
             heightCuboDeHielo,
@@ -167,7 +165,7 @@ public class Escenario extends Canvas {
             inicioxBloques + 23 * widthCuboDeHielo,
             inicioxBloques + 27 * widthCuboDeHielo
         };
-        
+
         for (int j = 0; j < lonColumnas.length; j++) {
             for (int i = 0; i < lonColumnas[j]; i++) {
                 objetosGraficos.add(new CuboDeHielo(
@@ -175,11 +173,11 @@ public class Escenario extends Canvas {
                         iniYColumnas[j] + i * heightCuboDeHielo,
                         widthCuboDeHielo,
                         heightCuboDeHielo
-                    )
+                )
                 );
             }
         }
-        
+
         // Hileras
         final int[][] lonHileras = {
             {28},
@@ -198,24 +196,25 @@ public class Escenario extends Canvas {
         for (int i = 0; i < lonHileras.length; i++) {
             for (int j = 0; j < lonHileras[i].length; j++) {
                 for (int k = 0; k < lonHileras[i][j]; k++) {
-                    objetosGraficos.add( new CuboDeHielo(
+                    objetosGraficos.add(new CuboDeHielo(
                             iniXhileras[i][j] + widthCuboDeHielo * k,
                             inicioyBloques + heightCuboDeHielo * i * 4,
                             widthCuboDeHielo,
                             heightCuboDeHielo
-                        )
+                    )
                     );
                 }
             }
         }
-        
+
         // Tux
         Tux tux = new Tux(214, 129, 11, 14, this, contadorPeces);
-        objetosGraficos.add(tux);
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
-        
+
+        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
+        objetosGraficos.add(tux);
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
 //        objetosGraficos.add(tux2);
 //        marco.addKeyListener(tux2);
@@ -241,10 +240,13 @@ public class Escenario extends Canvas {
             }
         }
         cuentaRegresiva.paint(graphics2D);
-        
+
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
-        
+
         g.drawImage(imagenSegundoBuffer, 0, 0, null);
     } // paint()
 
@@ -252,7 +254,7 @@ public class Escenario extends Canvas {
     public void update(Graphics g) {
         paint(g);
     }
-    
+
     public ArrayList<ObjetoGrafico> conQuienesColisiona(ObjetoGrafico objetoGrafico) {
         ArrayList<ObjetoGrafico> quienes = new ArrayList<>();
         Object[] arreglo = objetosGraficos.toArray();
@@ -264,15 +266,15 @@ public class Escenario extends Canvas {
         }
         return quienes;
     }
-    
-    synchronized public void add(ObjetoGrafico objetoGrafico){
+
+    synchronized public void add(ObjetoGrafico objetoGrafico) {
         objetosGraficos.add(objetoGrafico);
     }
 
-    synchronized void remove(ObjetoGrafico objetoGrafico){
+    synchronized void remove(ObjetoGrafico objetoGrafico) {
         objetosGraficos.remove(objetoGrafico);
     }
-    
+
     public double getTotalWidth() {
         return totalWidth;
     }
