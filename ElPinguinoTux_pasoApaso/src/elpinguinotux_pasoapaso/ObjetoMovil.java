@@ -23,6 +23,7 @@ import java.awt.Graphics2D;
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public abstract class ObjetoMovil extends ObjetoGrafico {
+
     private TipoDireccion direccion;
     private final double longitudPaso;
 
@@ -31,9 +32,9 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
         this.direccion = direccion;
         this.longitudPaso = longitudPaso;
     }
-    
+
     @Override
-    public void paint(Graphics2D graphics2D){
+    public void paint(Graphics2D graphics2D) {
         switch (direccion) {
             case parado:
                 dibujarParado(graphics2D);
@@ -54,9 +55,13 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
     }
 
     public abstract void dibujarParado(Graphics2D graphics2D);
+
     public abstract void dibujarDerecha(Graphics2D graphics2D);
+
     public abstract void dibujarIzquierda(Graphics2D graphics2D);
+
     public abstract void dibujarArriba(Graphics2D graphics2D);
+
     public abstract void dibujarAbajo(Graphics2D graphics2D);
 
     public void darPaso() {
@@ -75,8 +80,8 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
                 break;
         }
     }
-    
-    public void voltear(){
+
+    public void voltear() {
         switch (direccion) {
             case derecha:
                 direccion = TipoDireccion.izquierda;
@@ -92,9 +97,9 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
                 break;
         }
     }
-    
-    public void devolver(ObjetoGrafico objetoGrafico){
-        switch(direccion){
+
+    public void devolver(ObjetoGrafico objetoGrafico) {
+        switch (direccion) {
             case derecha:
                 x = objetoGrafico.x - getWidth();
                 break;
@@ -109,11 +114,28 @@ public abstract class ObjetoMovil extends ObjetoGrafico {
                 break;
         }
     }
-    
+
+    public void devolver() {
+        switch (direccion) {
+            case derecha:
+                x -= longitudPaso;
+                break;
+            case izquierda:
+                x += longitudPaso;
+                break;
+            case arriba:
+                y += longitudPaso;
+                break;
+            case abajo:
+                y -= longitudPaso;
+                break;
+        }
+    }
+
     public TipoDireccion getDireccion() {
         return direccion;
     }
-    
+
     public void setDireccion(TipoDireccion direccion) {
         this.direccion = direccion;
     }
