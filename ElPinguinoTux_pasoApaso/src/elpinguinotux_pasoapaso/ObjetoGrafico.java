@@ -44,20 +44,21 @@ public abstract class ObjetoGrafico {
 
     public abstract void paint(Graphics2D graphics2D);
     
+    public Rectangle2D getBounds2D(){
+        return new Rectangle2D.Double(
+                this.x, this.y, 
+                this.width, this.height
+        );
+    }
+    
     public boolean colisionaCon(ObjetoGrafico otro) {
         if(otro == null || this == otro
                 || ! this.isColisionable() 
                 || ! otro.isColisionable()){
             return false;
         }
-        Rectangle2D rectanguloThis = new Rectangle2D.Double(
-                this.x, this.y, 
-                this.width, this.height
-        );
-        Rectangle2D rectanguloOtro = new Rectangle2D.Double(
-                otro.x, otro.y, 
-                otro.width, otro.height
-        );
+        Rectangle2D rectanguloThis = this.getBounds2D();
+        Rectangle2D rectanguloOtro = otro.getBounds2D();
         return rectanguloThis.intersects(rectanguloOtro);
     }
     
