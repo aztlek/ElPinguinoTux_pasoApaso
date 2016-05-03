@@ -18,7 +18,7 @@ package elpinguinotux_pasoapaso;
 
 /**
  *
- * @author aztlek
+ * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public enum TipoDireccion {
     parado,
