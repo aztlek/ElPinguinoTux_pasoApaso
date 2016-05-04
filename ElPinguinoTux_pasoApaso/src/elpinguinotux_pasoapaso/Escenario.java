@@ -50,7 +50,6 @@ public class Escenario extends Canvas {
         objetosGraficos = new ArrayList<>();
 
         objetosGraficos.add(new Titulo(0, 0, 16, totalHeight));
-//        objetosGraficos.add( new Tiempo(244, 52, 35, 20) );
         cuentaRegresiva = new CuentaRegresiva(244, 52, 35, 20, this);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(cuentaRegresiva, 10, 100);
@@ -208,13 +207,13 @@ public class Escenario extends Canvas {
         }
 
         // Tux
-        Tux tux = new Tux(214, 129, 11, 14, this, contadorPeces);
+        Tux tux = new Tux(214, 129, 11, 14, this, contadorPeces, icebergFinal);
+        objetosGraficos.add(tux);
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
 
-        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
-        objetosGraficos.add(tux);
+//        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
 //        objetosGraficos.add(tux2);
 //        marco.addKeyListener(tux2);
@@ -241,9 +240,8 @@ public class Escenario extends Canvas {
         }
         cuentaRegresiva.paint(graphics2D);
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
-
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
         // Reestrablece las transformaciones
         graphics2D.setTransform(affineTransform);
 
