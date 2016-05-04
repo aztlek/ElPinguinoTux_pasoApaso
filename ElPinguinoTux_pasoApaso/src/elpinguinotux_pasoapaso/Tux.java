@@ -26,8 +26,6 @@ import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Tux es el protagonista del juego
@@ -38,13 +36,18 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
 
     private final Escenario escenario;
     private final ContadorPeces contadorPeces;
+    private final Iceberg meta;
     private boolean saltando = false;
     private final HashSet<Integer> teclas;
 
-    public Tux(double x, double y, double width, double height, Escenario escenario, ContadorPeces contadorPeces) {
+    public Tux(double x, double y, double width, double height, 
+               Escenario escenario, 
+               ContadorPeces contadorPeces, 
+               Iceberg meta) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
         this.contadorPeces = contadorPeces;
+        this.meta = meta;
         teclas = new HashSet<>();
     }
 
@@ -289,30 +292,23 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
                     thread.start();
                     break;
             }
-
-            Pez pez = null;
-            Iceberg iceberg = null;
-            Escalera escalera = null;
-            ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
-            for (ObjetoGrafico o : quienes) {
-                if (o instanceof CuboDeHielo) {
-                    devolver(o);
-                } else if (o instanceof Pez) {
-                    pez = (Pez) o;
-                } else if (o instanceof Iceberg) {
-                    iceberg = (Iceberg) o;
-                } else if (o instanceof Escalera) {
-                    escalera = (Escalera) o;
-                }
+        }
+        Pez pez = null;
+        Iceberg iceberg = null;
+        ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
+        for (ObjetoGrafico o : quienes) {
+            if (o instanceof CuboDeHielo) {
+                devolver(o);
+            } else if (o instanceof Pez) {
+                pez = (Pez) o;
+            } else if (o instanceof Iceberg) {
+                iceberg = (Iceberg) o;
             }
-            if (pez != null && iceberg == null) {
-                pez.setColisionable(false);
-                pez.setVisible(false);
-                contadorPeces.increment();
-            }
-            if ((tecla == KeyEvent.VK_UP || tecla == KeyEvent.VK_DOWN) && escalera == null) {
-                devolver();
-            }
+        }
+        if (pez != null && iceberg == null) {
+            pez.setColisionable(false);
+            pez.setVisible(false);
+            contadorPeces.increment();
         }
         escenario.repaint();
     }
@@ -353,7 +349,6 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
             try {
                 Thread.sleep(10);
             } catch (InterruptedException ex) {
-                Logger.getLogger(Tux.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
