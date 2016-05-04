@@ -50,6 +50,10 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
         this.meta = meta;
         teclas = new HashSet<>();
     }
+    
+    public Tux(double x, double y, double width, double height){
+        this(x, y, width, height, null, null, null);
+    }
 
     @Override
     public void dibujarParado(Graphics2D graphics2D) {
@@ -309,6 +313,9 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
             pez.setColisionable(false);
             pez.setVisible(false);
             contadorPeces.increment();
+        }
+        if (iceberg != null && iceberg == meta && contadorPeces.getNumeroDePeces() >= 8) {
+            
         }
         escenario.repaint();
     }
