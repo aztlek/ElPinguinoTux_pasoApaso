@@ -36,19 +36,13 @@ public class FamiliaTux extends ObjetoGrafico{
                 x + width * 0 / getTotalWidth(),
                 y + height * 110 / getTotalHeight(),
                 width * 62 / getTotalWidth(),
-                height * 77 / getTotalHeight(),
-                null,
-                null,
-                null
+                height * 77 / getTotalHeight()
         );
         pareja = new Tux(
                 x + width * 60 / getTotalWidth(),
                 y + height * 0 / getTotalHeight(),
                 width * 154 / getTotalWidth(),
-                height * 190 / getTotalHeight(),
-                null,
-                null,
-                null
+                height * 190 / getTotalHeight()
         );
     } // FamiliaTux()
 
