@@ -89,10 +89,7 @@ public class ContadorVidas extends ObjetoGrafico{
                     inicioXPinquino + i * (anchoPinguino + separacionEntrePinguinos),
                     inicioYPinguino,
                     anchoPinguino,
-                    altoPinguino,
-                    null,
-                    null,
-                    null
+                    altoPinguino
             ).paint(graphics2D);
         }
 
