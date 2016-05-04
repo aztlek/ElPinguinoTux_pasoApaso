@@ -50,12 +50,12 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
         this.escenario = escenario;
         this.contadorPeces = contadorPeces;
         this.meta = meta;
-        teclas = new HashSet<>();
         this.letreroGanaste = letreroGanaste;
+        teclas = new HashSet<>();
     }
     
     public Tux(double x, double y, double width, double height){
-        this(x, y, width, height, null, null, null,null);
+        this(x, y, width, height, null, null, null, null);
     }
 
     @Override
@@ -318,7 +318,8 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
             contadorPeces.increment();
         }
         if (iceberg != null && iceberg == meta && contadorPeces.getNumeroDePeces() >= 8) {
-            
+            letreroGanaste.setVisible(true);
+            letreroGanaste.setColisionable(true);
         }
         escenario.repaint();
     }
