@@ -32,7 +32,7 @@ public class LetreroGanaste extends ObjetoGrafico {
     private final Iceberg iceberg;
     private final Tux bebe, tux0, tux1;
 
-    public LetreroGanaste(int x, int y, int width, int height, CuentaRegresiva cuentaRegresiva) {
+    public LetreroGanaste(double x, double y, double width, double height, CuentaRegresiva cuentaRegresiva) {
         super(x, y, width, height, 190, 190);
         this.cuentaRegresiva = cuentaRegresiva;
 
@@ -77,6 +77,9 @@ public class LetreroGanaste extends ObjetoGrafico {
 
         // Restablecer el anterior tipo de letra
         graphics2D.setFont(oldFont);
+
+        // Rejilla de referencia
+        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         graphics2D.setTransform(transformacionesAnteriores);
     }// pain()
