@@ -100,4 +100,12 @@ public class ContadorPeces extends ObjetoGrafico{
     public int decrement() {
         return --numeroDePeces;
     }
+
+    public int getNumeroDePeces() {
+        return numeroDePeces;
+    }
+
+    public void setNumeroDePeces(int numeroDePeces) {
+        this.numeroDePeces = numeroDePeces;
+    }
 } // class Peces
