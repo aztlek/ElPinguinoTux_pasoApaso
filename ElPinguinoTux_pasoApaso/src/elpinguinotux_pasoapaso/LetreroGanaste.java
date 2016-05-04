@@ -38,10 +38,9 @@ public class LetreroGanaste extends ObjetoGrafico {
 
         // La famila
         iceberg = new Iceberg(x, y, getTotalWidth(), getTotalHeight());
-        bebe = new Tux(81, 90, 29, 35);
-        tux0 = new Tux(23, 35, 72, 90);
-        tux1 = new Tux(95, 35, 72, 90);
-
+        bebe = new Tux(x + 81, y + 90, 29, 35);
+        tux0 = new Tux(x + 23, y + 35, 72, 90);
+        tux1 = new Tux(x + 95, y + 35, 72, 90);
     }
 
 //    @Override
@@ -70,10 +69,10 @@ public class LetreroGanaste extends ObjetoGrafico {
 
         graphics2D.setColor(new Color(51, 253, 155));
         String stringConteo = cuentaRegresiva + "";
-        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round(20 * factorEscala)));
+        graphics2D.setFont(new Font("sans", Font.BOLD, 27));
         FontMetrics fontMetrics = graphics2D.getFontMetrics();
         int widthFontConteo = fontMetrics.stringWidth(stringConteo);
-        graphics2D.drawString(stringConteo, Math.round((getTotalWidth() - widthFontConteo) / 2d), 180);
+        graphics2D.drawString(stringConteo, Math.round(x + (getTotalWidth() - widthFontConteo) / 2d), Math.round(y + 180));
 
         // Restablecer el anterior tipo de letra
         graphics2D.setFont(oldFont);
