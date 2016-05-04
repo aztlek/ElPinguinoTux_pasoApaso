@@ -213,7 +213,10 @@ public class Escenario extends Canvas {
         threadTux.start();
         marco.addKeyListener(tux);
         
-        
+        LetreroGanaste letreroGanaste = new LetreroGanaste((totalWidth - totalHeight) / 4, 0, totalHeight, totalHeight, cuentaRegresiva);
+        letreroGanaste.setColisionable(true);
+        letreroGanaste.setVisible(true);
+        objetosGraficos.add(letreroGanaste);
 
 //        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
