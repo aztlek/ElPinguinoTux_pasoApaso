@@ -212,6 +212,8 @@ public class Escenario extends Canvas {
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
+        
+        
 
 //        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);

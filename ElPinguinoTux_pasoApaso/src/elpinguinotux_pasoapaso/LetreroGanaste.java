@@ -26,13 +26,13 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Ganaste extends ObjetoGrafico {
+public class LetreroGanaste extends ObjetoGrafico {
 
     private final CuentaRegresiva cuentaRegresiva;
     private final Iceberg iceberg;
     private final Tux bebe, tux0, tux1;
 
-    public Ganaste(int x, int y, int width, int height, CuentaRegresiva cuentaRegresiva) {
+    public LetreroGanaste(int x, int y, int width, int height, CuentaRegresiva cuentaRegresiva) {
         super(x, y, width, height, 190, 190);
         this.cuentaRegresiva = cuentaRegresiva;
 
@@ -42,7 +42,7 @@ public class Ganaste extends ObjetoGrafico {
         tux0 = new Tux(23, 35, 72, 90);
         tux1 = new Tux(95, 35, 72, 90);
 
-    } // Ganaste()
+    } // LetreroGanaste()
 
 //    @Override
 //    public void reiniciar() {
@@ -81,4 +81,4 @@ public class Ganaste extends ObjetoGrafico {
         graphics2D.setTransform(transformacionesAnteriores);
     }// pain()
 
-} // class Ganaste
+} // class LetreroGanaste
