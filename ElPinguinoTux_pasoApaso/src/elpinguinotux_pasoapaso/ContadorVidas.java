@@ -91,6 +91,7 @@ public class ContadorVidas extends ObjetoGrafico{
                     anchoPinguino,
                     altoPinguino,
                     null,
+                    null,
                     null
             ).paint(graphics2D);
         }
