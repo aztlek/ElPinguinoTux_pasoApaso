@@ -39,20 +39,23 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
     private final Iceberg meta;
     private boolean saltando = false;
     private final HashSet<Integer> teclas;
+    private final LetreroGanaste letreroGanaste;
 
     public Tux(double x, double y, double width, double height, 
                Escenario escenario, 
                ContadorPeces contadorPeces, 
-               Iceberg meta) {
+               Iceberg meta,
+               LetreroGanaste letreroGanaste) {
         super(x, y, width, height, 190, 237, TipoDireccion.parado, 5);
         this.escenario = escenario;
         this.contadorPeces = contadorPeces;
         this.meta = meta;
         teclas = new HashSet<>();
+        this.letreroGanaste = letreroGanaste;
     }
     
     public Tux(double x, double y, double width, double height){
-        this(x, y, width, height, null, null, null);
+        this(x, y, width, height, null, null, null,null);
     }
 
     @Override
