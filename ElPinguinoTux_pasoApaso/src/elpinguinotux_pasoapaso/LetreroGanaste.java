@@ -37,22 +37,22 @@ public class LetreroGanaste extends ObjetoGrafico {
         this.cuentaRegresiva = cuentaRegresiva;
 
         // La famila
-        iceberg = new Iceberg(x, y, width, height);
+        iceberg = new Iceberg(x, y, getTotalWidth(), getTotalHeight());
         bebe = new Tux(81, 90, 29, 35);
         tux0 = new Tux(23, 35, 72, 90);
         tux1 = new Tux(95, 35, 72, 90);
 
-    } // LetreroGanaste()
+    }
 
 //    @Override
 //    public void reiniciar() {
 //        super.reiniciar();
-//        visible = false;
-//    } // reiniciar()
+//        setVisible(false);
+//    }
     
     @Override
     public void paint(Graphics2D graphics2D) {
-//            cuentaRegresiva.parar();
+        cuentaRegresiva.cancel();
         AffineTransform transformacionesAnteriores = graphics2D.getTransform();
 
         // Trnasformaciones: transladar y escalar
@@ -73,13 +73,13 @@ public class LetreroGanaste extends ObjetoGrafico {
         graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round(20 * factorEscala)));
         FontMetrics fontMetrics = graphics2D.getFontMetrics();
         int widthFontConteo = fontMetrics.stringWidth(stringConteo);
-        graphics2D.drawString(stringConteo, Math.round((width - widthFontConteo) / 2d), 180);
+        graphics2D.drawString(stringConteo, Math.round((getTotalWidth() - widthFontConteo) / 2d), 180);
 
         // Restablecer el anterior tipo de letra
         graphics2D.setFont(oldFont);
 
-        // Rejilla de referencia
-        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
+//        // Rejilla de referencia
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
 
         graphics2D.setTransform(transformacionesAnteriores);
     }// pain()
