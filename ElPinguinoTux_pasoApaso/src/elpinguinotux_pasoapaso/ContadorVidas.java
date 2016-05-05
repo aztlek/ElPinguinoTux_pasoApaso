@@ -52,6 +52,10 @@ public class ContadorVidas extends ObjetoGrafico{
     public int decrement() {
         return --numVidas;
     }
+    
+    public int increment() {
+        return ++numVidas;
+    }
 
     @Override
     public void paint(Graphics2D graphics2D) {
