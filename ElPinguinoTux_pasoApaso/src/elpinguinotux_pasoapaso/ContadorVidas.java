@@ -26,14 +26,14 @@ import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 
 /**
- * LLeva el número de vidas del protagonista.
+ * LLeva el número de numVidas del protagonista.
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class ContadorVidas extends ObjetoGrafico{
     private final String titulo = "Vidas";
     private final int vidasInicial = 3;
-    private int vidas = vidasInicial;
+    private int numVidas = vidasInicial;
     private final double anchoPinguino = 75;
     private final double altoPinguino = 110;
     private final double separacionEntrePinguinos = 9;
@@ -50,7 +50,7 @@ public class ContadorVidas extends ObjetoGrafico{
     }
 
     public void dec() {
-        vidas--;
+        numVidas--;
     }
 
     @Override
@@ -77,9 +77,9 @@ public class ContadorVidas extends ObjetoGrafico{
                 (int) Math.round(altoTituloContadores)
         );
 
-        // Pintar las vidas
-        for (int i = 0; i < vidas; i++) {
-            totalAnchoPinguinos = (anchoPinguino * vidas + separacionEntrePinguinos * (vidas - 1));
+        // Pintar las numVidas
+        for (int i = 0; i < numVidas; i++) {
+            totalAnchoPinguinos = (anchoPinguino * numVidas + separacionEntrePinguinos * (numVidas - 1));
             inicioXPinquino = (getTotalWidth() - totalAnchoPinguinos) / 2.0d;
             new Tux(
                     inicioXPinquino + i * (anchoPinguino + separacionEntrePinguinos),
@@ -99,15 +99,15 @@ public class ContadorVidas extends ObjetoGrafico{
     }
 
     public void reiniciar() {
-        vidas = vidasInicial;
+        numVidas = vidasInicial;
     }
 
-    public int getVidas() {
-        return vidas;
+    public int getNumVidas() {
+        return numVidas;
     }
 
-    public void setVidas(int vidas) {
-        this.vidas = vidas;
+    public void setNumVidas(int numVidas) {
+        this.numVidas = numVidas;
     }
 }
 // class Vidas
