@@ -49,8 +49,8 @@ public class ContadorVidas extends ObjetoGrafico{
         super(x, y, width, height, 280, 184);
     }
 
-    public void dec() {
-        numVidas--;
+    public int decrement() {
+        return --numVidas;
     }
 
     @Override
