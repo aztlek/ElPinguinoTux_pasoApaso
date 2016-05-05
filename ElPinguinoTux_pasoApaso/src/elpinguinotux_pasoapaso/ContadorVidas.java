@@ -53,10 +53,6 @@ public class ContadorVidas extends ObjetoGrafico{
         vidas--;
     }
 
-    public int getVidas() {
-        return vidas;
-    }
-
     @Override
     public void paint(Graphics2D graphics2D) {
         AffineTransform transformacionesAnteriores = graphics2D.getTransform();
@@ -104,6 +100,14 @@ public class ContadorVidas extends ObjetoGrafico{
 
     public void reiniciar() {
         vidas = vidasInicial;
+    }
+
+    public int getVidas() {
+        return vidas;
+    }
+
+    public void setVidas(int vidas) {
+        this.vidas = vidas;
     }
 }
 // class Vidas
