@@ -40,6 +40,7 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
     private boolean saltando = false;
     private final HashSet<Integer> teclas;
     private final LetreroGanaste letreroGanaste;
+    private final double xInicial, yInicial;
 
     public Tux(double x, double y, double width, double height, 
                Escenario escenario, 
@@ -52,6 +53,8 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
         this.meta = meta;
         this.letreroGanaste = letreroGanaste;
         teclas = new HashSet<>();
+        xInicial = x;
+        yInicial = y;
     }
     
     public Tux(double x, double y, double width, double height){
@@ -362,5 +365,10 @@ public class Tux extends ObjetoMovil implements KeyListener, Runnable {
             } catch (InterruptedException ex) {
             }
         }
+    }
+    
+    public void restart(){
+        x = xInicial;
+        y = yInicial;
     }
 } // class Tux
