@@ -34,16 +34,19 @@ import java.util.Random;
 public class Orca extends ObjetoMovil implements Runnable{
     private final Escenario escenario;
     private final ContadorVidas contadorVidas;
+    private final LetreroPerdiste letreroPerdiste;
 
     public Orca(double x, double y, double width, double height, 
-            Escenario escenario, ContadorVidas contadorVidas) {
+            Escenario escenario, ContadorVidas contadorVidas, 
+            LetreroPerdiste letreroPerdiste) {
         super(x, y, width, height, 280, 160, TipoDireccion.derecha, .05d * new Random().nextDouble());
         this.escenario = escenario;
         this.contadorVidas = contadorVidas;
+        this.letreroPerdiste = letreroPerdiste;
     } // Orca()
     
     public  Orca(double x, double y, double width, double height) {
-        this(x, y, width, height, null, null);
+        this(x, y, width, height, null, null, null);
     }
 
     @Override
