@@ -212,6 +212,7 @@ public class Escenario extends Canvas {
         letreroGanaste.setColisionable(false);
         letreroGanaste.setVisible(false);
         objetosGraficos.add(letreroGanaste);
+        
 
         // Tux
         Tux tux = new Tux(214, 129, 11, 14, this, 

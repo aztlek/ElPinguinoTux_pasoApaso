@@ -30,25 +30,17 @@ import java.awt.geom.AffineTransform;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class VentanaPerdiste extends ObjetoGrafico {
+public class LetreroPerdiste extends ObjetoGrafico {
 
     private final String titulo = "¡Perdiste!";
     private final double altoTitulo = 40.0d;
     private final double anchoOrca = 255.0d;
 
-    /**
-     * Construye el letrero de perdiste.
-     *
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     */
-    public VentanaPerdiste(double x, double y, double width, double height) {
-        super(x, y, width, height, 280, 190, null);
-        setVisible(false);
+    public LetreroPerdiste(double x, double y, double width, double height) {
+        super(x, y, width, height, 280, 190);
+        setVisible(true);
         setColisionable(false);
-    } // VentanaPerdiste()
+    } // LetreroPerdiste()
 
     @Override
     public void paint(Graphics2D graphics2D) {
@@ -68,7 +60,7 @@ public class VentanaPerdiste extends ObjetoGrafico {
         
         // Poner el color, el nuevo tipo de letra xx obtener las métricas
         graphics2D.setColor(Color.WHITE);
-        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round(altoTitulo * Const.escalaTextos)));
+        graphics2D.setFont(new Font("sans", Font.BOLD, (int) Math.round(altoTitulo * 1.25d)));
         FontMetrics fontMetrics = graphics2D.getFontMetrics();
         int heightFont = fontMetrics.getHeight();
         int widthFont = fontMetrics.stringWidth(titulo);
@@ -92,4 +84,4 @@ public class VentanaPerdiste extends ObjetoGrafico {
         graphics2D.setTransform(affineTransform);
 
     }// Paint()
-}// class VentanaPerdiste
+}// class LetreroPerdiste
