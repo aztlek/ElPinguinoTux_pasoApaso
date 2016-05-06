@@ -41,6 +41,10 @@ public class Orca extends ObjetoMovil implements Runnable{
         this.escenario = escenario;
         this.contadorVidas = contadorVidas;
     } // Orca()
+    
+    public  Orca(double x, double y, double width, double height) {
+        this(x, y, width, height, null, null);
+    }
 
     @Override
     public void dibujarDerecha(Graphics2D graphics2D) {
