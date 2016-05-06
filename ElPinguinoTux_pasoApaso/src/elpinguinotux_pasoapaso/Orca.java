@@ -127,7 +127,7 @@ public class Orca extends ObjetoMovil implements Runnable{
                 }
             }
             if (iceberg == null && tux != null) {
-                contadorVidas.decrement();
+                int vidas = contadorVidas.decrement();
                 tux.restart();
             }
             escenario.repaint();
