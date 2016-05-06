@@ -32,12 +32,13 @@ import java.util.Random;
  * @author aztlek
  */
 public class Orca extends ObjetoMovil implements Runnable{
-    private final double longitudPaso = 0;
     private final Escenario escenario;
+    private final ContadorVidas contadorVidas;
 
-    public Orca(double x, double y, double width, double height, Escenario escenario) {
+    public Orca(double x, double y, double width, double height, Escenario escenario, ContadorVidas contadorVidas) {
         super(x, y, width, height, 280, 160, TipoDireccion.derecha, .05d * new Random().nextDouble());
         this.escenario = escenario;
+        this.contadorVidas = contadorVidas;
     } // Orca()
 
     @Override
@@ -110,11 +111,23 @@ public class Orca extends ObjetoMovil implements Runnable{
     public void run() {
         for(;;){
             darPaso();
+            Tux tux = null;
+            Iceberg iceberg = null;
             ArrayList<ObjetoGrafico> quienes = escenario.conQuienesColisiona(this);
             for (ObjetoGrafico o : quienes) {
                 if (o instanceof CuboDeHielo) {
                     voltear();
                 }
+                else if (o instanceof Tux) {
+                    tux = (Tux) o;
+                }
+                else if (o instanceof Iceberg) {
+                    iceberg = (Iceberg) o;
+                }
+            }
+            if (iceberg == null && tux != null) {
+                contadorVidas.decrement();
+                tux.restart();
             }
             escenario.repaint();
             try {

@@ -55,7 +55,8 @@ public class Escenario extends Canvas {
         timer.scheduleAtFixedRate(cuentaRegresiva, 10, 100);
         ContadorPeces contadorPeces = new ContadorPeces(244, 88, 35, 20);
         objetosGraficos.add(contadorPeces);
-        objetosGraficos.add(new ContadorVidas(244, 127, 35, 20));
+        ContadorVidas contadorVidas = new ContadorVidas(244, 127, 35, 20);
+        objetosGraficos.add(contadorVidas);
 
         // Constantes de las teselas
         final double inicioxBloques = 17.0d;
@@ -82,7 +83,8 @@ public class Escenario extends Canvas {
                     orcasInicioY + j * orcaSeparaciónAlto,
                     43.0d,
                     23.0d,
-                    this
+                    this,
+                    contadorVidas
             );
             objetosGraficos.add(orca);
             Thread threadOrca = new Thread(orca);
