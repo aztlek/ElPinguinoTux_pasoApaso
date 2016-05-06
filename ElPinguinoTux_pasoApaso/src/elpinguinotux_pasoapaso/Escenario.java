@@ -67,35 +67,13 @@ public class Escenario extends Canvas {
                 / (double) numBloquesX;
         final double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
-
-        // Los villanos
-        int orcasLength = 4;
-        Random random = new Random();
-        double orcasInicioX = 27.0d;
-        double orcasInicioY = 12.0d;
-        double orcaSeparaciónAlto = 4 * heightCuboDeHielo;
-        double orcaAnchoPosicion = 163;
-
-        // Instanciar las orcas
-        for (int j = 0; j < orcasLength; j++) {
-            Orca orca = new Orca(
-                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
-                    orcasInicioY + j * orcaSeparaciónAlto,
-                    43.0d,
-                    23.0d,
-                    this,
-                    contadorVidas
-            );
-            objetosGraficos.add(orca);
-            Thread threadOrca = new Thread(orca);
-            threadOrca.start();
-        }
+        final double separaciónAlto = 4 * heightCuboDeHielo;
 
         // Los peces
         final double inicioXpeces = 12 + inicioxBloques;
         final double inicioYpeces = 21;
         final double anchoPosXpeces = 194;
-        final double separacionYpeces = orcaSeparaciónAlto;
+        final double separacionYpeces = separaciónAlto;
         final int[] lonFilPeces = {2, 3, 2, 1};
 
         for (int i = 0; i < lonFilPeces.length; i++) {
@@ -119,7 +97,7 @@ public class Escenario extends Canvas {
         final double anchoIceberg = 14;
         final double altoIceberg = 14;
         final double separacionAnchoIceberg = 70;
-        final double separacionAltoIceberg = orcaSeparaciónAlto;
+        final double separacionAltoIceberg = separaciónAlto;
         final int numFilIcebergs = 4;
         final int numColIcebergs = 2;
 
@@ -207,15 +185,40 @@ public class Escenario extends Canvas {
                 }
             }
         }
-        
+
         LetreroGanaste letreroGanaste = new LetreroGanaste((totalWidth - totalHeight) / 4, 0, totalHeight, totalHeight, cuentaRegresiva);
         letreroGanaste.setColisionable(false);
         letreroGanaste.setVisible(false);
         objetosGraficos.add(letreroGanaste);
-        
+
+        LetreroPerdiste letreroPerdiste = new LetreroPerdiste(0, 0, totalWidth, totalHeight);
+        objetosGraficos.add(letreroPerdiste);
+
+        // Los villanos
+        int orcasLength = 4;
+        Random random = new Random();
+        double orcasInicioX = 27.0d;
+        double orcasInicioY = 12.0d;
+        double orcaAnchoPosicion = 163;
+
+        // Instanciar las orcas
+        for (int j = 0; j < orcasLength; j++) {
+            Orca orca = new Orca(
+                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
+                    orcasInicioY + j * separaciónAlto,
+                    43.0d,
+                    23.0d,
+                    this,
+                    contadorVidas,
+                    letreroPerdiste
+            );
+            objetosGraficos.add(orca);
+            Thread threadOrca = new Thread(orca);
+            threadOrca.start();
+        }
 
         // Tux
-        Tux tux = new Tux(214, 129, 11, 14, this, 
+        Tux tux = new Tux(214, 129, 11, 14, this,
                 contadorPeces, icebergFinal, letreroGanaste);
         objetosGraficos.add(tux);
         Thread threadTux = new Thread(tux);
