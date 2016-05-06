@@ -29,13 +29,14 @@ import java.util.Random;
 
 /**
  *
- * @author aztlek
+ * @author Luis Alejandro Bernal Romero (Aztlek)
  */
 public class Orca extends ObjetoMovil implements Runnable{
     private final Escenario escenario;
     private final ContadorVidas contadorVidas;
 
-    public Orca(double x, double y, double width, double height, Escenario escenario, ContadorVidas contadorVidas) {
+    public Orca(double x, double y, double width, double height, 
+            Escenario escenario, ContadorVidas contadorVidas) {
         super(x, y, width, height, 280, 160, TipoDireccion.derecha, .05d * new Random().nextDouble());
         this.escenario = escenario;
         this.contadorVidas = contadorVidas;
