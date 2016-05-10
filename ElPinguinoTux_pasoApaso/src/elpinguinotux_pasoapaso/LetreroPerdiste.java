@@ -38,7 +38,7 @@ public class LetreroPerdiste extends ObjetoGrafico {
 
     public LetreroPerdiste(double x, double y, double width, double height) {
         super(x, y, width, height, 280, 190);
-        setVisible(true);
+        setVisible(false);
         setColisionable(false);
     } // LetreroPerdiste()
 
