@@ -31,21 +31,22 @@ import java.util.Random;
  *
  * @author Luis Alejandro Bernal Romero (Aztlek)
  */
-public class Orca extends ObjetoMovil implements Runnable{
+public class Orca extends ObjetoMovil implements Runnable {
+
     private final Escenario escenario;
     private final ContadorVidas contadorVidas;
     private final LetreroPerdiste letreroPerdiste;
 
-    public Orca(double x, double y, double width, double height, 
-            Escenario escenario, ContadorVidas contadorVidas, 
+    public Orca(double x, double y, double width, double height,
+            Escenario escenario, ContadorVidas contadorVidas,
             LetreroPerdiste letreroPerdiste) {
         super(x, y, width, height, 280, 160, TipoDireccion.derecha, .05d * new Random().nextDouble());
         this.escenario = escenario;
         this.contadorVidas = contadorVidas;
         this.letreroPerdiste = letreroPerdiste;
     } // Orca()
-    
-    public  Orca(double x, double y, double width, double height) {
+
+    public Orca(double x, double y, double width, double height) {
         this(x, y, width, height, null, null, null);
     }
 
@@ -112,12 +113,12 @@ public class Orca extends ObjetoMovil implements Runnable{
         graphics2D.fill(new Ellipse2D.Double(172, 102, 88, 29));
 
 //        // Rejilla de referencia
-//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);        
+//        new Grid(getTotalWidth(), getTotalHeight()).paint(graphics2D);
     }
-    
+
     @Override
     public void run() {
-        for(;;){
+        for (;;) {
             darPaso();
             Tux tux = null;
             Iceberg iceberg = null;
@@ -125,22 +126,24 @@ public class Orca extends ObjetoMovil implements Runnable{
             for (ObjetoGrafico o : quienes) {
                 if (o instanceof CuboDeHielo) {
                     voltear();
-                }
-                else if (o instanceof Tux) {
+                } else if (o instanceof Tux) {
                     tux = (Tux) o;
-                }
-                else if (o instanceof Iceberg) {
+                } else if (o instanceof Iceberg) {
                     iceberg = (Iceberg) o;
                 }
             }
             if (iceberg == null && tux != null) {
                 int vidas = contadorVidas.decrement();
                 tux.restart();
+                if (vidas <= 0) {
+                    letreroPerdiste.setVisible(true);
+                }
             }
             escenario.repaint();
             try {
                 Thread.sleep(1);
-            } catch (InterruptedException ex) { }
+            } catch (InterruptedException ex) {
+            }
         }
     }
 
