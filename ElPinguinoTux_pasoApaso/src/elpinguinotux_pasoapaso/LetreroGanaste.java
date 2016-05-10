@@ -41,6 +41,8 @@ public class LetreroGanaste extends ObjetoGrafico {
         bebe = new Tux(x + 81, y + 90, 29, 35);
         tux0 = new Tux(x + 23, y + 35, 72, 90);
         tux1 = new Tux(x + 95, y + 35, 72, 90);
+        setVisible(false);
+        setColisionable(false);
     }
 
 //    @Override
