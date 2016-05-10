@@ -58,7 +58,7 @@ public class Escenario extends Canvas {
         ContadorVidas contadorVidas = new ContadorVidas(244, 127, 35, 20);
         objetosGraficos.add(contadorVidas);
 
-        // Constantes de las teselas
+        // Constantes
         final double inicioxBloques = 17.0d;
         final double inicioyBloques = 0.0d;
         final int numBloquesX = 28;
@@ -68,6 +68,35 @@ public class Escenario extends Canvas {
         final double heightCuboDeHielo = (totalHeight - inicioyBloques)
                 / (double) numBloquesY;
         final double separaciónAlto = 4 * heightCuboDeHielo;
+        final Random random = new Random();
+
+        LetreroGanaste letreroGanaste = new LetreroGanaste(
+                (totalWidth - totalHeight) / 4, 0, 
+                totalHeight, totalHeight, 
+                cuentaRegresiva);
+        LetreroPerdiste letreroPerdiste = new LetreroPerdiste(0, 0, totalWidth, totalHeight);
+
+        // Los villanos
+        int orcasLength = 4;
+        double orcasInicioX = 27.0d;
+        double orcasInicioY = 12.0d;
+        double orcaAnchoPosicion = 163;
+
+        // Instanciar las orcas
+        for (int j = 0; j < orcasLength; j++) {
+            Orca orca = new Orca(
+                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
+                    orcasInicioY + j * separaciónAlto,
+                    43.0d,
+                    23.0d,
+                    this,
+                    contadorVidas,
+                    letreroPerdiste
+            );
+            objetosGraficos.add(orca);
+            Thread threadOrca = new Thread(orca);
+            threadOrca.start();
+        }
 
         // Los peces
         final double inicioXpeces = 12 + inicioxBloques;
@@ -186,37 +215,6 @@ public class Escenario extends Canvas {
             }
         }
 
-        LetreroGanaste letreroGanaste = new LetreroGanaste((totalWidth - totalHeight) / 4, 0, totalHeight, totalHeight, cuentaRegresiva);
-        letreroGanaste.setColisionable(false);
-        letreroGanaste.setVisible(false);
-        objetosGraficos.add(letreroGanaste);
-
-        LetreroPerdiste letreroPerdiste = new LetreroPerdiste(0, 0, totalWidth, totalHeight);
-        objetosGraficos.add(letreroPerdiste);
-
-        // Los villanos
-        int orcasLength = 4;
-        Random random = new Random();
-        double orcasInicioX = 27.0d;
-        double orcasInicioY = 12.0d;
-        double orcaAnchoPosicion = 163;
-
-        // Instanciar las orcas
-        for (int j = 0; j < orcasLength; j++) {
-            Orca orca = new Orca(
-                    orcasInicioX + random.nextDouble() * orcaAnchoPosicion,
-                    orcasInicioY + j * separaciónAlto,
-                    43.0d,
-                    23.0d,
-                    this,
-                    contadorVidas,
-                    letreroPerdiste
-            );
-            objetosGraficos.add(orca);
-            Thread threadOrca = new Thread(orca);
-            threadOrca.start();
-        }
-
         // Tux
         Tux tux = new Tux(214, 129, 11, 14, this,
                 contadorPeces, icebergFinal, letreroGanaste);
@@ -224,6 +222,9 @@ public class Escenario extends Canvas {
         Thread threadTux = new Thread(tux);
         threadTux.start();
         marco.addKeyListener(tux);
+        
+        objetosGraficos.add(letreroGanaste);
+        objetosGraficos.add(letreroPerdiste);
 
 //        objetosGraficos.add(new Escalera(124.5, 105, tux.getWidth(), tux.getHeight() * 1.8d));
 //        Tux2 tux2 =new Tux2(100, 129, 11, 14, this, contadorPeces);
